@@ -5,7 +5,7 @@ public class Grades_Function {
     Scanner sc = new Scanner(System.in); //입력 받기
     String[] G_term = {"1학년1학기","1학년 2학기","2학년 1학기","2학년 2학기", 
         "3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기","기타학기"}; //G_term = 0학년0학기
-    double[] S_term = new double[10];   //S_term = 0학년0학기
+    double[] S_term = new double[10];   //S_term = 0학년0학기의 총 취득 학점을 저장할 배열 
     int G_size = G_term.length;         //G_term 배열의 길이 //G_term 배열의 길이
     int a= 0; double a2=0;              //a 과목수 관련변수, a2 해당학기 총 취득 학점 관련변수
     String[] SN = new String[10];       //SN 과목명 입력
