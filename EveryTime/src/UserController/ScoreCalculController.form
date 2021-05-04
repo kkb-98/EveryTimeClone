@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Score1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Score2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Score3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Score4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="Credit2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Credit3" max="32767" attributes="0"/>
+                                          <Component id="Credit4" max="32767" attributes="0"/>
+                                          <Component id="Credit1" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="TotalCredit" min="-2" pref="76" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="69" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Score5" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Credit6" max="32767" attributes="0"/>
+                              <Component id="Credit7" max="32767" attributes="0"/>
+                              <Component id="Credit8" max="32767" attributes="0"/>
+                              <Component id="Credit5" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="Back" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="Calculation" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="Back" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Credit8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Calculation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TotalCredit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xd734;&#xba3c;&#xd3b8;&#xc9c0;&#xccb4;" size="20" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Everytime"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xd559;&#xc810; &#xacc4;&#xc0b0;&#xae30;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Credit4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Credit8">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score8">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xc810;&#xc218;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xd559;&#xc810;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Calculation">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xc785;&#xb825;&#xc644;&#xb8cc;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Back">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xb4a4;&#xb85c;&#xac00;&#xae30;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TotalCredit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xc810;&#xc218;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xd559;&#xc810;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xcd1d;&#xd559;&#xc810; :"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
