@@ -5,6 +5,8 @@
  */
 package ManagerController;
 
+import UserController.SearchController;
+
 /**
  *
  * @author USER
@@ -33,6 +35,8 @@ public class ManagerMainController extends javax.swing.JFrame {
         UserInfo = new javax.swing.JButton();
         Board = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
+        SearchController = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,26 +74,46 @@ public class ManagerMainController extends javax.swing.JFrame {
             }
         });
 
+        SearchController.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+
+        Search.setBackground(new java.awt.Color(153, 0, 0));
+        Search.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        Search.setForeground(new java.awt.Color(255, 255, 255));
+        Search.setText("검색");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Board, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserInfo)
+                                .addGap(18, 18, 18)
+                                .addComponent(Logout))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SearchController)
+                                .addGap(18, 18, 18)
+                                .addComponent(Search)))
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(Board, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(UserInfo)
-                .addGap(18, 18, 18)
-                .addComponent(Logout)
-                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,12 +123,16 @@ public class ManagerMainController extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(86, 86, 86)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchController, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Search))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Board)
                     .addComponent(UserInfo)
                     .addComponent(Logout))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,6 +155,13 @@ public class ManagerMainController extends javax.swing.JFrame {
         MI.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_UserInfoActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        SearchController SC = new SearchController();
+        SC.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +201,8 @@ public class ManagerMainController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Board;
     private javax.swing.JButton Logout;
+    private javax.swing.JButton Search;
+    private javax.swing.JTextField SearchController;
     private javax.swing.JButton UserInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
