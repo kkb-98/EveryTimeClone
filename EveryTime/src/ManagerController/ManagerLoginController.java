@@ -114,6 +114,9 @@ public class ManagerLoginController extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManagerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagerLoginActionPerformed
+        ManagerMainController MM = new ManagerMainController();
+        MM.setVisible(true);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_ManagerLoginActionPerformed
 
