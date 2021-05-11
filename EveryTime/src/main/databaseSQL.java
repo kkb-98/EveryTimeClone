@@ -9,11 +9,12 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class databaseSQL {
+public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
     protected static final String USERNAME = "everytime";
     protected static final String PASSWORD = "everytime";
-    protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject?serverTimezone=UTC";
+    //protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject?serverTimezone=UTC";
+    protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;
     
@@ -100,6 +101,19 @@ public class databaseSQL {
         st.executeUpdate();
     }
     
+    protected boolean loginUser(String id, String pw) throws SQLException { //로그인
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select * from user");
+        while (rs.next()) {
+            String name = rs.getString("userID");;
+            String password = rs.getString("userPW");
+            if (name.equals(id) && password.equals(pw))
+                return true;
+        }
+        return false;
+    }
+    
     protected boolean serachData(String table, String data) throws SQLException {
         //특정 값이 특정 테이블에 존재하는지 확인 - 존재한다면 true 리턴
         Statement stmt2 = null;
@@ -116,7 +130,7 @@ public class databaseSQL {
         //특정 테이블에서 특정 컬럼의 값 얻어오기
         Statement stmt2 = null;
         stmt2 = conn.createStatement();
-        rs = stmt2.executeQuery("select " + column + " from " + table + " where " + keycolumn + "=" + keydata);
+        rs = stmt2.executeQuery("select " + column + " from " + table + " where " + keycolumn + "='" + keydata + "'");
         while (rs.next()) {
             String a = rs.getString(column);
             return a;
