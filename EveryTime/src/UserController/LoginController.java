@@ -55,7 +55,7 @@ public class LoginController extends databaseSQL {
         jLabel1.setText("Everytime");
 
         UserID.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        UserID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        UserID.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         UserID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserIDActionPerformed(evt);
@@ -122,7 +122,7 @@ public class LoginController extends databaseSQL {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Join, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Manager, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))))
+                                    .addComponent(Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 112, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -220,6 +220,22 @@ public class LoginController extends databaseSQL {
     }//GEN-LAST:event_ManagerActionPerformed
 
     public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainPageController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainPageController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainPageController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainPageController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
