@@ -5,17 +5,21 @@
  */
 package UserController;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.databaseSQL;
 /**
  *
  * @author USER
  */
-public class MessageController extends javax.swing.JFrame {
+public class MessageController extends databaseSQL {
 
     /**
      * Creates new form MessageController
      */
     public MessageController() {
         initComponents();
+        // 여기서 생성자로 gui가 생성될때 메세지함 jtable에 데이터가 표시되야함
     }
 
     /**
@@ -57,6 +61,11 @@ public class MessageController extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("확인");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,9 +107,14 @@ public class MessageController extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // 뒤로가기
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // 확인 버튼
+        // 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

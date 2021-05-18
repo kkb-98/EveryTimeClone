@@ -5,11 +5,14 @@
  */
 package UserController;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.databaseSQL;
 /**
  *
  * @author USER
  */
-public class MessageSendController extends javax.swing.JFrame {
+public class MessageSendController extends databaseSQL {
 
     /**
      * Creates new form SendMessageController
@@ -33,6 +36,7 @@ public class MessageSendController extends javax.swing.JFrame {
         Send = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MessageContent = new javax.swing.JTextArea();
+        receiver = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,10 +59,18 @@ public class MessageSendController extends javax.swing.JFrame {
         Send.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Send.setForeground(new java.awt.Color(255, 255, 255));
         Send.setText("전송");
+        Send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendActionPerformed(evt);
+            }
+        });
 
         MessageContent.setColumns(20);
         MessageContent.setRows(5);
         jScrollPane1.setViewportView(MessageContent);
+
+        receiver.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        receiver.setText("받는사람");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,12 +85,14 @@ public class MessageSendController extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(receiver, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -88,9 +102,10 @@ public class MessageSendController extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(receiver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back)
@@ -105,6 +120,22 @@ public class MessageSendController extends javax.swing.JFrame {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendActionPerformed
+        // send 버튼
+        dbLoad();
+        String rcvName = receiver.getText();
+        // JOptionPane.showMessageDialog(this, rcvName, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if(findUser(rcvName)) {
+            JOptionPane.showMessageDialog(this, "메세지 전송", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "대상이 존재하지 않습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+        }
+        dbClose();
+    }//GEN-LAST:event_SendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,5 +182,6 @@ public class MessageSendController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField receiver;
     // End of variables declaration//GEN-END:variables
 }

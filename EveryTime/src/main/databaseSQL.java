@@ -166,20 +166,35 @@ public class databaseSQL extends javax.swing.JFrame {
     
     protected boolean msgCheck(String userid) throws SQLException {
         // 받은 메세지가 있다면 true 리턴
-        stmt = conn.createStatement();
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
         
-        rs = stmt.executeQuery("select * from message");
+        rs = stmt2.executeQuery("select * from message");
         while (rs.next()) {
-            String receiver = rs.getString("receiverNum");;
+            String receiver = rs.getString("receiverNum");
             if (receiver.equals(userid)) return true;
+        }
+        return false;
+    }
+    
+    protected boolean findUser(String name) throws SQLException {
+        // 대상이 존재하는지 여부 확인
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        
+        rs = stmt2.executeQuery("select * from user");
+        while (rs.next()) {
+            String receiver = rs.getString("userName");
+            if (receiver.equals(name)) return true;
         }
         return false;
     }
     
     protected String[] msgView(String userid) throws SQLException {
         // 메세지 받아오기
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery("select * from message");
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select * from message");
         
         String[] message = new String[5];
         while(rs.next()){
@@ -210,13 +225,12 @@ public class databaseSQL extends javax.swing.JFrame {
                 + " messageDate,"
                 + " messageContent,"
                 + " isCheck"
-                + ") VALUES (?,?,?,?,?)";
+                + ") VALUES (?,?,?,?,'0')";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, senderNum);
         st.setString(2, receiverNum);
         st.setString(3, messageDate);
         st.setString(4, messageContent);
-        st.setString(5, "0");
         st.executeUpdate();
     }
 }
