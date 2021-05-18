@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.util.Calendar;
+
 public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
     protected static final String USERNAME = "everytime";
@@ -159,6 +161,62 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(5, userNum);
         st.setString(6, postDate);
         st.setInt(7, recommend);
+        st.executeUpdate();
+    }
+    
+    protected boolean msgCheck(String userid) throws SQLException {
+        // 받은 메세지가 있다면 true 리턴
+        stmt = conn.createStatement();
+        
+        rs = stmt.executeQuery("select * from message");
+        while (rs.next()) {
+            String receiver = rs.getString("receiverNum");;
+            if (receiver.equals(userid)) return true;
+        }
+        return false;
+    }
+    
+    protected String[] msgView(String userid) throws SQLException {
+        // 메세지 받아오기
+        stmt = conn.createStatement();
+        rs = stmt.executeQuery("select * from message");
+        
+        String[] message = new String[5];
+        while(rs.next()){
+            // 레코드의 칼럼은 배열과 달리 0부터 시작하지 않고 1부터 시작한다.
+            // 데이터베이스에서 가져오는 데이터의 타입에 맞게 getString 또는 getInt 등을 호출한다.
+            message[0] = rs.getString(1);
+            message[1] = rs.getString(2);
+            message[2] = rs.getString(3);
+            message[3] = rs.getString(4);
+            message[4] = rs.getString(5);
+        }
+        return message;
+    }
+    
+    protected void sendMsg(String senderNum, String receiverNum, String messageContent) throws SQLException {
+        // 메세지 보내기 , messageDate는 함수가 호출되는 시간 으로 설정, isCheck = default 0 ~> 읽으면 +1
+        Calendar cal = Calendar.getInstance();
+	System.out.println(cal);
+
+	int month = cal.get(Calendar.MONTH) + 1;
+	int day = cal.get(Calendar.DAY_OF_MONTH);
+        
+        String messageDate = month+"월"+day+"일";
+        
+        String sql = "INSERT INTO message( "
+                + " senderNum, "
+                + " receiverNum, "
+                + " messageDate,"
+                + " messageContent,"
+                + " isCheck"
+                + ") VALUES (?,?,?,?,?)";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, senderNum);
+        st.setString(2, receiverNum);
+        st.setString(3, messageDate);
+        st.setString(4, messageContent);
+        st.setString(5, "0");
         st.executeUpdate();
     }
 }
