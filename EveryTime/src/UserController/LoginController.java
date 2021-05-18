@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
+import main.EveryTime_Main;
 
 public class LoginController extends databaseSQL {
 
@@ -180,6 +181,10 @@ public class LoginController extends databaseSQL {
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            EveryTime_Main.UserNum = loginUserNum(id,pw);
+        } catch (SQLException ex) {
+        } // 로그인이 됬다면 id,pw 가 검증이 된상태라서 익셉션 설정은 안했는대 한번 확인바랍니다.
         if(id.equals("admin")) isAdmin = true;
         if (login) {
             dispose(); //현재 GUI 종료 (비정상 종료)
@@ -187,6 +192,8 @@ public class LoginController extends databaseSQL {
                 JOptionPane.showMessageDialog(this, "[ 관리자 로그인 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 new ManagerMainController().setVisible(true);
             } else {
+                JOptionPane.showMessageDialog(this, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
+                // 로그인 됬을때 UserNum가 정상적으로 넘어가지는지 확인하기위함 나중에 지우세욤
                 JOptionPane.showMessageDialog(this, "[ 로그인 성공 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 new MainPageController().setVisible(true);
             }

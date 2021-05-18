@@ -125,10 +125,11 @@ public class MessageSendController extends databaseSQL {
         // send 버튼
         dbLoad();
         String rcvName = receiver.getText();
-        // JOptionPane.showMessageDialog(this, rcvName, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        // 대상이 있는지 확인
         try {
             if(findUser(rcvName)) {
             JOptionPane.showMessageDialog(this, "메세지 전송", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            // 테이블 확인및 체크 테스트중
             } else {
                 JOptionPane.showMessageDialog(this, "대상이 존재하지 않습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
             }

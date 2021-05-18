@@ -116,6 +116,20 @@ public class databaseSQL extends javax.swing.JFrame {
         return false;
     }
     
+    protected String loginUserNum(String id, String pw) throws SQLException { //로그인
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select * from user");
+        String userNum = "null";
+        while (rs.next()) {
+            String name = rs.getString("userID");;
+            String password = rs.getString("userPW");
+            if (name.equals(id) && password.equals(pw))
+                userNum = rs.getString("userNum");
+        }
+        return userNum;
+    }
+    
     protected boolean serachData(String table, String data) throws SQLException {
         //특정 값이 특정 테이블에 존재하는지 확인 - 존재한다면 true 리턴
         Statement stmt2 = null;

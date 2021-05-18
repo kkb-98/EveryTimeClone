@@ -5,17 +5,21 @@
  */
 package UserController;
 
+import javax.swing.JOptionPane;
+import main.EveryTime_Main;
+import main.databaseSQL;
 /**
  *
  * @author USER
  */
-public class MainPageController extends javax.swing.JFrame {
+public class MainPageController extends databaseSQL {
 
     /**
      * Creates new form MainPageController
      */
     public MainPageController() {
         initComponents();
+        JOptionPane.showMessageDialog(null, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
