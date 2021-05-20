@@ -1,6 +1,5 @@
 
 package UserController;
-import ManagerController.ManagerLoginController;
 import ManagerController.ManagerMainController;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,8 +28,6 @@ public class LoginController extends databaseSQL {
         Join = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Manager = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         UserPW = new javax.swing.JPasswordField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -89,17 +86,6 @@ public class LoginController extends databaseSQL {
         jLabel5.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         jLabel5.setText("회원가입이 필요하신가요?");
 
-        Manager.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        Manager.setText("MANAGER");
-        Manager.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManagerActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        jLabel6.setText("관리자 로그인");
-
         UserPW.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,13 +102,9 @@ public class LoginController extends databaseSQL {
                                 .addComponent(jLabel4)
                                 .addGap(16, 16, 16))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6))
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Join, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 112, Short.MAX_VALUE)))))
+                                .addComponent(Join, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -141,7 +123,7 @@ public class LoginController extends databaseSQL {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,11 +140,7 @@ public class LoginController extends databaseSQL {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(Join))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(Manager))
-                .addGap(19, 19, 19))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -192,32 +170,27 @@ public class LoginController extends databaseSQL {
                 JOptionPane.showMessageDialog(this, "[ 관리자 로그인 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 new ManagerMainController().setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
-                // 로그인 됬을때 UserNum가 정상적으로 넘어가지는지 확인하기위함 나중에 지우세욤
+                // JOptionPane.showMessageDialog(this, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
+                // 로그인 됐을때 UserNum가 정상적으로 넘어가지는지 확인하기위함 나중에 지우세욤
                 JOptionPane.showMessageDialog(this, "[ 로그인 성공 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 new MainPageController().setVisible(true);
             }
         } else {
             JOptionPane.showMessageDialog(this, "[ 로그인 실패 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
+        dbClose();
     }//GEN-LAST:event_UserLoginActionPerformed
 
     private void JoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinActionPerformed
         UserJoinController UJ = new UserJoinController();
         UJ.setVisible(true);
-        // TODO add your handling code here:
+        // 회원가입
+        
     }//GEN-LAST:event_JoinActionPerformed
 
     private void UserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UserIDActionPerformed
-
-    private void ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagerActionPerformed
-        ManagerLoginController ML = new ManagerLoginController();
-        ML.setVisible(true);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ManagerActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -246,7 +219,6 @@ public class LoginController extends databaseSQL {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Join;
-    private javax.swing.JButton Manager;
     private javax.swing.JTextField UserID;
     private javax.swing.JButton UserLogin;
     private javax.swing.JPasswordField UserPW;
@@ -255,7 +227,6 @@ public class LoginController extends databaseSQL {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

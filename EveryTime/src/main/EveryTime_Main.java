@@ -2,7 +2,8 @@ package main;
 
 import UserController.LoginController;
 
-public class EveryTime_Main {
+public class EveryTime_Main extends databaseSQL {
+    
     public static String UserNum;
     // 자바 문법이 전역변수를 허용을 안한다고함
     // static 이용하여 UserNum 을 선언하고 다른 클래스에서

@@ -5,6 +5,8 @@
  */
 package UserController;
 
+import main.EveryTime_Main;
+
 /**
  *
  * @author USER
@@ -92,6 +94,11 @@ public class SettingController extends javax.swing.JFrame {
 
         Logout.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Logout.setText("로그아웃");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
 
         UserDelete.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         UserDelete.setText("회원 탈퇴");
@@ -241,6 +248,13 @@ public class SettingController extends javax.swing.JFrame {
         UP.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // 사용자 - 로그아웃
+        EveryTime_Main.UserNum = "00000";
+        dispose();
+        new LoginController().setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
 
     /**
      * @param args the command line arguments

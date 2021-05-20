@@ -16,7 +16,7 @@ public class databaseSQL extends javax.swing.JFrame {
     protected static final String USERNAME = "everytime";
     protected static final String PASSWORD = "everytime";
     //protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject?serverTimezone=UTC";
-    protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject";
+    protected static final String URL = "jdbc:mysql://221.162.246.239:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;
     
@@ -67,31 +67,33 @@ public class databaseSQL extends javax.swing.JFrame {
         st.executeUpdate();
     }
     
-    protected void signupUser(String userID, String userPW, String userName, String userUniv,
-            String userDept, String userNum, boolean isConfirm, int report, boolean isSponser) throws SQLException {
+    protected void signupUser(String userID, String userPW, String userName, String userNickname, String userUniv,
+            String userDept, String userNum, int isConfirm, int report, int isSponser) throws SQLException {
         //사용자 회원가입
-        //순서 : 아이디, 패스워드, 닉네임, 대학교, 학과, 고유번호, 학교인증여부, 신고수, 과금여부
+        //순서 : 아이디, 패스워드, 이름, 닉네임, 대학교, 학과, 고유번호, 학교인증여부, 신고수, 과금여부
         String sql = "INSERT INTO user( "
                 + " userID, "
                 + " userPW, "
                 + " userName, "
+                + " userNickname, "
                 + " userUniv, "
                 + " userDept, "
                 + " userNum, "
                 + " isConfirm, "
                 + " report, "
                 + " isSponser"
-                + ") VALUES (?,?,?,?,?,?,?,?,?)";
+                + ") VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, userID);
         st.setString(2, userPW);
         st.setString(3, userName);
-        st.setString(4, userUniv);
-        st.setString(5, userDept);
-        st.setString(6, userNum);
-        st.setBoolean(7, isConfirm);
-        st.setInt(8, report);
-        st.setBoolean(9, isSponser);
+        st.setString(4, userNickname);
+        st.setString(5, userUniv);
+        st.setString(6, userDept);
+        st.setString(7, userNum);
+        st.setInt(8, isConfirm);
+        st.setInt(9, report);
+        st.setInt(10, isSponser);
         st.executeUpdate();
     }
     
@@ -130,13 +132,14 @@ public class databaseSQL extends javax.swing.JFrame {
         return userNum;
     }
     
-    protected boolean serachData(String table, String data) throws SQLException {
+    protected boolean searchData(String table, String keycolumn, String data) throws SQLException {
         //특정 값이 특정 테이블에 존재하는지 확인 - 존재한다면 true 리턴
+        //table = 테이블, keycolumn = 찾을 대상이 되는 컬럼, data = 찾을 값
         Statement stmt2 = null;
         stmt2 = conn.createStatement();
         rs = stmt2.executeQuery("select * from " + table);
         while (rs.next()) {
-            String name = rs.getString("userID");;
+            String name = rs.getString(keycolumn);;
             if (name.equals(data)) return true;
         }
         return false;

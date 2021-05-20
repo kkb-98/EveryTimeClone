@@ -5,7 +5,9 @@
  */
 package ManagerController;
 
+import UserController.LoginController;
 import UserController.SearchController;
+import main.EveryTime_Main;
 
 /**
  *
@@ -139,7 +141,10 @@ public class ManagerMainController extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
-        // TODO add your handling code here:
+        // 관리자 - 로그아웃
+        EveryTime_Main.UserNum = "00000";
+        dispose();
+        new LoginController().setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
 
     private void BoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoardActionPerformed
