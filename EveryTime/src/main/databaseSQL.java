@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import java.util.Calendar;
 
+
 public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
     protected static final String USERNAME = "everytime";
@@ -20,6 +21,7 @@ public class databaseSQL extends javax.swing.JFrame {
     protected Statement stmt = null;
     protected ResultSet rs = null;
     
+ 
     protected void dbLoad() { //데이터베이스 접속
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -156,7 +158,18 @@ public class databaseSQL extends javax.swing.JFrame {
         }
         return null;
     }
-    
+    protected void BoardControl(String boardTitle, String boardAbout, String userNum) throws SQLException{
+        String sql = "INSERT INTO board( "
+                + " boardTitle, "
+                + " boardAbout, "
+                + " userNum"
+                + ") VALUES (?,?,?)";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, boardTitle);
+        st.setString(2, boardAbout);
+        st.setString(3, userNum);
+        st.executeUpdate();
+    }
     protected void postBoard(String boardTitle, String postNum, String postTitle, String postContent,
             String userNum, String postDate, int recommend) throws SQLException {
         //게시글 작성
