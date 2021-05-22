@@ -155,12 +155,15 @@ public class BoardController extends databaseSQL {
          try {
              //게시판 디비에 추가
              BoardControl(title,about,userN);
+             EveryTime_Main.addBoard = title;
              model.addElement(title); //게시판 리스트에 등록하는거임
              while(rs.next()){
                  model.addElement(rs.getString("boardTitle"));
                  i++;
              BoardList.setModel(model);
             }
+              String a= EveryTime_Main.addBoard;
+             
          } catch (SQLException ex) {
              Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
          }

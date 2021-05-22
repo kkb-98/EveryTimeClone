@@ -17,14 +17,16 @@ import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
 import java.sql.ResultSet;
+import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
 
-public class ManagerBoardController extends databaseSQL {
+public class ManagerBoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
 
-
+    DefaultListModel model = new DefaultListModel();
     public ManagerBoardController() {
         initComponents();
+        
     }
 
 
@@ -60,6 +62,11 @@ public class ManagerBoardController extends databaseSQL {
         jLabel3.setText("관리자");
 
         BoardList.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
+        BoardList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                BoardListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(BoardList);
 
         Modify.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
@@ -67,6 +74,11 @@ public class ManagerBoardController extends databaseSQL {
 
         Delete.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Delete.setText("삭제");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
 
         Back.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Back.setText("뒤로가기");
@@ -134,7 +146,7 @@ public class ManagerBoardController extends databaseSQL {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void PostInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostInActionPerformed
         ManagerPostController MP = new ManagerPostController();
         MP.setVisible(true);
@@ -159,7 +171,7 @@ public class ManagerBoardController extends databaseSQL {
         } catch (SQLException ex) {
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            DefaultListModel model = new DefaultListModel();
+            //DefaultListModel model = new DefaultListModel();
             int i = 1;
             try {
                 while(rs.next()){
@@ -170,9 +182,38 @@ public class ManagerBoardController extends databaseSQL {
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
             BoardList.setModel(model);
+            
+            
+          
             dbClose();
     }//GEN-LAST:event_formWindowOpened
+//Delete 삭제 버튼임
+    
+    
+    private void BoardListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_BoardListValueChanged
+   /* DefaultListModel model = new DefaultListModel();
+    BoardList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    if(BoardList.getSelectedIndex() == 0){
+            int index = 0;
+            model.remove(index);
+        }
+    */
+    }//GEN-LAST:event_BoardListValueChanged
 
+    public void removeItem(int index){
+       if(index<0){
+           if(model.size()==0)
+               return;
+               index = 0;
+       }
+        model.remove(index);
+        //연결되는 코드는 마우스 클릭 이벤트로 넘어갑시다.
+    }
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        //게시판 삭제-관리자 모드일때
+        
+    }//GEN-LAST:event_DeleteActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -219,4 +260,49 @@ public class ManagerBoardController extends databaseSQL {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    //if(e.getSource()==)
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
