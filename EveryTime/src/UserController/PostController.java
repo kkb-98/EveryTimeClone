@@ -264,8 +264,8 @@ public class PostController extends databaseSQL {
         // 게시글 제목 나타내기
         dbLoad();
         String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        //String post_Num = PostWriteController.PostNum;   // 게시글 번호
-        String post_Num = "00001";
+        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+       // String post_Num = "00001";
         String title = "boardTitle";
         String table = "post";
         String postNum = "postNum";
@@ -311,9 +311,9 @@ public class PostController extends databaseSQL {
         // TODO add your handling code here:
         dbLoad();
         String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        //String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
-        String post_Num = "00001";
-        String table = "post";
+        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+        //String post_Num = "00001";
+        String table = "post";  
         String content = "postContent";
         String postNum = "postNum";
         PostContent.isEditable();

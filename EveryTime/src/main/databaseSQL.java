@@ -20,7 +20,6 @@ public class databaseSQL extends javax.swing.JFrame {
     protected static final String URL = "jdbc:mysql://221.162.246.239:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;
-    
  
     protected void dbLoad() { //데이터베이스 접속
         try {
@@ -158,6 +157,7 @@ public class databaseSQL extends javax.swing.JFrame {
         }
         return null;
     }
+    
     protected void BoardControl(String boardTitle, String boardAbout, String userNum) throws SQLException{
         String sql = "INSERT INTO board( "
                 + " boardTitle, "
@@ -170,6 +170,7 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(3, userNum);
         st.executeUpdate();
     }
+    
     protected void postBoard(String boardTitle, String postNum, String postTitle, String postContent,
             String userNum, String postDate, int recommend) throws SQLException {
         //게시글 작성
@@ -194,6 +195,31 @@ public class databaseSQL extends javax.swing.JFrame {
         st.executeUpdate();
     }
     
+    protected int returnPost(String recommend, String postnum) throws SQLException{
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select " + recommend + " from post" + " where postNum ='" + postnum+ "'");
+        while (rs.next()) {
+            int a = rs.getInt(recommend);
+            return a;
+        }
+        return 0;
+    }
+    
+    protected void updatePost(String postnum, int recommend) throws SQLException{
+        // a: 테이블, b: 컬럼명, c: 바꿀 데이터의 키값, d: 바꿀 데이터의 데이터값, e: 바꿀 데이터 값
+        // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+
+        String sql = "UPDATE post "
+                + "SET"
+                + " " + recommend + " =?"
+                + "WHERE postNum" + " =?";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setInt(1, recommend+1);
+        st.setString(2, postnum);
+        st.executeUpdate();
+    }
+    
     protected boolean msgCheck(String userid) throws SQLException {
         // 받은 메세지가 있다면 true 리턴
         Statement stmt2 = null;
@@ -205,6 +231,21 @@ public class databaseSQL extends javax.swing.JFrame {
             if (receiver.equals(userid)) return true;
         }
         return false;
+    }
+    
+     protected void postComment(String postNum,String userNum, String comment) throws SQLException {
+        //게시글 작성
+        //순서 : 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수(default=0)
+        String sql = "INSERT INTO comment( "
+                + " postNum, "
+                + " userNum"
+                + " comContent"
+                + ") VALUES (?,?,?)";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, postNum);
+        st.setString(2, userNum);
+        st.setString(3, comment);
+        st.executeUpdate();
     }
     
     protected boolean findUser(String name) throws SQLException {

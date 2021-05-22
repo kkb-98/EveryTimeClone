@@ -35,6 +35,7 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
         Back = new javax.swing.JButton();
         SchoolList = new javax.swing.JComboBox<>();
         UserCheck = new javax.swing.JButton();
+        DepartmentList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,7 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
             }
         });
 
+        SchoolList.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         SchoolList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "학교명", " " }));
 
         UserCheck.setBackground(new java.awt.Color(153, 0, 0));
@@ -69,6 +71,14 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
         UserCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserCheckActionPerformed(evt);
+            }
+        });
+
+        DepartmentList.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        DepartmentList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "학과명" }));
+        DepartmentList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepartmentListActionPerformed(evt);
             }
         });
 
@@ -96,6 +106,8 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SchoolList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DepartmentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -107,8 +119,10 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(jLabel3))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(SchoolList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SchoolList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepartmentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -131,6 +145,10 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
         UC.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_UserCheckActionPerformed
+
+    private void DepartmentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartmentListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DepartmentListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +188,7 @@ public class ManagerUserInfoController extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JComboBox<String> DepartmentList;
     private javax.swing.JComboBox<String> SchoolList;
     private javax.swing.JButton UserCheck;
     private javax.swing.JList<String> UserList;
