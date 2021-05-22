@@ -5,17 +5,31 @@
  */
 package UserController;
 
+import java.sql.ResultSet;
+import main.databaseSQL;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import main.EveryTime_Main;
 /**
  *
  * @author USER
  */
-public class PostWriteController extends javax.swing.JFrame {
+        
+public class PostWriteController extends databaseSQL {
 
     /**
      * Creates new form PostWriteController
      */
-    public PostWriteController() {
-        initComponents();
+    public PostWriteController() {  // 생성자 초기에 00000번으로 적용
+     
+//initComponents(); - ui 배치, 값 초기화 시켜주는 함수..
+        
     }
 
     /**
@@ -32,9 +46,10 @@ public class PostWriteController extends javax.swing.JFrame {
         PostTitle = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        PostContent = new javax.swing.JTextField();
         Back = new javax.swing.JButton();
         PostEnroll = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Content = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,45 +68,56 @@ public class PostWriteController extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jLabel4.setText("내용");
 
-        PostContent.setToolTipText("");
-
         Back.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Back.setText("뒤로가기");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         PostEnroll.setBackground(new java.awt.Color(153, 0, 0));
         PostEnroll.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         PostEnroll.setForeground(new java.awt.Color(255, 255, 255));
         PostEnroll.setText("완료");
+        PostEnroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostEnrollActionPerformed(evt);
+            }
+        });
+
+        Content.setColumns(20);
+        Content.setRows(5);
+        jScrollPane1.setViewportView(Content);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel2))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(PostEnroll)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Back))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(PostContent))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addComponent(PostEnroll)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Back))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,9 +133,9 @@ public class PostWriteController extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PostContent, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back)
                     .addComponent(PostEnroll))
@@ -119,34 +145,52 @@ public class PostWriteController extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PostWriteController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PostWriteController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PostWriteController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PostWriteController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void PostEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostEnrollActionPerformed
+        // 게시글 등록
+        dbLoad();   // db연결
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String boardtitle = ""; //boardController.boardTitle _ 전역변수 생기면 불러오기
+        
+        String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
+        String postTitle = PostTitle.getText();    // 게시글 제목
+        String postContent = Content.getText();    // 게시글 내용
+        String postDate = dateFormat.format(cal.getTime());    // 게시일
+        int recommend = EveryTime_Main.Recommand;  // 추천수 = 0
+        String postNum = EveryTime_Main.PostNum;
 
-        /* Create and display the form */
+  
+            if(postTitle.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
+                JOptionPane.showMessageDialog(this, "[ 제목을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }else if(postContent.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
+                JOptionPane.showMessageDialog(this, "[ 내용을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                try{
+                    int random;
+                    do{
+                        random =(int)((Math.random()*100000)-1);
+                        postNum = String.format("%05d", random);
+                    }while(searchData("post","postNum",postNum));
+                    postBoard( boardtitle, postNum, postTitle, postContent, userNum, postDate, recommend);
+                    // 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수
+                }catch(Exception e){            
+                }
+                JOptionPane.showMessageDialog(this, "[ 게시물이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                dispose();  // 현재 gui 종료
+               
+                new PostListController().setVisible(true);  // 등록 후 postlist로 이동
+        }
+         
+        dbClose();
+
+    }//GEN-LAST:event_PostEnrollActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+  
+    public static void main (String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PostWriteController().setVisible(true);
@@ -156,12 +200,15 @@ public class PostWriteController extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JTextField PostContent;
+    private javax.swing.JTextArea Content;
     private javax.swing.JButton PostEnroll;
     private javax.swing.JTextField PostTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+  
 }
