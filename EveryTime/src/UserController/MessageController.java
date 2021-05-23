@@ -7,7 +7,6 @@ package UserController;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import main.EveryTime_Main;
 import main.databaseSQL;
@@ -23,25 +22,8 @@ public class MessageController extends databaseSQL {
      */
     public MessageController() {
         initComponents();
-        dbLoad();
-        try {
-            String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+EveryTime_Main.UserNum+ "'";
-            PreparedStatement st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
-            while(rs.next()) {
-                String senderNum = rs.getString("senderNum");
-                String receiverNum = rs.getString("receiverNum");
-                String messageDate = rs.getString("messageDate");
-                String messageContent = rs.getString("messageContent");
-                
-                Object data[] = {senderNum, receiverNum, messageDate, messageContent};
-                DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고 
-                model.addRow(data);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
-        }
-        dbClose();
+        EveryTime_Main.UserNum = "00001";
+        updateTable();
         // 여기서 생성자로 gui가 생성될때 메세지함 jtable에 데이터가 표시되야함
     }
 
@@ -155,16 +137,54 @@ public class MessageController extends databaseSQL {
     }//GEN-LAST:event_BackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // 확인 버튼
+        // 확인 버튼 클릭시 선택된 쪽지를 자세하게 보여준다. -> 보낸사람의 인자를 넘겨줌
+        int row = MsgTable.getSelectedRow();
+        
+        String userNum= (String)MsgTable.getValueAt(row, 0);
+        String content = (String)MsgTable.getValueAt(row, 3);
+        
+        dispose();
+        new MessageReceiveController(userNum,content).setVisible(true);
         // 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 보내기 버튼
         dispose();
-        new MessageSendController().setVisible(true);
+        new MessageSendController("받는사람").setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    private void updateTable() {
+        dbLoad();
+        // 현재 사용자가 받은 쪽지들을 보여줌
+        try {
+            String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+EveryTime_Main.UserNum+ "'";
+            PreparedStatement st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                String senderNum = rs.getString("senderNum");
+                String receiverNum = rs.getString("receiverNum");
+                String messageDate = rs.getString("messageDate");
+                String messageContent = rs.getString("messageContent");
+                
+                Object data[] = {senderNum, receiverNum, messageDate, messageContent};
+                DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고 
+                model.addRow(data);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        // userId 형태를 userNickname으로 찾아서 변경
+        for(int i=0; i < MsgTable.getRowCount(); i++) {
+            try {
+                MsgTable.setValueAt(returnData("user", "userNickname", "userNum", (String) MsgTable.getValueAt(i, 0)), i, 0);
+                MsgTable.setValueAt(returnData("user", "userNickname", "userNum", (String) MsgTable.getValueAt(i, 1)), i, 1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        dbClose();
+    }
     /**
      * @param args the command line arguments
      */

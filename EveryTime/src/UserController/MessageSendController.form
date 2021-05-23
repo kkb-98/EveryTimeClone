@@ -40,7 +40,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="receiver" min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="receiverBox" min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -57,7 +57,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="receiver" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="receiverBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="213" max="32767" attributes="0"/>
@@ -134,7 +134,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="receiver">
+    <Component class="javax.swing.JTextField" name="receiverBox">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="&#xbc1b;&#xb294;&#xc0ac;&#xb78c;"/>
