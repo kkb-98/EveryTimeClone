@@ -1,3 +1,4 @@
 *.DS_Store
 /EveryTime/nbproject/private/
 /EveryTime/build/
+/EveryTime/dist/

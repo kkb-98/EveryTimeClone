@@ -10,7 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.util.Calendar;
-
+import java.util.GregorianCalendar;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
@@ -220,19 +223,6 @@ public class databaseSQL extends javax.swing.JFrame {
         st.executeUpdate();
     }
     
-    protected boolean msgCheck(String userid) throws SQLException {
-        // 받은 메세지가 있다면 true 리턴
-        Statement stmt2 = null;
-        stmt2 = conn.createStatement();
-        
-        rs = stmt2.executeQuery("select * from message");
-        while (rs.next()) {
-            String receiver = rs.getString("receiverNum");
-            if (receiver.equals(userid)) return true;
-        }
-        return false;
-    }
-    
      protected void postComment(String postNum,String userNum, String comment) throws SQLException {
         //게시글 작성
         //순서 : 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수(default=0)
@@ -247,20 +237,7 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(3, comment);
         st.executeUpdate();
     }
-    
-    protected boolean findUser(String name) throws SQLException {
-        // 대상이 존재하는지 여부 확인
-        Statement stmt2 = null;
-        stmt2 = conn.createStatement();
-        
-        rs = stmt2.executeQuery("select * from user");
-        while (rs.next()) {
-            String receiver = rs.getString("userName");
-            if (receiver.equals(name)) return true;
-        }
-        return false;
-    }
-    
+
     protected String[] msgView(String userid) throws SQLException {
         // 메세지 받아오기
         Statement stmt2 = null;
@@ -282,13 +259,8 @@ public class databaseSQL extends javax.swing.JFrame {
     
     protected void sendMsg(String senderNum, String receiverNum, String messageContent) throws SQLException {
         // 메세지 보내기 , messageDate는 함수가 호출되는 시간 으로 설정, isCheck = default 0 ~> 읽으면 +1
-        Calendar cal = Calendar.getInstance();
-	System.out.println(cal);
-
-	int month = cal.get(Calendar.MONTH) + 1;
-	int day = cal.get(Calendar.DAY_OF_MONTH);
-        
-        String messageDate = month+"월"+day+"일";
+        Calendar cal = new GregorianCalendar();
+        Timestamp ts = new Timestamp(cal.getTimeInMillis());
         
         String sql = "INSERT INTO message( "
                 + " senderNum, "
@@ -296,12 +268,13 @@ public class databaseSQL extends javax.swing.JFrame {
                 + " messageDate,"
                 + " messageContent,"
                 + " isCheck"
-                + ") VALUES (?,?,?,?,'0')";
+                + ") VALUES (?,?,?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, senderNum);
         st.setString(2, receiverNum);
-        st.setString(3, messageDate);
+        st.setTimestamp(3, ts); // Timestamp 형식으로 초기화
         st.setString(4, messageContent);
+        st.setInt(5, 0); // int 형식으로 초기화
         st.executeUpdate();
     }
 }

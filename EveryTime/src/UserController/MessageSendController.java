@@ -7,6 +7,7 @@ package UserController;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import main.EveryTime_Main;
 import main.databaseSQL;
 /**
  *
@@ -118,6 +119,7 @@ public class MessageSendController extends databaseSQL {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
+        new MessageController().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
 
@@ -127,13 +129,18 @@ public class MessageSendController extends databaseSQL {
         String rcvName = receiver.getText();
         // 대상이 있는지 확인
         try {
-            if(findUser(rcvName)) {
-            JOptionPane.showMessageDialog(this, "메세지 전송", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            // 테이블 확인및 체크 테스트중
+            if(searchData("user", "userNickName", rcvName)) {
+                String rcvNum = returnData("user", "userNum", "userNickName", rcvName);
+                sendMsg(EveryTime_Main.UserNum, rcvNum, MessageContent.getText());
+                JOptionPane.showMessageDialog(this, "쪽지 전송완료!", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                new MessageController().setVisible(true);
+                dbClose();
             } else {
                 JOptionPane.showMessageDialog(this, "대상이 존재하지 않습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
         dbClose();
     }//GEN-LAST:event_SendActionPerformed
