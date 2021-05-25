@@ -5,6 +5,7 @@ import com.mysql.cj.xdevapi.Statement;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.DefaultListModel;
 import javax.swing.*;
@@ -20,16 +21,14 @@ import java.sql.ResultSet;
 import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
-
 public class ManagerBoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
 
     DefaultListModel model = new DefaultListModel();
     public ManagerBoardController() {
         initComponents();
-        
+        Delete.addMouseListener(this);
+        BoardList.addListSelectionListener(this);
     }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -148,14 +147,12 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     }// </editor-fold>//GEN-END:initComponents
  
     private void PostInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostInActionPerformed
+        //게시판누르고 확인버튼을 누를시에 그게시판으로 들어가는 버튼
         ManagerPostController MP = new ManagerPostController();
         MP.setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_PostInActionPerformed
-
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -182,14 +179,8 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
             BoardList.setModel(model);
-            
-            
-          
             dbClose();
     }//GEN-LAST:event_formWindowOpened
-//Delete 삭제 버튼임
-    
-    
     private void BoardListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_BoardListValueChanged
    /* DefaultListModel model = new DefaultListModel();
     BoardList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -206,6 +197,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
                return;
                index = 0;
        }
+       int BoardIndex = index;
         model.remove(index);
         //연결되는 코드는 마우스 클릭 이벤트로 넘어갑시다.
     }
@@ -213,35 +205,8 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         //게시판 삭제-관리자 모드일때
         
     }//GEN-LAST:event_DeleteActionPerformed
-    
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerBoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerBoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerBoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagerBoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ManagerBoardController().setVisible(true);
@@ -264,8 +229,36 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getSource()== Delete){
+            int selected=BoardList.getSelectedIndex();
+             dbLoad();
+             java.sql.Statement stmt2 = null;
+            try {
+                stmt2 = conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                int su = 0;
+                String BT = BoardList.getSelectedValue();
+                System.out.println(BT);
+                String sql = "delete from board where boardTitle =  \"" + BT + "\" ";
+                System.out.println(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
+                su = st.executeUpdate();
+                removeItem(selected);
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
+             dbClose();
+             
+         }
     }
-    //if(e.getSource()==)
+    
     @Override
     public void mousePressed(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -303,6 +296,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
