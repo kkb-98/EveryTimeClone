@@ -32,7 +32,7 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -65,6 +65,11 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
 
         jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jButton1.setText("뒤로가기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         Delete2.setBackground(new java.awt.Color(153, 0, 0));
         Delete2.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
@@ -118,13 +123,13 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
+    private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {                                        
 
-    }//GEN-LAST:event_Delete2ActionPerformed
+    }                                       
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         //ManagerBoardController MBC = new ManagerBoardController();
         //BT2 가 게시판제목이다.
         System.out.println(BT2);
@@ -155,7 +160,12 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
              
             PostList.setModel(model2);
             dbClose();
-    }//GEN-LAST:event_formWindowOpened
+    }                                 
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        dispose();
+    }                                        
     
     public void removeItem2(int index){
        if(index<0){
@@ -177,7 +187,7 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JTextField BTname;
     private javax.swing.JButton Delete2;
     private javax.swing.JList<String> PostList;
@@ -186,7 +196,7 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void mouseClicked(MouseEvent e) {
