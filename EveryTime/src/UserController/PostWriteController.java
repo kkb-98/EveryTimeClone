@@ -138,7 +138,7 @@ public class PostWriteController extends databaseSQL  {
  // 게시글 등록      EveryTime_Main.PostNum
         dbLoad();   // db연결
         //String boardtitle = EveryTime_Main.addBoard; // 게시판 이름
-        String boardtitle = "test";     // 게시판 이름
+        String boardtitle = "자유게시판";     // 게시판 이름
         String postNum;              // 게시글 번호
         String postContent = Content.getText();    // 게시글 내용
         //String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
