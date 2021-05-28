@@ -31,6 +31,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -106,14 +109,12 @@
                       <Component id="CountReco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="Alarm" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SendMessage" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                          <Component id="Recommend" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="Report" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="Alarm" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="Recommend" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="Report" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="SendMessage" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="PostTitle" min="-2" max="-2" attributes="0"/>

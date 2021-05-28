@@ -22,10 +22,11 @@ import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
 public class ManagerBoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
-
+    String BBT;
     DefaultListModel model = new DefaultListModel();
     public ManagerBoardController() {
         initComponents();
+        PostIn.addMouseListener(this);
         Delete.addMouseListener(this);
         BoardList.addListSelectionListener(this);
     }
@@ -147,9 +148,6 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     }// </editor-fold>//GEN-END:initComponents
  
     private void PostInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostInActionPerformed
-        //게시판누르고 확인버튼을 누를시에 그게시판으로 들어가는 버튼
-        ManagerPostController MP = new ManagerPostController();
-        MP.setVisible(true);
     }//GEN-LAST:event_PostInActionPerformed
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
@@ -182,13 +180,6 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
             dbClose();
     }//GEN-LAST:event_formWindowOpened
     private void BoardListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_BoardListValueChanged
-   /* DefaultListModel model = new DefaultListModel();
-    BoardList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    if(BoardList.getSelectedIndex() == 0){
-            int index = 0;
-            model.remove(index);
-        }
-    */
     }//GEN-LAST:event_BoardListValueChanged
 
     public void removeItem(int index){
@@ -205,7 +196,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         //게시판 삭제-관리자 모드일때
         
     }//GEN-LAST:event_DeleteActionPerformed
-  
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

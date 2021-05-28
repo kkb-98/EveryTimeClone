@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UserController;
 
 import java.awt.event.ItemEvent;
@@ -14,15 +10,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-/**
- *
- * @author USER
- */
-public class PostController extends databaseSQL {
-    
-    /**
-     * Creates new form PostController
-     */
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import main.databaseSQL;
+import main.EveryTime_Main;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
+public class PostController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
+    String bt3;
+    static String AA;
+    DefaultListModel model3 = new DefaultListModel();
     public PostController() {
           initComponents();
         dbLoad();
@@ -125,6 +130,11 @@ public class PostController extends databaseSQL {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("휴먼편지체", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 0));
@@ -270,12 +280,11 @@ public class PostController extends databaseSQL {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(CountReco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3))
+                    .addComponent(Alarm, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(SendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Recommend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Alarm, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(Recommend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -471,9 +480,61 @@ public class PostController extends databaseSQL {
         
     }//GEN-LAST:event_AlarmActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        //켜자마자 보여주는 화면
+        dbLoad();
+        //post 테이블을 불러옴
+        //postTitle 불러옴
+        //postContent,recommend 게시글내용과 추천수를 게시글내용에 추가하고 추천수는 가장위에 표시
+        PostTitle.setText(bt3);
+        java.sql.Statement stmt2 = null;
+        try {
+            stmt2 = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            String sql = "select * from post where postTitle =  \"" + bt3 + "\" ";
+            rs = stmt2.executeQuery(sql);
+            while(rs.next()){
+            String A =rs.getString("userNum");
+            String B =rs.getString("postContent");
+            AA = A;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            PostContent.setText("");
+       
+        //comment 테이블을 불러옴
+        //comContent,recommend 댓글내용과 댓글추천수를 불러옴.
+        
+        java.sql.Statement stmt3 = null;
+        try {
+            stmt3 = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            String sql = "select * from comment where userNum =  \"" + AA + "\" ";
+            rs = stmt3.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while(rs.next()){
+            model3.addElement(rs.getString("comContent"));
+            CommentList.setModel((TableModel) model3);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        dbClose();
+        
+    }//GEN-LAST:event_formWindowOpened
+
     
     private void PostContentPerformed(java.awt.event.ActionEvent evt){
         // 게시글 내용 출력
@@ -557,4 +618,49 @@ public class PostController extends databaseSQL {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

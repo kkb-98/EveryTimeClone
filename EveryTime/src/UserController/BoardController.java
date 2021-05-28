@@ -1,4 +1,3 @@
-
 package UserController;
 import com.mysql.cj.xdevapi.Statement;
 import com.sun.jdi.connect.spi.Connection;
@@ -16,12 +15,17 @@ import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
 import java.sql.ResultSet;
+import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
-public class BoardController extends databaseSQL {
-   
+public class BoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
+    String bbt;
+    DefaultListModel model = new DefaultListModel();
+    
     public BoardController() {
         initComponents();
+        BoardIn.addMouseListener(this);
+        BoardList.addListSelectionListener(this);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,7 +147,7 @@ public class BoardController extends databaseSQL {
         } catch (SQLException ex) {
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DefaultListModel  model = new DefaultListModel();
+        //DefaultListModel  model = new DefaultListModel();
         int i=1 ;
         String title = NewBoard.getText(); //게시판 추가할때
             String about = " "; //게시판 설명은 일단 공백으로 통일
@@ -169,7 +173,6 @@ public class BoardController extends databaseSQL {
          }
          }
             dbClose();
-        
     }//GEN-LAST:event_BoardAddActionPerformed
 
    
@@ -184,6 +187,7 @@ public class BoardController extends databaseSQL {
     }//GEN-LAST:event_BackActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //게시판제목 리스트에 불러오기
         dbLoad();
             java.sql.Statement stmt2 = null;
         try {
@@ -201,6 +205,7 @@ public class BoardController extends databaseSQL {
             try {
                 while(rs.next()){
                     model.addElement(rs.getString("boardTitle"));
+                    
                     i++;
                     BoardList.setModel(model);
                     
@@ -269,4 +274,56 @@ public class BoardController extends databaseSQL {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        String bt =BoardList.getSelectedValue();
+        if(e.getSource()== BoardIn){
+            System.out.println(bt);
+            System.out.println(bt+"가 선택되었습니다.");
+            PostListController PCL = new PostListController();
+            PCL.bt2= bt;
+            PCL.setVisible(true);}
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -1,12 +1,36 @@
 
 package UserController;
+import com.mysql.cj.xdevapi.Statement;
+import com.sun.jdi.connect.spi.Connection;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+import javax.swing.*;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
+import javax.swing.event.ListSelectionListener;
+import main.databaseSQL;
+import java.sql.ResultSet;
+import main.EveryTime_Main;
+import UserController.BoardController;
+import ManagerController.ManagerBoardController;
+import javax.swing.event.ListSelectionEvent;
 
-
-public class PostListController extends javax.swing.JFrame {
-
+public class PostListController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
+    String bt2;
+    String bbt2;
+    DefaultListModel model2 = new DefaultListModel();
  
     public PostListController() {
         initComponents();
+        PostList.addListSelectionListener(this);
+        OK.addMouseListener(this);
+        PostWrite.addMouseListener(this);
     }
 
     
@@ -23,9 +47,14 @@ public class PostListController extends javax.swing.JFrame {
         PostWrite = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         PostList = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        OK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("휴먼편지체", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 0));
@@ -37,7 +66,6 @@ public class PostListController extends javax.swing.JFrame {
 
         BoardName.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("(<- 게시판 이름 뜨도록)");
 
@@ -61,13 +89,13 @@ public class PostListController extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(PostList);
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("확인");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        OK.setBackground(new java.awt.Color(153, 0, 0));
+        OK.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        OK.setForeground(new java.awt.Color(255, 255, 255));
+        OK.setText("확인");
+        OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                OKActionPerformed(evt);
             }
         });
 
@@ -81,7 +109,7 @@ public class PostListController extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PostWrite)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(OK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Back))
                     .addComponent(jScrollPane2)
@@ -115,7 +143,7 @@ public class PostListController extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back)
                     .addComponent(PostWrite)
-                    .addComponent(jButton1))
+                    .addComponent(OK))
                 .addGap(17, 17, 17))
         );
 
@@ -127,51 +155,51 @@ public class PostListController extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
         PostController PO = new PostController();
         PO.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_OKActionPerformed
 
     private void PostWriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostWriteActionPerformed
         PostWriteController PW = new PostWriteController();
         PW.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_PostWriteActionPerformed
-    private void BoardNameActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-        BoardController BC = new BoardController();
-        BoardName.setText("미리 설정함");
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PostListController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PostListController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PostListController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PostListController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        BoardName.setText(bt2);
+        dbLoad();
+            java.sql.Statement stmt2 = null;
+        
+        try {          
+            stmt2 = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            String sql = "select * from post where boardTitle =  \"" + bt2 + "\" ";
+            rs = stmt2.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PostListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            int i = 1;
+        try {
+            while(rs.next()){
+                model2.addElement(rs.getString("postTitle"));
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+            PostList.setModel(model2);
+            dbClose();
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    public static void main(String args[]) {
+  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PostListController().setVisible(true);
@@ -182,13 +210,70 @@ public class PostListController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JTextField BoardName;
+    private javax.swing.JButton OK;
     private javax.swing.JList<String> PostList;
     private javax.swing.JButton PostWrite;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        String bt2 =PostList.getSelectedValue();
+        bt2 = bt2;
+        if(e.getSource()==PostWrite){
+            PostWriteController PW = new PostWriteController();
+            PW.bt4=bt2;
+            PW.setVisible(true);
+        }
+        if(e.getSource()== OK){
+            PostController PC = new PostController();
+            PC.bt3=bt2;
+            PC.setVisible(true);
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
