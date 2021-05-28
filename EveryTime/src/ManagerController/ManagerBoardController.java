@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
 public class ManagerBoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
-    String BBT;
+    //String BBT;
     DefaultListModel model = new DefaultListModel();
     public ManagerBoardController() {
         initComponents();
@@ -31,7 +31,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         BoardList.addListSelectionListener(this);
     }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -145,15 +145,15 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
  
-    private void PostInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostInActionPerformed
-    }//GEN-LAST:event_PostInActionPerformed
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void PostInActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    }                                      
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {                                     
         dispose();
-    }//GEN-LAST:event_BackActionPerformed
+    }                                    
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         dbLoad();
             java.sql.Statement stmt2 = null;
         try {
@@ -178,9 +178,9 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
             }
             BoardList.setModel(model);
             dbClose();
-    }//GEN-LAST:event_formWindowOpened
-    private void BoardListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_BoardListValueChanged
-    }//GEN-LAST:event_BoardListValueChanged
+    }                                 
+    private void BoardListValueChanged(javax.swing.event.ListSelectionEvent evt) {                                       
+    }                                      
 
     public void removeItem(int index){
        if(index<0){
@@ -192,10 +192,10 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         model.remove(index);
         //연결되는 코드는 마우스 클릭 이벤트로 넘어갑시다.
     }
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                       
         //게시판 삭제-관리자 모드일때
         
-    }//GEN-LAST:event_DeleteActionPerformed
+    }                                      
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -205,7 +205,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton Back;
     private javax.swing.JList<String> BoardList;
     private javax.swing.JButton Delete;
@@ -215,11 +215,17 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String BT =BoardList.getSelectedValue();
+        if(e.getSource()==PostIn){
+           ManagerPostController MPC = new ManagerPostController();
+            MPC.BT2= BT;
+            MPC.setVisible(true);
+        }
         if(e.getSource()== Delete){
             int selected=BoardList.getSelectedIndex();
              dbLoad();
@@ -231,7 +237,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
             }
             try {
                 int su = 0;
-                String BT = BoardList.getSelectedValue();
+                //String BT = BoardList.getSelectedValue();
                 System.out.println(BT);
                 String sql = "delete from board where boardTitle =  \"" + BT + "\" ";
                 System.out.println(sql);
