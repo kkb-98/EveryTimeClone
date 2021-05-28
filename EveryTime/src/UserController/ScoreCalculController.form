@@ -32,62 +32,84 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Score1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Score2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Score3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Score4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="Credit2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="Credit3" max="32767" attributes="0"/>
-                                          <Component id="Credit4" max="32767" attributes="0"/>
-                                          <Component id="Credit1" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Component id="TotalCredit" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="Score1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="Score2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TotalCredit" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <Component id="c2" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="c1" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="Score4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Score3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="c3" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="c4" min="-2" pref="72" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="69" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace pref="75" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Score5" min="-2" max="-2" attributes="0"/>
-                          <Component id="Score6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Score7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Score8" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Back" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="Calculation" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Credit6" max="32767" attributes="0"/>
-                              <Component id="Credit7" max="32767" attributes="0"/>
-                              <Component id="Credit8" max="32767" attributes="0"/>
-                              <Component id="Credit5" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="Back" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="Calculation" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Score6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Score5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="c8" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="c6" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="c5" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="c7" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,54 +142,55 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Credit8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Score8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="c8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Calculation" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TotalCredit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,13 +207,6 @@
         <Property name="text" type="java.lang.String" value="Everytime"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Credit1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -198,30 +214,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xd559;&#xc810; &#xacc4;&#xc0b0;&#xae30;"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit2">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Credit4ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="Score1">
       <Properties>
@@ -232,13 +224,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -246,58 +238,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="Score2">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
-            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
-            <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
-            <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
-            <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
-            <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
-            <StringItem index="9" value="F"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit6">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit7">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Credit8">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="Score3">
       <Properties>
@@ -308,13 +248,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -332,37 +272,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
-            <StringItem index="9" value="F"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="Score5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
-            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
-            <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
-            <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
-            <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
-            <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -380,13 +296,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -404,13 +320,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -428,13 +344,13 @@
           <StringArray count="10">
             <StringItem index="0" value="&#xc120;&#xd0dd;"/>
             <StringItem index="1" value="A+"/>
-            <StringItem index="2" value="A"/>
+            <StringItem index="2" value="A0"/>
             <StringItem index="3" value="B+"/>
-            <StringItem index="4" value="B"/>
+            <StringItem index="4" value="B0"/>
             <StringItem index="5" value="C+"/>
-            <StringItem index="6" value="C"/>
+            <StringItem index="6" value="C0"/>
             <StringItem index="7" value="D+"/>
-            <StringItem index="8" value="D"/>
+            <StringItem index="8" value="D0"/>
             <StringItem index="9" value="F"/>
           </StringArray>
         </Property>
@@ -472,6 +388,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xc785;&#xb825;&#xc644;&#xb8cc;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CalculationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Back">
       <Properties>
@@ -511,6 +430,70 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xcd1d;&#xd559;&#xc810; :"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A0"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B0"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C0"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D0"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Score5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515; Semilight" size="15" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="&#xc120;&#xd0dd;"/>
+            <StringItem index="1" value="A+"/>
+            <StringItem index="2" value="A0"/>
+            <StringItem index="3" value="B+"/>
+            <StringItem index="4" value="B0"/>
+            <StringItem index="5" value="C+"/>
+            <StringItem index="6" value="C0"/>
+            <StringItem index="7" value="D+"/>
+            <StringItem index="8" value="D0"/>
+            <StringItem index="9" value="F"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="c4">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c1">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c2">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c3">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c6">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c5">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c8">
+    </Component>
+    <Component class="javax.swing.JTextField" name="c7">
     </Component>
   </SubComponents>
 </Form>
