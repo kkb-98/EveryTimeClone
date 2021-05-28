@@ -35,7 +35,7 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
 
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
@@ -148,26 +148,26 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {                                     
         dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_BackActionPerformed
+    }                                    
 
-    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        PostController PO = new PostController();
-        PO.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OKActionPerformed
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {                                   
+            PostController PC = new PostController();
+            //PC.bt3=bt2;
+            PC.setVisible(true);
+    }                                  
 
-    private void PostWriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostWriteActionPerformed
-        PostWriteController PW = new PostWriteController();
-        PW.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PostWriteActionPerformed
+    private void PostWriteActionPerformed(java.awt.event.ActionEvent evt) {                                          
+            PostWriteController PW = new PostWriteController();
+            //PW.bt4=bt2;
+            PW.setVisible(true);
+    }                                         
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         BoardName.setText(bt2);
         dbLoad();
             java.sql.Statement stmt2 = null;
@@ -196,7 +196,7 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
             PostList.setModel(model2);
             dbClose();
         
-    }//GEN-LAST:event_formWindowOpened
+    }                                 
 
     public static void main(String args[]) {
   
@@ -207,7 +207,7 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton Back;
     private javax.swing.JTextField BoardName;
     private javax.swing.JButton OK;
@@ -218,22 +218,21 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String bt2 =PostList.getSelectedValue();
-        bt2 = bt2;
-        if(e.getSource()==PostWrite){
-            PostWriteController PW = new PostWriteController();
-            PW.bt4=bt2;
-            PW.setVisible(true);
-        }
-        if(e.getSource()== OK){
-            PostController PC = new PostController();
-            PC.bt3=bt2;
-            PC.setVisible(true);
-        }
+//        String bt2 =PostList.getSelectedValue();
+//        if(e.getSource()==PostWrite){
+//            PostWriteController PW = new PostWriteController();
+//            PW.bt4=bt2;
+//            PW.setVisible(true);
+//        }
+//        if(e.getSource()== OK){
+//            PostController PC = new PostController();
+//            //PC.bt3=bt2;
+//            PC.setVisible(true);
+//        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
