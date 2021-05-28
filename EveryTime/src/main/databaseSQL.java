@@ -21,7 +21,7 @@ public class databaseSQL extends javax.swing.JFrame {
     protected static final String USERNAME = "everytime";
     protected static final String PASSWORD = "everytime";
     //protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject?serverTimezone=UTC";
-    protected static final String URL = "jdbc:mysql://221.162.246.239:3306/teamproject";
+    protected static final String URL = "jdbc:mysql://49.50.175.24:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;
  
@@ -281,25 +281,6 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(2, userNum);
         st.setString(3, comment);
         st.executeUpdate();
-    }
-
-    protected String[] msgView(String userid) throws SQLException {
-        // 메세지 받아오기
-        Statement stmt2 = null;
-        stmt2 = conn.createStatement();
-        rs = stmt2.executeQuery("select * from message");
-        
-        String[] message = new String[5];
-        while(rs.next()){
-            // 레코드의 칼럼은 배열과 달리 0부터 시작하지 않고 1부터 시작한다.
-            // 데이터베이스에서 가져오는 데이터의 타입에 맞게 getString 또는 getInt 등을 호출한다.
-            message[0] = rs.getString(1);
-            message[1] = rs.getString(2);
-            message[2] = rs.getString(3);
-            message[3] = rs.getString(4);
-            message[4] = rs.getString(5);
-        }
-        return message;
     }
     
     protected void sendMsg(String senderNum, String receiverNum, String messageContent) throws SQLException {

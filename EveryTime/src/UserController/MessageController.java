@@ -22,7 +22,6 @@ public class MessageController extends databaseSQL {
      */
     public MessageController() {
         initComponents();
-        EveryTime_Main.UserNum = "00001";
         updateTable();
         // 여기서 생성자로 gui가 생성될때 메세지함 jtable에 데이터가 표시되야함
     }
