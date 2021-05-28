@@ -73,9 +73,9 @@ public class databaseSQL extends javax.swing.JFrame {
     }
     
     protected void signupUser(String userID, String userPW, String userName, String userNickname, String userUniv,
-            String userDept, String userNum, int isConfirm, int report, int isSponser) throws SQLException {
+            String userDept, String userNum, int isConfirm) throws SQLException {
         //사용자 회원가입
-        //순서 : 아이디, 패스워드, 이름, 닉네임, 대학교, 학과, 고유번호, 학교인증여부, 신고수, 과금여부
+        //순서 : 아이디, 패스워드, 이름, 닉네임, 대학교, 학과, 고유번호, 학교인증여부
         String sql = "INSERT INTO user( "
                 + " userID, "
                 + " userPW, "
@@ -84,10 +84,8 @@ public class databaseSQL extends javax.swing.JFrame {
                 + " userUniv, "
                 + " userDept, "
                 + " userNum, "
-                + " isConfirm, "
-                + " report, "
-                + " isSponser"
-                + ") VALUES (?,?,?,?,?,?,?,?,?,?)";
+                + " isConfirm "
+                + ") VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, userID);
         st.setString(2, userPW);
@@ -97,8 +95,6 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(6, userDept);
         st.setString(7, userNum);
         st.setInt(8, isConfirm);
-        st.setInt(9, report);
-        st.setInt(10, isSponser);
         st.executeUpdate();
     }
     
