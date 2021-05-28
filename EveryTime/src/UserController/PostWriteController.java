@@ -26,9 +26,9 @@ public class PostWriteController extends databaseSQL {
     /**
      * Creates new form PostWriteController
      */
-    public PostWriteController() {  // 생성자 초기에 00000번으로 적용
+    public PostWriteController() { 
      
-//initComponents(); - ui 배치, 값 초기화 시켜주는 함수..
+        initComponents();
         
     }
 
@@ -146,19 +146,20 @@ public class PostWriteController extends databaseSQL {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PostEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostEnrollActionPerformed
-        // 게시글 등록
+         // 게시글 등록
         dbLoad();   // db연결
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        String boardtitle = ""; //boardController.boardTitle _ 전역변수 생기면 불러오기
         
-        String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
-        String postTitle = PostTitle.getText();    // 게시글 제목
+        String boardtitle = EveryTime_Main.addBoard; // 게시판 이름
+        //String postNum = EveryTime_Main.PostNum;   // 게시판 번호
+        String postNum = "00001";
         String postContent = Content.getText();    // 게시글 내용
+        //String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
+        String userNum = "00001";
+        String postTitle = PostTitle.getText();    // 게시글 제목
         String postDate = dateFormat.format(cal.getTime());    // 게시일
         int recommend = EveryTime_Main.Recommand;  // 추천수 = 0
-        String postNum = EveryTime_Main.PostNum;
-
   
             if(postTitle.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
                 JOptionPane.showMessageDialog(this, "[ 제목을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -182,6 +183,8 @@ public class PostWriteController extends databaseSQL {
         }
          
         dbClose();
+
+
 
     }//GEN-LAST:event_PostEnrollActionPerformed
 

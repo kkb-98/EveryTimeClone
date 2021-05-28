@@ -5,11 +5,14 @@
  */
 package UserController;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import main.databaseSQL;
 import main.EveryTime_Main;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -21,7 +24,63 @@ public class PostController extends databaseSQL {
      * Creates new form PostController
      */
     public PostController() {
-        initComponents();
+          initComponents();
+        dbLoad();
+        
+        //String userNum = EveryTime_Main.UserNum; //사용자 번호 
+        //String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+        String userNum = "00001";
+        String post_Num ="00001";
+        String title = "postTitle";
+        String post = "post";
+        String postNum = "postNum"; 
+        String postcontent = "postContent";
+        String comment = "comContent";
+        String writer = "userNum";
+
+        // 제목 출력
+        try{
+            String  postTitle = returnData(post, title , postNum, post_Num);
+            PostTitle.setText(postTitle);
+            PostTitle.disable();
+
+        }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      //  내용 출력
+        try{
+            String  postContent = returnData(post, postcontent, postNum, post_Num);
+            PostContent.setText(postContent);
+            PostContent.disable();
+        }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        
+        // 댓글 출력은 아직 구현 덜함..
+        DefaultListModel model = new DefaultListModel();
+        try{
+            String result = returnComment(writer, comment, post_Num);
+            System.out.print(result);
+            
+            
+           /*ArrayList<String> stData = getStatus();
+            
+            for(int i=0; i < stData.size(); i++){
+                String list[] = stData.get(i).split("\n");
+                System.out.print(list[i]);
+                model.addElement(list[i]);
+                CommentList.setModel(model); // 화면에 보이게 
+                if(list[i] == null){ break; } }*/
+            }
+            
+                      
+        catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dbClose();
+
     }
 
     /**
@@ -45,9 +104,12 @@ public class PostController extends databaseSQL {
         Recommend = new javax.swing.JButton();
         Report = new javax.swing.JButton();
         PostTitle = new javax.swing.JTextField();
-        Alarm = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         CommentList = new javax.swing.JTable();
+        Alarm = new javax.swing.JToggleButton();
+        SendMessage = new javax.swing.JButton();
+        CountReco = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,13 +191,6 @@ public class PostController extends databaseSQL {
             }
         });
 
-        Alarm.setText("🔔");
-        Alarm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlarmActionPerformed(evt);
-            }
-        });
-
         CommentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -146,6 +201,24 @@ public class PostController extends databaseSQL {
         ));
         jScrollPane4.setViewportView(CommentList);
 
+        Alarm.setText("🔔");
+        Alarm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlarmActionPerformed(evt);
+            }
+        });
+
+        SendMessage.setText("✉");
+        SendMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendMessageActionPerformed(evt);
+            }
+        });
+
+        CountReco.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+
+        jLabel3.setText("👍");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,45 +226,57 @@ public class PostController extends databaseSQL {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(Comment)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Register, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Alarm)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Report)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Recommend)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(back))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(PostTitle)
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CountReco))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(232, 232, 232)
+                                .addComponent(back))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SendMessage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Alarm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Report)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Recommend)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(back))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Recommend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Alarm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
+                        .addComponent(CountReco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SendMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Recommend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Alarm, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +286,7 @@ public class PostController extends databaseSQL {
                     .addComponent(Register))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,45 +299,78 @@ public class PostController extends databaseSQL {
     }//GEN-LAST:event_backActionPerformed
 
     private void RecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecommendActionPerformed
-        //추천
+       //추천 Recommend
         dbLoad();
         String userNum = EveryTime_Main.UserNum;    // 사용자
-        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+        //String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+        String post_Num = "00001";
         String rd = "recommend";  // 추천수
         
-        JOptionPane.showMessageDialog(this, "[ 이 글을 추천하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
         try{
-            int recommend = returnPost(rd, post_Num);   // 추천수 얻어오기
-            updatePost(post_Num, recommend);    // 추천눌렀을때 원래 값에서 +1되도록 
-        }catch (Exception e){
+            int recommend = returnRecommend(rd, post_Num);   // 추천수 얻어오기
+            System.out.println(recommend);
+            recommend = recommend + 1;
+            updatePost(post_Num, recommend);    // 추천눌렀을때 원래 값에서 +1되도록
+            
+            Recommend.setEnabled(false);    // 버튼 비활성화
+        }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(this, "[ 이 글을 추천하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+
         dbClose();
         // TODO add your handling code here:
+
     }//GEN-LAST:event_RecommendActionPerformed
 
     private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
-        // 신고
-        
+                                             
+        // 신고 _ 자신의 글일땐 버튼이 안보이도록
+        /*
+        senderNum : 송신자 고유 번호 (CHAR)
+        receiverNum : 수신자 고유 번호 (CHAR)
+        noticeDate : 알림 수신 일자 (DATETIME)
+        noticeType : 댓글/추천/쪽지 등 타입 (VARCHAR)
+        noticeContent : 알림 내용 (VARCHAR)
+        */
+
+        dbLoad();
+        String userNum = EveryTime_Main.UserNum; //사용자 번호
+        String postNum = EveryTime_Main.PostNum;   // 게시글 번호
+
+        /*try{
+            
+        }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+       JOptionPane.showMessageDialog(this, "[ 이 글을 신고하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        dbClose();
+        // TODO add your handling code here:
+
         JOptionPane.showMessageDialog(this, "[ 이 글을 신고하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ReportActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-        // 댓글 등록
+         // 댓글 등록
         dbLoad();
         String comment = Comment.getText(); // 댓글 내용
-        String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        String postNum = EveryTime_Main.PostNum;   // 게시글 번호
-        
+        //String userNum = EveryTime_Main.UserNum; //사용자 번호 
+        //String postNum = EveryTime_Main.PostNum;   // 게시글 번호
+        String userNum = "00001"; // 사용자 테스트번호 
+        String postNum = "00001"; // 게시글 테스트번호
+                
         if(comment.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
              JOptionPane.showMessageDialog(this, "[ 내용을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
         }else{ // 댓글 등록 되도록
             try{
                 postComment(postNum, userNum, comment);
                 // 게시글 번호, 사용자 번호, 댓글 번호
-            }catch (Exception e){
-            }   
+            }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
             JOptionPane.showMessageDialog(this, "[ 댓글이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
             
         }
@@ -287,26 +405,6 @@ public class PostController extends databaseSQL {
         // TODO add your handling code here:
     }//GEN-LAST:event_CommentActionPerformed
 
-    private void AlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlarmActionPerformed
-        // 알림
-        /*
-        <notice : 알림 테이블>
-        senderNum : 송신자 고유 번호 (CHAR)
-        receiverNum : 수신자 고유 번호 (CHAR)
-        noticeDate : 알림 수신 일자 (DATETIME)
-        noticeType : 댓글/추천/쪽지 등 타입 (VARCHAR)
-        noticeContent : 알림 내용 (VARCHAR)
-        */
-        String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
-        
-        
-        JOptionPane.showMessageDialog(this, "[ 댓글 알림을 껐습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(this, "[ 댓글 알림을 켰습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlarmActionPerformed
-
     private void PostContentInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_PostContentInputMethodTextChanged
         // TODO add your handling code here:
         dbLoad();
@@ -326,6 +424,52 @@ public class PostController extends databaseSQL {
         }
         dbClose();
     }//GEN-LAST:event_PostContentInputMethodTextChanged
+
+    private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
+        // 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
+        
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SendMessageActionPerformed
+
+    private void AlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlarmActionPerformed
+          // 알람 버튼
+        dbLoad();
+        String userNum = EveryTime_Main.UserNum; //사용자 번호
+        String postNum = EveryTime_Main.PostNum;   // 게시글 번호      
+
+        ItemListener itemListener = new ItemListener() {
+        public void itemStateChanged(ItemEvent itemEvent) {
+            int state = itemEvent.getStateChange();
+            // 왜 처음값 무시?????????
+            // state > ON : 2 , OFF : 1
+            initComponents();   // add 초기화
+            
+            if (state == ItemEvent.SELECTED) {  // 1
+               System.out.println("OFF state : "+state);
+               //JOptionPane.showMessageDialog(null, "[ 이글의 알람을 껐습니다. ]");
+               //JOptionPane.showConfirmDialog(, "[ 이글의 알람을 껐습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+               //JOptionPane.showMessageDialog(null,"[ 이 글의 알람을 껐습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+               // DB 알람 끄도록...
+            } else if(state == ItemEvent.DESELECTED) {    //2
+                System.out.println("On state : "+state); // remove your message
+                //JOptionPane.showMessageDialog(null, "[ 이글의 알람을 켰습니다. ]");
+                //JOptionPane.showMessageDialog(null,"[ 이 글의 알람을 켰습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                // 다시 키기
+            }
+        }
+
+            
+    };
+    Alarm.addItemListener(itemListener);
+    
+     dbClose();
+        // TODO add your handling code here:
+
+
+        
+    }//GEN-LAST:event_AlarmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,17 +538,20 @@ public class PostController extends databaseSQL {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Alarm;
+    private javax.swing.JToggleButton Alarm;
     private javax.swing.JTextField Comment;
     private javax.swing.JTable CommentList;
+    private javax.swing.JTextField CountReco;
     private javax.swing.JTextArea PostContent;
     private javax.swing.JTextField PostTitle;
     private javax.swing.JButton Recommend;
     private javax.swing.JButton Register;
     private javax.swing.JButton Report;
+    private javax.swing.JButton SendMessage;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
