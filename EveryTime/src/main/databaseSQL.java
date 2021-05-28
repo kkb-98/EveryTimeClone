@@ -176,10 +176,13 @@ public class databaseSQL extends javax.swing.JFrame {
     }
     
     protected void postBoard(String boardTitle, String postNum, String postTitle, String postContent,
-            String userNum, String postDate, int recommend) throws SQLException {
+            String userNum, int recommend) throws SQLException {
         //게시글 작성
         //순서 : 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수(default=0)
-        String sql = "INSERT INTO post( "
+        Calendar cal = new GregorianCalendar();
+        Timestamp ts = new Timestamp(cal.getTimeInMillis());
+        
+        String sql = "insert into post( "
                 + " boardTitle, "
                 + " postNum, "
                 + " postTitle"
@@ -187,14 +190,14 @@ public class databaseSQL extends javax.swing.JFrame {
                 + " userNum"
                 + " postDate"
                 + " recommend"
-                + ") VALUES (?,?,?,?,?,?,?)";
+                + ") values (?,?,?,?,?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, boardTitle);
         st.setString(2, postNum);
         st.setString(3, postTitle);
         st.setString(4, postContent);
         st.setString(5, userNum);
-        st.setString(6, postDate);
+        st.setTimestamp(6, ts);
         st.setInt(7, recommend);
         st.executeUpdate();
     }

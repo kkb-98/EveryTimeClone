@@ -16,21 +16,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.ResultSet;
-import main.databaseSQL;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import main.EveryTime_Main;
         
-public class PostWriteController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
+public class PostWriteController extends databaseSQL  {
     String bt4;
 
     public PostWriteController() { 
@@ -38,7 +25,6 @@ public class PostWriteController extends databaseSQL implements MouseListener, K
         initComponents();
         
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -149,34 +135,40 @@ public class PostWriteController extends databaseSQL implements MouseListener, K
     }// </editor-fold>//GEN-END:initComponents
 
     private void PostEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostEnrollActionPerformed
-         // 게시글 등록
+ // 게시글 등록      EveryTime_Main.PostNum
         dbLoad();   // db연결
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Calendar cal = Calendar.getInstance();
-        
-        String boardtitle = EveryTime_Main.addBoard; // 게시판 이름
-        //String postNum = EveryTime_Main.PostNum;   // 게시판 번호
-        String postNum = "00001";
+        //String boardtitle = EveryTime_Main.addBoard; // 게시판 이름
+        String boardtitle = "test";     // 게시판 이름
+        String postNum;              // 게시글 번호
         String postContent = Content.getText();    // 게시글 내용
         //String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
         String userNum = "00001";
         String postTitle = PostTitle.getText();    // 게시글 제목
-        String postDate = dateFormat.format(cal.getTime());    // 게시일
-        int recommend = EveryTime_Main.Recommand;  // 추천수 = 0
-  
+        boolean check;
+        int recommend = 0;
+        
             if(postTitle.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
                 JOptionPane.showMessageDialog(this, "[ 제목을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
             }else if(postContent.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
                 JOptionPane.showMessageDialog(this, "[ 내용을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
-                    int random;
+                    int random; 
                     do{
                         random =(int)((Math.random()*100000)-1);
                         postNum = String.format("%05d", random);
-                    }while(searchData("post","postNum",postNum));
-                    postBoard( boardtitle, postNum, postTitle, postContent, userNum, postDate, recommend);
-                    // 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수
+                        EveryTime_Main.PostNum = postNum;
+
+                    }while(check = searchData("post","postNum", EveryTime_Main.PostNum));
+                    
+                    if(check == false){
+                        postBoard( boardtitle, EveryTime_Main.PostNum, postTitle, postContent, userNum, recommend);
+                        // 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수
+                        dbClose();
+                        System.out.println("DB 등록 완료");
+                    }
+                    
+
                 }catch(Exception e){            
                 }
                 JOptionPane.showMessageDialog(this, "[ 게시물이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -184,9 +176,7 @@ public class PostWriteController extends databaseSQL implements MouseListener, K
                
                 new PostListController().setVisible(true);  // 등록 후 postlist로 이동
         }
-         
-        dbClose();
-
+        
 
 
     }//GEN-LAST:event_PostEnrollActionPerformed
@@ -215,51 +205,6 @@ public class PostWriteController extends databaseSQL implements MouseListener, K
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
   
 }

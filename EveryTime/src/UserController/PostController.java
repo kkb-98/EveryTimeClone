@@ -28,24 +28,20 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     String bt3;
     static String AA;
     DefaultListModel model3 = new DefaultListModel();
-    public PostController() {
-          initComponents();
+   public PostController() {
+        initComponents();
         dbLoad();
         
         //String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        //String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
+        //String postNum = EveryTime_Main.PostNum;   // 게시글 번호
         String userNum = "00001";
-        String post_Num ="00001";
-        String title = "postTitle";
-        String post = "post";
-        String postNum = "postNum"; 
-        String postcontent = "postContent";
+        String postNum ="00001";
         String comment = "comContent";
         String writer = "userNum";
 
         // 제목 출력
         try{
-            String  postTitle = returnData(post, title , postNum, post_Num);
+            String  postTitle = returnData("post", "postTitle" , "postNum", postNum);
             PostTitle.setText(postTitle);
             PostTitle.disable();
 
@@ -55,19 +51,55 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         
       //  내용 출력
         try{
-            String  postContent = returnData(post, postcontent, postNum, post_Num);
+            String  postContent = returnData("post", "postContent", "postNum", postNum);
             PostContent.setText(postContent);
             PostContent.disable();
         }catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
             
         }
+        // 추천수 출력
         
-        // 댓글 출력은 아직 구현 덜함..
-        DefaultListModel model = new DefaultListModel();
         try{
-            String result = returnComment(writer, comment, post_Num);
-            System.out.print(result);
+            int count = returnRecommend("recommend", postNum);
+            CountReco.setText(Integer.toString(count));
+            CountReco.disable();
+
+        }catch(SQLException ex){
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // 댓글 
+        DefaultListModel model = new DefaultListModel();
+        
+        try{
+            String result = returnComment(writer, comment, postNum);
+            //System.out.print(result);   // 3 
+            
+            //ArrayList<String[]> arrStr = new ArrayList<String[]>();
+            //String[] arr = null;
+            
+           /* String[] strs = {"1", "2", "3"};
+            java.util.List<String> list = new ArrayList<String>(Arrays.asList(strs));
+            if(list != null){
+                for(int i = 0; i < list.size(); i++){
+                    System.out.println(list.get(i));
+                }
+            }*/
+            String[] arr;
+            
+            /*for(int i=0; i<4; i++){
+                 arr[i] = result.split("\n");
+                .add(arr[0]);
+                System.out.println(arr[i]);}
+            /*
+            
+            java.util.List<String> list = new ArrayList<String>(Arrays.asList(arr));
+            if(list != null){
+                for(int i = 0; i < list.size(); i++){
+                    System.out.println(list.get(i));
+                }
+            }*/
             
             
            /*ArrayList<String> stData = getStatus();
@@ -308,33 +340,39 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_backActionPerformed
 
     private void RecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecommendActionPerformed
-       //추천 Recommend
+       // TODO add your handling code here: 추천버튼
+        
         dbLoad();
-        String userNum = EveryTime_Main.UserNum;    // 사용자
-        //String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
-        String post_Num = "00001";
-        String rd = "recommend";  // 추천수
+        //String userNum = EveryTime_Main.UserNum;    // 사용자
+        //String postNum = EveryTime_Main.PostNum;   // 게시글 번호
+        String userNum = "00001";
+        String postNum = "00001";
+        String writerNum;   // 게시글 작성자
         
         try{
-            int recommend = returnRecommend(rd, post_Num);   // 추천수 얻어오기
-            System.out.println(recommend);
-            recommend = recommend + 1;
-            updatePost(post_Num, recommend);    // 추천눌렀을때 원래 값에서 +1되도록
-            
-            Recommend.setEnabled(false);    // 버튼 비활성화
+            writerNum = returnData("post", userNum,"postNum", "00001");
+            System.out.println(writerNum);
+            if(writerNum == userNum){
+                JOptionPane.showMessageDialog(this, "[ 본인 글이므로 추천할 수 없습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                int recommend = returnRecommend("recommend", postNum);   // 추천수 얻어오기
+                System.out.println(recommend);
+                recommend = recommend + 1;  
+                updatePost(postNum, recommend);    // 추천눌렀을때 원래 값에서 +1되도록
+                
+                JOptionPane.showMessageDialog(this, "[ 이 글을 추천하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                Recommend.setEnabled(false);    // 버튼 비활성화
+            }
         }catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(this, "[ 이 글을 추천하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
 
         dbClose();
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_RecommendActionPerformed
 
     private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
-                                             
-        // 신고 _ 자신의 글일땐 버튼이 안보이도록
+         // TODO add your handling code here:신고 _ 자신의 글일땐 버튼이 안보이도록
         /*
         senderNum : 송신자 고유 번호 (CHAR)
         receiverNum : 수신자 고유 번호 (CHAR)
@@ -359,11 +397,12 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
 
         JOptionPane.showMessageDialog(this, "[ 이 글을 신고하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
 
-        // TODO add your handling code here:
+        
+                                     
     }//GEN-LAST:event_ReportActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-         // 댓글 등록
+         // TODO add your handling code here: 댓글 등록
         dbLoad();
         String comment = Comment.getText(); // 댓글 내용
         //String userNum = EveryTime_Main.UserNum; //사용자 번호 
@@ -376,15 +415,15 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         }else{ // 댓글 등록 되도록
             try{
                 postComment(postNum, userNum, comment);
-                // 게시글 번호, 사용자 번호, 댓글 번호
+                // 게시글 번호, 사용자 번호, 댓글 번호  
             }catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         } 
             JOptionPane.showMessageDialog(this, "[ 댓글이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            initComponents();
             
         }
         dbClose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_RegisterActionPerformed
 
     private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
