@@ -28,7 +28,7 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
         BoardList.addListSelectionListener(this);
     }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -132,9 +132,9 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
     
-    private void BoardAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoardAddActionPerformed
+    private void BoardAddActionPerformed(java.awt.event.ActionEvent evt) {                                         
      dbLoad();
         java.sql.Statement stmt2 = null;
         try {
@@ -173,20 +173,20 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
          }
          }
             dbClose();
-    }//GEN-LAST:event_BoardAddActionPerformed
+    }                                        
 
    
-    private void NewBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBoardActionPerformed
+    private void NewBoardActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         // 이 라인은 위 의 버튼에서 다해먹습니다.
-    }//GEN-LAST:event_NewBoardActionPerformed
+    }                                        
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {                                     
         dispose();
         //뒤로가기 이벤트
-    }//GEN-LAST:event_BackActionPerformed
+    }                                    
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         //게시판제목 리스트에 불러오기
         dbLoad();
             java.sql.Statement stmt2 = null;
@@ -214,22 +214,9 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
             dbClose();
-    }//GEN-LAST:event_formWindowOpened
+    }                                 
      private void BoardInActionPerformed(java.awt.event.ActionEvent evt) {                                        
         dispose();
-        
-        
-        
-        
-        //밑라인은 뭔지 모르니 일단 주석처리...
-        /*PostListController PC = new PostListController();
-        JList list;
-        list = new JList(new DefaultListModel());
-        //mod = (DefaultListModel) list.getModel();
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.addListSelectionListener((ListSelectionListener) this);
-        */
-        
     }   
     
     public static void main(String args[]) {
@@ -264,7 +251,7 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton Back;
     private javax.swing.JButton BoardAdd;
     private javax.swing.JButton BoardIn;
@@ -273,7 +260,7 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void mouseClicked(MouseEvent e) {
