@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
@@ -222,10 +223,54 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(2, postnum);
         st.executeUpdate();
     }
+    protected int returnRecommend(String recommend, String postnum) throws SQLException{
+        // 추천수 얻어오기
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select " + recommend + " from post" + " where postNum ='" + postnum + "'");
+        while (rs.next()) {
+            int a = rs.getInt(recommend);
+            return a;
+        }
+        return 0;
+    }
     
+    protected void updateRecommend(String postnum, int recommend) throws SQLException{
+        // 추천 누를 시 +1
+        // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+        String sql = "UPDATE post SET recommend =? WHERE postNum =?";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setInt(1, recommend);
+        st.setString(2, postnum);
+        st.executeUpdate();
+    }
+    
+    protected String returnComment(String usernum, String content, String keydata) throws SQLException {
+        // comment 테이블에서 게시글 번호 비교하여 해당되는 댓글 내용 가져오기
+        Statement stmt2 = null;
+        String tmpStr = "";
+        
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select " + usernum + ", " + content + " from comment" + " where postNum ='" + keydata + "'");
+        if(rs.next()){
+            ArrayList<String> list = new ArrayList<String>();
+            do{
+                String a = rs.getString(usernum);
+                String b = rs.getString(content);
+                tmpStr = a + ": " + b +"\n";
+                list.add(tmpStr);
+            }while (rs.next());{ 
+                
+                return tmpStr;
+            }
+        }else{
+            return null;
+        }
+    }
+
      protected void postComment(String postNum,String userNum, String comment) throws SQLException {
-        //게시글 작성
-        //순서 : 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수(default=0)
+        // 댓글 작성
+        //순서 : 게시판번호, 작성자 번호, 댓글 내용
         String sql = "INSERT INTO comment( "
                 + " postNum, "
                 + " userNum"
