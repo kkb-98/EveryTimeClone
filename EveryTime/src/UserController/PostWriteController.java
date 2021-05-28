@@ -1,21 +1,12 @@
 
 package UserController;
 
-import java.sql.ResultSet;
 import main.databaseSQL;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import main.EveryTime_Main;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
         
 public class PostWriteController extends databaseSQL  {
     String bt4;
