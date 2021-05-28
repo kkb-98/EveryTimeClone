@@ -3,13 +3,6 @@ package UserController;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import main.databaseSQL;
-import main.EveryTime_Main;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -23,7 +16,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
 public class PostController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     String bt3;
     static String AA;
