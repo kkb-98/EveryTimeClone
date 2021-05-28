@@ -169,7 +169,8 @@ public class PostWriteController extends databaseSQL  {
                     }
                     
 
-                }catch(Exception e){            
+                }catch (SQLException ex) {
+                    Logger.getLogger(PostListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(this, "[ 게시물이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();  // 현재 gui 종료
