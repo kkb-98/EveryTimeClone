@@ -36,7 +36,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         //String postNum = EveryTime_Main.PostNum;   // 게시글 번호
         String userNum = "00001";
         String postNum ="00001";
-        String comment = "comContent";
         String writer = "userNum";
 
         // 제목 출력
@@ -73,7 +72,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         DefaultListModel model = new DefaultListModel();
         
         try{
-            String result = returnComment(writer, comment, postNum);
+            String result = returnComment(writer, "comContent", postNum);
             //System.out.print(result);   // 3 
             
             //ArrayList<String[]> arrStr = new ArrayList<String[]>();
@@ -427,50 +426,15 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_RegisterActionPerformed
 
     private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
-        // 게시글 제목 나타내기
-        dbLoad();
-        String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
-       // String post_Num = "00001";
-        String title = "boardTitle";
-        String table = "post";
-        String postNum = "postNum";
-        String msgbox;
-        try{
-            //String  postcontent = returnData(title, table, postNum, post_Num);
-            msgbox = "123";
-            System.out.println("123");
-            PostTitle.setText(msgbox);
-            
-        }catch(Exception e){
-        }
-        dbClose();
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_PostTitleActionPerformed
 
     private void CommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommentActionPerformed
-        // 댓글 작성란
         // TODO add your handling code here:
     }//GEN-LAST:event_CommentActionPerformed
 
     private void PostContentInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_PostContentInputMethodTextChanged
-        // TODO add your handling code here:
-        dbLoad();
-        String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호
-        //String post_Num = "00001";
-        String table = "post";  
-        String content = "postContent";
-        String postNum = "postNum";
-        PostContent.isEditable();
-
-        try{
-            String  postcontent = returnData(content, table, postNum, post_Num);
-            PostContent.setText(postcontent);
-            
-        }catch(Exception e){
-        }
-        dbClose();
+      
     }//GEN-LAST:event_PostContentInputMethodTextChanged
 
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
@@ -520,87 +484,11 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_AlarmActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        //켜자마자 보여주는 화면
-        dbLoad();
-        //post 테이블을 불러옴
-        //postTitle 불러옴
-        //postContent,recommend 게시글내용과 추천수를 게시글내용에 추가하고 추천수는 가장위에 표시
-        PostTitle.setText(bt3);
-        java.sql.Statement stmt2 = null;
-        try {
-            stmt2 = conn.createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            String sql = "select * from post where postTitle =  \"" + bt3 + "\" ";
-            rs = stmt2.executeQuery(sql);
-            while(rs.next()){
-            String A =rs.getString("userNum");
-            String B =rs.getString("postContent");
-            AA = A;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            PostContent.setText("");
        
-        //comment 테이블을 불러옴
-        //comContent,recommend 댓글내용과 댓글추천수를 불러옴.
-        
-        java.sql.Statement stmt3 = null;
-        try {
-            stmt3 = conn.createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            String sql = "select * from comment where userNum =  \"" + AA + "\" ";
-            rs = stmt3.executeQuery(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            while(rs.next()){
-            model3.addElement(rs.getString("comContent"));
-            CommentList.setModel((TableModel) model3);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        dbClose();
-        
     }//GEN-LAST:event_formWindowOpened
 
     
-    private void PostContentPerformed(java.awt.event.ActionEvent evt){
-        // 게시글 내용 출력
-        dbLoad();
-        String table = "post";
-        String content = "postContent";
-        String postNum = "postNum";
-        /*
-        boardTitle : 게시판 이름 (VARCHAR)
-        postNum : 게시글 번호 (CHAR)
-        postTitle : 게시글 제목 (VARCHAR)
-        postContent : 게시글 내용 (VARCHAR)
-        userNum : 작성자 고유 번호 (CHAR)
-        postDate : 작성 일자 (DATETIME)
-        recommend : 추천 수 (INT)
-        */
-        String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        String post_Num = EveryTime_Main.PostNum;   // 게시글 번호        
-        
-        try{
-            String boardTitle = returnData(content, table, postNum, post_Num);
-            PostContent.setText(content);
-        }catch(Exception e){
-        }
-        
-        dbClose();
-    }
+   
     
     public static void main(String args[]) {
         
