@@ -213,36 +213,51 @@ public class UserJoinController extends databaseSQL {
     private void UserJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserJoinActionPerformed
         // 회원가입 버튼 클릭
         // 빈칸 확인
-        if(UserName.getText().length() == 0)
+        String name = UserName.getText();
+        String id = UserID.getText();
+        String pw = UserPW.getText();
+        String nick = UserNickname.getText();
+        String univ = UserUniv.getText();
+        String dept = UserDept.getText();
+        
+        if(name.length() == 0)
             JOptionPane.showMessageDialog(this, "이름을 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        else if(UserID.getText().length() == 0)
+        else if(id.length() == 0)
             JOptionPane.showMessageDialog(this, "아이디를 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        else if(UserPW.getText().length() == 0)
+        else if(pw.length() == 0)
             JOptionPane.showMessageDialog(this, "패스워드를 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        else if(UserNickname.getText().length() == 0)
+        else if(nick.length() == 0)
             JOptionPane.showMessageDialog(this, "닉네임을 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
         else {
             // 글자 수 확인
-            if(UserName.getText().length() > 4)
+            if(name.length() > 4)
                 JOptionPane.showMessageDialog(this, "이름은 4자까지만 입력이 가능합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            else if(UserID.getText().length() > 10 || UserID.getText().length() < 4)
+            else if(id.length() > 10 || id.length() < 4)
                 JOptionPane.showMessageDialog(this, "4~10자 이내의 아이디를 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            else if(UserPW.getText().length() > 15 || UserID.getText().length() < 4)
+            else if(pw.length() > 15 || pw.length() < 4)
                 JOptionPane.showMessageDialog(this, "4~15자 이내의 비밀번호를 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            else if(UserNickname.getText().length() > 10 || UserID.getText().length() < 2)
+            else if(nick.length() > 10 || nick.length() < 2)
                 JOptionPane.showMessageDialog(this, "2~10자 이내의 닉네임을 입력해주세요.", "메세지", JOptionPane.INFORMATION_MESSAGE);
             else if(isCheck==false)
                 JOptionPane.showMessageDialog(this, "ID 중복 확인이 필요합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
             else{
-                if(!checkedID.equals(UserID.getText())) { //|| checkedNICK != UserNickname.getText()
+                if(!checkedID.equals(id)) { //|| checkedNICK != UserNickname.getText()
                     JOptionPane.showMessageDialog(this, "ID 중복 확인이 필요합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
-                    if(!UserUniv.equals(null) && !UserDept.equals(null)) this.isConfirm = 1; //학과, 학교 모두 입력되면 학과인증 완료
-                    Member.Builder member = new Member.Builder(UserID.getText(), UserPW.getText(), UserName.getText(), isConfirm)
-                        .nick(UserNickname.getText())
-                        .univ(UserUniv.getText())
-                        .dept(UserDept.getText());
+                    if(!univ.equals(null) && !dept.equals(null)) this.isConfirm = 1; //학과, 학교 모두 입력되면 학과인증 완료
+                    
+                    //빌더패턴 (Builder Pattern)
+                    Member member = Member.builder()
+                            .id(id)
+                            .pw(pw)
+                            .name(name)
+                            .nick(nick)
+                            .isConfirm(isConfirm)
+                            .univ(univ)
+                            .dept(dept)
+                            .build();
+                    member.MemberSave();
                     
                     JOptionPane.showMessageDialog(this, "회원가입이 완료되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
