@@ -5,17 +5,31 @@
  */
 package UserController;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.databaseSQL;
+import main.EveryTime_Main;
+
 /**
  *
  * @author USER
  */
-public class InfoChangeController extends javax.swing.JFrame {
+public class InfoChangeController extends databaseSQL {
 
     /**
      * Creates new form InfoChangeController
      */
     public InfoChangeController() {
         initComponents();
+        dbLoad();
+        try {
+            UserName.setText(returnData("user", "userName", "userNum", EveryTime_Main.UserNum));
+            UserSchool.setText(returnData("user", "userUniv", "userNum", EveryTime_Main.UserNum));
+            Nickname.setText(returnData("user", "userNickname", "userNum", EveryTime_Main.UserNum));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        dbClose();
     }
 
     /**
@@ -36,8 +50,6 @@ public class InfoChangeController extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Nickname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        UserEmail = new javax.swing.JTextField();
         UserSchool = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         Modify = new javax.swing.JButton();
@@ -51,6 +63,8 @@ public class InfoChangeController extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 14)); // NOI18N
         jLabel2.setText("정보 변경");
+
+        UserName.setEditable(false);
 
         jLabel3.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         jLabel3.setText("이름 :");
@@ -66,8 +80,7 @@ public class InfoChangeController extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         jLabel4.setText("닉네임 :");
 
-        jLabel6.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        jLabel6.setText("이메일 :");
+        UserSchool.setEditable(false);
 
         jLabel7.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         jLabel7.setText("학교 :");
@@ -76,8 +89,12 @@ public class InfoChangeController extends javax.swing.JFrame {
         Modify.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Modify.setForeground(new java.awt.Color(255, 255, 255));
         Modify.setText("수정하기");
+        Modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 153, 153));
         jLabel8.setText("(이름 학교는 변경 안됨)");
 
@@ -91,15 +108,9 @@ public class InfoChangeController extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(UserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Nickname))))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Nickname, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -137,7 +148,7 @@ public class InfoChangeController extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -153,10 +164,6 @@ public class InfoChangeController extends javax.swing.JFrame {
                             .addComponent(Nickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(UserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Back)
                             .addComponent(Modify))
                         .addContainerGap())))
@@ -169,6 +176,23 @@ public class InfoChangeController extends javax.swing.JFrame {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
+        // 회원정보 수정 코드
+        if(Nickname.getText()=="") {
+            JOptionPane.showMessageDialog(this, "빈칸이 존재합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            dbLoad();
+            try {
+                updateData("user", "userNickname", "userNum", EveryTime_Main.UserNum, Nickname.getText());
+                JOptionPane.showMessageDialog(this, "회원정보가 수정되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }
+            dbClose();
+            dispose();
+        }
+    }//GEN-LAST:event_ModifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,7 +233,6 @@ public class InfoChangeController extends javax.swing.JFrame {
     private javax.swing.JButton Back;
     private javax.swing.JButton Modify;
     private javax.swing.JTextField Nickname;
-    private javax.swing.JTextField UserEmail;
     private javax.swing.JTextField UserName;
     private javax.swing.JTextField UserSchool;
     private javax.swing.JLabel jLabel1;
@@ -217,7 +240,6 @@ public class InfoChangeController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSpinner jSpinner1;

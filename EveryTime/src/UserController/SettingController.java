@@ -215,6 +215,7 @@ public class SettingController extends javax.swing.JFrame {
     }//GEN-LAST:event_NoticeSetActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        new MainPageController().setVisible(true);
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed

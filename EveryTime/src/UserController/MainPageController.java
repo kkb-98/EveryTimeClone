@@ -274,6 +274,7 @@ public class MainPageController extends databaseSQL {
     }//GEN-LAST:event_PremiumActionPerformed
 
     private void SettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingActionPerformed
+        dispose();
         SettingController ST = new SettingController();
         ST.setVisible(true);
         // TODO add your handling code here:
