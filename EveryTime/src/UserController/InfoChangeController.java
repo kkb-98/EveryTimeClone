@@ -179,7 +179,7 @@ public class InfoChangeController extends databaseSQL {
 
     private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
         // 회원정보 수정 코드
-        if(Nickname.getText()=="") {
+        if(Nickname.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "빈칸이 존재합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
         } else {
             dbLoad();

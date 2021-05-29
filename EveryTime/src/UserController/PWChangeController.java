@@ -5,11 +5,15 @@
  */
 package UserController;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.databaseSQL;
+import main.EveryTime_Main;
 /**
  *
  * @author USER
  */
-public class PWChangeController extends javax.swing.JFrame {
+public class PWChangeController extends databaseSQL {
 
     /**
      * Creates new form PWChangeController
@@ -32,11 +36,11 @@ public class PWChangeController extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField3 = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
+        nowPW = new javax.swing.JTextField();
+        newPW = new javax.swing.JTextField();
+        newPWConf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,17 +55,25 @@ public class PWChangeController extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("비밀번호 변경");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         jButton2.setText("뒤로가기");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 14)); // NOI18N
         jLabel3.setText("현재 비밀번호");
 
         jLabel4.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 14)); // NOI18N
         jLabel4.setText("새로운 비밀번호");
-
-        jPasswordField3.setToolTipText("");
 
         jLabel5.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 14)); // NOI18N
         jLabel5.setText("새로운 비밀번호 확인");
@@ -80,18 +92,19 @@ public class PWChangeController extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jPasswordField3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newPWConf, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newPW, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nowPW, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -105,16 +118,16 @@ public class PWChangeController extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(17, 17, 17)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nowPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel4)
                 .addGap(3, 3, 3)
+                .addComponent(newPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newPWConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -124,6 +137,36 @@ public class PWChangeController extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // 비밀번호 변경 버튼
+        dbLoad();
+        try {
+            if (nowPW.getText().equals(returnData("user", "userPW", "userNum", EveryTime_Main.UserNum))) {
+                if(newPW.getText().equals("") || newPWConf.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "변경할 비밀번호를 입력해주세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    if(newPW.getText().equals(newPWConf.getText())) {
+                            updateData("user", "userPW", "userNum", EveryTime_Main.UserNum, newPW.getText());
+                            JOptionPane.showMessageDialog(this, "비밀번호가 변경되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "새로운 비밀번호가 일치하지 않습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "현재 비밀번호가 틀렸습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }  catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        dbClose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // 뒤로가기
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,8 +211,8 @@ public class PWChangeController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JTextField newPW;
+    private javax.swing.JTextField newPWConf;
+    private javax.swing.JTextField nowPW;
     // End of variables declaration//GEN-END:variables
 }
