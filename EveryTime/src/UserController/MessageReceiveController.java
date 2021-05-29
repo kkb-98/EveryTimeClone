@@ -65,7 +65,6 @@ public class MessageReceiveController extends javax.swing.JFrame {
             }
         });
 
-        content.setEditable(false);
         content.setColumns(20);
         content.setRows(5);
         jScrollPane1.setViewportView(content);
@@ -75,7 +74,7 @@ public class MessageReceiveController extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Answer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Back)

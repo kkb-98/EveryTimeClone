@@ -90,7 +90,7 @@ public class MessageController extends databaseSQL {
                 false, false
             };
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit [0];
             }
         }
     );

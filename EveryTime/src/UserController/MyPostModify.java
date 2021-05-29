@@ -5,25 +5,26 @@
  */
 package UserController;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import main.EveryTime_Main;
 import main.databaseSQL;
 
 /**
  *
- * @author USER
+ * @author 남우근
  */
-public class UserPostController extends databaseSQL {
+public class MyPostModify extends databaseSQL {
 
     /**
-     * Creates new form OwnPostController
+     * Creates new form MyPostModify
      */
-    public UserPostController() {
+    String Content;
+    public MyPostModify(String Title,String Content) {
         initComponents();
-        updateTable();
+        this.Content = Content;
+        contentBox.setText(Content);
+        TitleBox.setText("제목 : " + Title);
     }
 
     /**
@@ -38,10 +39,10 @@ public class UserPostController extends databaseSQL {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
-        PostDelete = new javax.swing.JButton();
+        TitleBox = new javax.swing.JLabel();
         PostModify = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        boardTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        contentBox = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +51,7 @@ public class UserPostController extends databaseSQL {
         jLabel1.setText("Everytime");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
-        jLabel2.setText("본인 게시글");
+        jLabel2.setText("게시글 수정");
 
         Back.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         Back.setText("뒤로가기");
@@ -60,15 +61,7 @@ public class UserPostController extends databaseSQL {
             }
         });
 
-        PostDelete.setBackground(new java.awt.Color(153, 0, 0));
-        PostDelete.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        PostDelete.setForeground(new java.awt.Color(255, 255, 255));
-        PostDelete.setText("삭제하기");
-        PostDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostDeleteActionPerformed(evt);
-            }
-        });
+        TitleBox.setText("제목 : ");
 
         PostModify.setBackground(new java.awt.Color(153, 0, 0));
         PostModify.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
@@ -80,59 +73,44 @@ public class UserPostController extends databaseSQL {
             }
         });
 
-        boardTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-                "게시판", "제목","내용"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [0];
-            }
-        });
-        jScrollPane2.setViewportView(boardTable);
+        contentBox.setColumns(20);
+        contentBox.setRows(5);
+        jScrollPane1.setViewportView(contentBox);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(PostModify)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PostDelete))
+                        .addComponent(Back))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addComponent(Back)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(TitleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(TitleBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(Back))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PostDelete)
+                    .addComponent(Back)
                     .addComponent(PostModify))
                 .addContainerGap())
         );
@@ -143,68 +121,26 @@ public class UserPostController extends databaseSQL {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // 뒤로가기
         dispose();
+        new UserPostController().setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
-    private void PostDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostDeleteActionPerformed
-        // 삭제하기
-        // 삭제 버튼
-        try {
+    private void PostModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostModifyActionPerformed
+        // 게시글 수정 확인
         dbLoad();
         try {
-            int row = boardTable.getSelectedRow();
-            deleteData("post", "userNum", "postContent", EveryTime_Main.UserNum, (String)boardTable.getValueAt(row, 2));
-             JOptionPane.showMessageDialog(this, "선택된 게시글 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            updateData("post", "postContent", "postContent", Content, contentBox.getText());
+            JOptionPane.showMessageDialog(this, "게시글이 수정되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            new UserPostController().setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
-        updateTable();
         dbClose();
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(this, "삭제할 게시글을 선택하세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        } 
-    }//GEN-LAST:event_PostDeleteActionPerformed
-
-    private void PostModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostModifyActionPerformed
-        // 게시글 수정
-        try {
-        int row = boardTable.getSelectedRow();
-        
-        String Title= (String)boardTable.getValueAt(row, 1);
-        String Content = (String)boardTable.getValueAt(row, 2);
-        
-        dispose();
-        new MyPostModify(Title,Content).setVisible(true);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(this, "수정할 게시글을 선택하세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
-        } 
     }//GEN-LAST:event_PostModifyActionPerformed
 
-    private void updateTable() {
-        DefaultTableModel model = (DefaultTableModel) boardTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
-        model.setNumRows(0);
-        dbLoad();
-        // 현재 사용자의 알림을 테이블에 보여줌
-        try {
-            String sql="select boardTitle, postTitle, postContent from post where userNum = '"+EveryTime_Main.UserNum+ "'";
-            PreparedStatement st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
-            while(rs.next()) {
-                String boardTitle = rs.getString("boardTitle");
-                String postTitle = rs.getString("postTitle");
-                String postContent = rs.getString("postContent");
-                
-                Object data[] = {boardTitle,postTitle, postContent}; 
-                model.addRow(data);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
-        }
-        dbClose();
-        
-        boardTable.getTableHeader().setReorderingAllowed(false);
-        boardTable.getTableHeader().setResizingAllowed(false);
-    }
-    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -219,32 +155,31 @@ public class UserPostController extends databaseSQL {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserPostController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPostModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserPostController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPostModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserPostController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPostModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserPostController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyPostModify.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserPostController().setVisible(true);
+                new MyPostModify("","").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JButton PostDelete;
     private javax.swing.JButton PostModify;
-    private javax.swing.JTable boardTable;
+    private javax.swing.JLabel TitleBox;
+    private javax.swing.JTextArea contentBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

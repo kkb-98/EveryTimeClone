@@ -25,7 +25,6 @@ public class MainPageController extends databaseSQL {
             Noticebtn.setBackground(new Color(153,0,0));
             Noticebtn.setForeground(Color.white);
         }
-        JOptionPane.showMessageDialog(null, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

@@ -62,7 +62,7 @@ public class NoticeController extends databaseSQL {
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit [0];
             }
         });
         jScrollPane1.setViewportView(NoticeTable);
