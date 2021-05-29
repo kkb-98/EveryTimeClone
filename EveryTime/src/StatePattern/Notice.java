@@ -33,7 +33,7 @@ public class Notice extends databaseSQL {
     public void readNotice() {
         dbLoad();
         try {
-        updateData("notice", "noticeCheck", "receiverNum", EveryTime_Main.UserNum, "V");
+        updateData("notice", "noticeCheck", "receiverNum", EveryTime_Main.UserNum, "O");
         } catch (SQLException ex) {
              JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }

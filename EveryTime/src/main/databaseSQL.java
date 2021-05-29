@@ -341,4 +341,9 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setString(6, "X"); // 초기입력시 읽지않은 X로 표시
         st.executeUpdate();
     }
+    protected void deleteData(String table, String Condition1, String Condition2, String data1, String data2) throws SQLException{
+        String sql = "delete from " + table + " where " + Condition1 + " = '" + data1 + "' and " + Condition2 + " = '" + data2 +"'";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.executeUpdate();
+    }
 }

@@ -42,6 +42,7 @@ public class MessageController extends databaseSQL {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MsgTable = new javax.swing.JTable();
+        deleteContent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,16 +64,14 @@ public class MessageController extends databaseSQL {
         jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("확인");
+        jButton1.setText("확 인");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 0, 0));
         jButton2.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("보내기");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +97,16 @@ public class MessageController extends databaseSQL {
     MsgTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     jScrollPane1.setViewportView(MsgTable);
 
+    deleteContent.setBackground(new java.awt.Color(153, 0, 0));
+    deleteContent.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+    deleteContent.setForeground(new java.awt.Color(255, 255, 255));
+    deleteContent.setText("삭 제");
+    deleteContent.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteContentActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -112,6 +121,8 @@ public class MessageController extends databaseSQL {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteContent)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,7 +143,8 @@ public class MessageController extends databaseSQL {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
                 .addComponent(Back)
-                .addComponent(jButton1))
+                .addComponent(jButton1)
+                .addComponent(deleteContent))
             .addContainerGap())
     );
 
@@ -147,6 +159,8 @@ public class MessageController extends databaseSQL {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // 확인 버튼 클릭시 선택된 쪽지를 자세하게 보여준다. -> 보낸사람의 인자를 넘겨줌
+        try
+        {
         int row = MsgTable.getSelectedRow();
         
         String userNum= (String)MsgTable.getValueAt(row, 0);
@@ -154,6 +168,9 @@ public class MessageController extends databaseSQL {
         
         dispose();
         new MessageReceiveController(userNum,content).setVisible(true);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(this, "쪽지를 선택하세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
         // 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -163,11 +180,27 @@ public class MessageController extends databaseSQL {
         new MessageSendController("받는사람").setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void deleteContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteContentActionPerformed
+        // 삭제 버튼
+        dbLoad();
+        try {
+            int row = MsgTable.getSelectedRow();
+            deleteData("message", "receiverNum", "messageContent", EveryTime_Main.UserNum, (String)MsgTable.getValueAt(row, 3));
+             JOptionPane.showMessageDialog(this, "선택된 쪽지 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        updateTable();
+        dbClose();
+    }//GEN-LAST:event_deleteContentActionPerformed
+
 
 
              
     private void updateTable() {
         dbLoad();
+        DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
+        model.setNumRows(0);
         // 현재 사용자가 받은 쪽지들을 보여줌
         try {
             String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+EveryTime_Main.UserNum+ "'";
@@ -180,7 +213,6 @@ public class MessageController extends databaseSQL {
                 String messageContent = rs.getString("messageContent");
                 
                 Object data[] = {senderNum, receiverNum, messageDate, messageContent};
-                DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고 
                 model.addRow(data);
             }
         } catch (SQLException ex) {
@@ -237,6 +269,7 @@ public class MessageController extends databaseSQL {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JTable MsgTable;
+    private javax.swing.JButton deleteContent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

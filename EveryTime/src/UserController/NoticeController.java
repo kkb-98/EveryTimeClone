@@ -39,6 +39,7 @@ public class NoticeController extends databaseSQL {
         jScrollPane1 = new javax.swing.JScrollPane();
         NoticeTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        deleteContent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +79,16 @@ public class NoticeController extends databaseSQL {
             }
         });
 
+        deleteContent.setBackground(new java.awt.Color(153, 0, 0));
+        deleteContent.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        deleteContent.setForeground(new java.awt.Color(255, 255, 255));
+        deleteContent.setText("삭 제");
+        deleteContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteContentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,13 +98,14 @@ public class NoticeController extends databaseSQL {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteContent)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -106,7 +118,9 @@ public class NoticeController extends databaseSQL {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(deleteContent))
                 .addGap(6, 6, 6))
         );
 
@@ -119,7 +133,27 @@ public class NoticeController extends databaseSQL {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void deleteContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteContentActionPerformed
+        // 삭제 버튼
+        try {
+        dbLoad();
+        try {
+            int row = NoticeTable.getSelectedRow();
+            deleteData("notice", "receiverNum", "noticeContent", EveryTime_Main.UserNum, (String)NoticeTable.getValueAt(row, 1));
+             JOptionPane.showMessageDialog(this, "선택된 알림 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        updateTable();
+        dbClose();
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(this, "삭제할 알림을 선택하세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteContentActionPerformed
+
     private void updateTable() {
+        DefaultTableModel model = (DefaultTableModel) NoticeTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
+        model.setNumRows(0);
         dbLoad();
         // 현재 사용자의 알림을 테이블에 보여줌
         try {
@@ -131,8 +165,7 @@ public class NoticeController extends databaseSQL {
                 String noticeContent = rs.getString("noticeContent");
                 String noticeDate = rs.getString("noticeDate");
                 
-                Object data[] = {noticeType,noticeContent, noticeDate};
-                DefaultTableModel model = (DefaultTableModel) NoticeTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고 
+                Object data[] = {noticeType,noticeContent, noticeDate}; 
                 model.addRow(data);
             }
         } catch (SQLException ex) {
@@ -181,6 +214,7 @@ public class NoticeController extends databaseSQL {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable NoticeTable;
+    private javax.swing.JButton deleteContent;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
