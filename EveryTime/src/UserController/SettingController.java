@@ -12,7 +12,7 @@ import main.EveryTime_Main;
  * @author USER
  */
 public class SettingController extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form SettingController
      */

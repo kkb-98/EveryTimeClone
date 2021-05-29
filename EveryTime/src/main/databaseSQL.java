@@ -302,4 +302,43 @@ public class databaseSQL extends javax.swing.JFrame {
         st.setInt(5, 0); // int 형식으로 초기화
         st.executeUpdate();
     }
+    
+    protected boolean checkNotice() throws SQLException {
+        // Notice 테이블의 row 갯수를 구함 1이상일시 True 반환
+        // X(읽지않음) 의 갯수를 구함
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select COUNT(*) as cnt FROM notice where noticeCheck='X' and receiverNum ='" + EveryTime_Main.UserNum + "'");
+        while(rs.next()){
+            if(rs.getInt("cnt") > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    protected void sendNotice(String senderNum, String receiverNum, String noticeType, String noticeContent) throws SQLException {
+        // 상대에게 새로운 알림내용 추가 
+        Calendar cal = new GregorianCalendar();
+        Timestamp ts = new Timestamp(cal.getTimeInMillis());
+        
+        String sql = "INSERT INTO notice( "
+                + " senderNum, "
+                + " receiverNum, "
+                + " noticeDate,"
+                + " noticeType,"
+                + " noticeContent,"
+                + " noticeCheck"
+                + ") VALUES (?,?,?,?,?,?)";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, senderNum);
+        st.setString(2, receiverNum);
+        st.setTimestamp(3, ts); // Timestamp 형식으로 초기화
+        st.setString(4, noticeType);
+        st.setString(5, noticeContent);
+        st.setString(6, "X"); // 초기입력시 읽지않은 X로 표시
+        st.executeUpdate();
+    }
 }

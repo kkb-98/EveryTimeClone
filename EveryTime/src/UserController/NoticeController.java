@@ -5,17 +5,24 @@
  */
 package UserController;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.EveryTime_Main;
+import main.databaseSQL;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
  */
-public class NoticeController extends javax.swing.JFrame {
+public class NoticeController extends databaseSQL {
 
     /**
      * Creates new form NoticeController
      */
     public NoticeController() {
         initComponents();
+        updateTable();
     }
 
     /**
@@ -32,8 +39,6 @@ public class NoticeController extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         NoticeTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,13 +51,9 @@ public class NoticeController extends javax.swing.JFrame {
 
         NoticeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
-                "내용", "날짜"
+                "종류", "내용","날짜"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -77,14 +78,6 @@ public class NoticeController extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel3.setText("(에타처럼 클릭하면 바로 연결하고 싶으시면 ");
-
-        jLabel4.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel4.setText("Table 지우고 다른걸로 해주세요");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,39 +85,29 @@ public class NoticeController extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addComponent(jButton1)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -132,9 +115,35 @@ public class NoticeController extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
+        new MainPageController().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void updateTable() {
+        dbLoad();
+        // 현재 사용자의 알림을 테이블에 보여줌
+        try {
+            String sql="select noticeType ,noticeContent, noticeDate from notice where receiverNum = '"+EveryTime_Main.UserNum+ "'";
+            PreparedStatement st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                String noticeType = rs.getString("noticeType");
+                String noticeContent = rs.getString("noticeContent");
+                String noticeDate = rs.getString("noticeDate");
+                
+                Object data[] = {noticeType,noticeContent, noticeDate};
+                DefaultTableModel model = (DefaultTableModel) NoticeTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고 
+                model.addRow(data);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        dbClose();
+        
+        NoticeTable.getTableHeader().setReorderingAllowed(false);
+        NoticeTable.getTableHeader().setResizingAllowed(false);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -175,8 +184,6 @@ public class NoticeController extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

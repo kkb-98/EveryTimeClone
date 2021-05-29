@@ -5,6 +5,8 @@
  */
 package UserController;
 
+import StatePattern.Notice;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import main.EveryTime_Main;
 import main.databaseSQL;
@@ -13,12 +15,16 @@ import main.databaseSQL;
  * @author USER
  */
 public class MainPageController extends databaseSQL {
-
+    Notice nt = new Notice();
     /**
      * Creates new form MainPageController
      */
     public MainPageController() {
         initComponents();
+        if(nt.getState() == 1) {
+            Noticebtn.setBackground(new Color(153,0,0));
+            Noticebtn.setForeground(Color.white);
+        }
         JOptionPane.showMessageDialog(null, EveryTime_Main.UserNum, "메세지", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -37,7 +43,7 @@ public class MainPageController extends databaseSQL {
         jLabel3 = new javax.swing.JLabel();
         Searchword = new javax.swing.JTextField();
         Search = new javax.swing.JButton();
-        Notice = new javax.swing.JButton();
+        Noticebtn = new javax.swing.JButton();
         Timetable = new javax.swing.JButton();
         Premium = new javax.swing.JButton();
         Setting = new javax.swing.JButton();
@@ -85,11 +91,11 @@ public class MainPageController extends databaseSQL {
             }
         });
 
-        Notice.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        Notice.setText("알림");
-        Notice.addActionListener(new java.awt.event.ActionListener() {
+        Noticebtn.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
+        Noticebtn.setText("알림");
+        Noticebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoticeActionPerformed(evt);
+                NoticebtnActionPerformed(evt);
             }
         });
 
@@ -179,7 +185,7 @@ public class MainPageController extends databaseSQL {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(Premium, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                                    .addComponent(Notice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(Noticebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
@@ -205,7 +211,7 @@ public class MainPageController extends databaseSQL {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Board)
                     .addComponent(jLabel1)
-                    .addComponent(Notice)
+                    .addComponent(Noticebtn)
                     .addComponent(jLabel3)
                     .addComponent(jLabel9)
                     .addComponent(jButton1))
@@ -241,16 +247,16 @@ public class MainPageController extends databaseSQL {
         // TODO add your handling code here:
     }//GEN-LAST:event_BoardActionPerformed
 
-    private void NoticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoticeActionPerformed
-        NoticeController NT = new NoticeController();
-        NT.setVisible(true);
+    private void NoticebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoticebtnActionPerformed
+        dispose();
+        nt.normal_alarm();
         // TODO add your handling code here:
-    }//GEN-LAST:event_NoticeActionPerformed
+    }//GEN-LAST:event_NoticebtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
         MessageController MS = new MessageController();
         MS.setVisible(true);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -310,7 +316,7 @@ public class MainPageController extends databaseSQL {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Board;
-    private javax.swing.JButton Notice;
+    private javax.swing.JButton Noticebtn;
     private javax.swing.JButton Premium;
     private javax.swing.JButton Search;
     private javax.swing.JTextField Searchword;

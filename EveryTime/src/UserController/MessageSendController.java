@@ -133,6 +133,7 @@ public class MessageSendController extends databaseSQL {
             if(searchData("user", "userNickname", rcvName)) {
                 String rcvNum = returnData("user", "userNum", "userNickname", rcvName);
                 sendMsg(EveryTime_Main.UserNum, rcvNum, MessageContent.getText());
+                sendNotice(EveryTime_Main.UserNum, rcvNum,"쪽지", MessageContent.getText());
                 JOptionPane.showMessageDialog(this, "쪽지 전송완료!", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 new MessageController().setVisible(true);
