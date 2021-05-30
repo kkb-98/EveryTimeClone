@@ -245,7 +245,7 @@ public class UserJoinController extends databaseSQL {
                     JOptionPane.showMessageDialog(this, "ID 중복 확인이 필요합니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
-                    if(!univ.equals(null) && !dept.equals(null)) this.isConfirm = 1; //학과, 학교 모두 입력되면 학과인증 완료
+                    if(univ.length()>0 && dept.length()>0) this.isConfirm = 1; //학과, 학교 모두 입력되면 학과인증 완료
                     
                     //빌더패턴 (Builder Pattern)
                     Member member = Member.builder()
