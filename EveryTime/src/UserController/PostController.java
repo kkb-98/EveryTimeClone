@@ -8,16 +8,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import main.databaseSQL;
-import main.EveryTime_Main;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import SingletonPattern.UserInfo;
-import java.sql.ResultSet;
+import javax.swing.DefaultListModel;
+import java.sql.PreparedStatement;
 
 public class PostController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     String bt3;
@@ -27,84 +26,32 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
    public PostController() {
         initComponents();
         dbLoad();     
-        //String userNum = EveryTime_Main.UserNum; //사용자 번호 
-        //String postNum = EveryTime_Main.PostNum;   // 게시글 번호
         String userNum = userinfo.UserNum ;
         String postNum =userinfo.PostNum;
         String writer = "userNum";
-
-        // 제목 출력
-        try{
-            String  postTitle = returnData("post", "postTitle" , "postNum", postNum);
-            PostTitle.setText(postTitle);
-            PostTitle.disable();
-
-        }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CommentList.setModel(new DefaultListModel());
+        DefaultListModel model = (DefaultListModel)CommentList.getModel();
         
-      //  내용 출력
         try{
+            // 제목 출력
+            String postTitle = returnData("post", "postTitle" , "postNum", postNum);
+            PostTitle.setText(postTitle);
+            //  내용 출력
             String  postContent = returnData("post", "postContent", "postNum", postNum);
             PostContent.setText(postContent);
-            PostContent.disable();
-        }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        // 추천수 출력
-        
-        try{
-            int count = returnRecommend("recommend", postNum);
-            CountReco.setText(Integer.toString(count));
-            CountReco.disable();
+             // 추천수 출력
+             int count = returnRecommend("recommend", postNum);
+             CountReco.setText(Integer.toString(count));
+             
+            String sql= "select comContent from comment where postNum = '" + postNum + "'";
+            PreparedStatement st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                String comContent = rs.getString("comContent");
 
+                model.addElement(comContent);
+            }
         }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // 댓글 
-        //DefaultListModel model = new DefaultListModel();
-        
-        try{
-            String result = returnComment(writer, "comContent", postNum);
-            //System.out.print(result);   // 3 
-            
-            //ArrayList<String[]> arrStr = new ArrayList<String[]>();
-            //String[] arr = null;
-            
-           /* String[] strs = {"1", "2", "3"};
-            java.util.List<String> list = new ArrayList<String>(Arrays.asList(strs));
-            if(list != null){
-                for(int i = 0; i < list.size(); i++){
-                    System.out.println(list.get(i));
-                }
-            }*/
-            String[] arr;
-            
-            /*for(int i=0; i<4; i++){
-                 arr[i] = result.split("\n");
-                .add(arr[0]);
-                System.out.println(arr[i]);}
-            /*
-            
-            java.util.List<String> list = new ArrayList<String>(Arrays.asList(arr));
-            if(list != null){
-                for(int i = 0; i < list.size(); i++){
-                    System.out.println(list.get(i));
-                }
-            }*/
-       
-           /*ArrayList<String> stData = getStatus();
-            
-            for(int i=0; i < stData.size(); i++){
-                String list[] = stData.get(i).split("\n");
-                System.out.print(list[i]);
-                model.addElement(list[i]);
-                CommentList.setModel(model); // 화면에 보이게 
-                if(list[i] == null){ break; } }*/
-            }                
-        catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         dbClose();
@@ -168,6 +115,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jLabel2.setText("게시글");
 
+        PostContent.setEditable(false);
         PostContent.setColumns(20);
         PostContent.setRows(5);
         PostContent.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -219,12 +167,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             }
         });
 
+        PostTitle.setEditable(false);
+        PostTitle.setBackground(new java.awt.Color(255, 255, 255));
         PostTitle.setFont(new java.awt.Font("맑은 고딕", 0, 20)); // NOI18N
-        PostTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostTitleActionPerformed(evt);
-            }
-        });
 
         Alarm.setText("🔔");
         Alarm.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +185,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             }
         });
 
+        CountReco.setEditable(false);
         CountReco.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
 
         jLabel3.setText("👍");
@@ -409,10 +355,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         dbClose();
     }//GEN-LAST:event_RegisterActionPerformed
 
-    private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
-       
-    }//GEN-LAST:event_PostTitleActionPerformed
-
     private void CommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CommentActionPerformed
@@ -470,8 +412,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
      dbLoad();
      //제목 출력
-        PostTitle.setText(bt3);
+        //PostTitle.setText(bt3);
      // 내용 출력 실패   
+     /*
         java.sql.Statement stmt1 = null;
         try {
             stmt1 = conn.createStatement();
@@ -515,7 +458,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
              }catch (SQLException ex) {
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
             }
-     dbClose();
+     dbClose();*/
     }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
