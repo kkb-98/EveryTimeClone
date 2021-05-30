@@ -5,11 +5,8 @@
  */
 package UserController;
 
-import SingletonPattern.UserInfo;
 import StatePattern.Notice;
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import main.EveryTime_Main;
 import main.databaseSQL;
 /**
  *

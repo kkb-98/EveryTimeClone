@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
-import main.EveryTime_Main;
 
 public class LoginController extends databaseSQL {
 

@@ -5,7 +5,6 @@
  */
 package UserController;
 
-import main.EveryTime_Main;
 import SingletonPattern.UserInfo;
 /**
  *

@@ -11,8 +11,6 @@ import java.util.logging.Logger;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import SingletonPattern.UserInfo;

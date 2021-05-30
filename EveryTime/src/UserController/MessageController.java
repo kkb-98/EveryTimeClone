@@ -5,30 +5,27 @@
  */
 package UserController;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import main.EveryTime_Main;
 import main.databaseSQL;
 import javax.swing.table.DefaultTableModel;
 import SingletonPattern.UserInfo;
+import TemplateMethodPattern.changeNickName;
+import TemplateMethodPattern.updateTable;
 /**
  *
  * @author USER
  */
 public class MessageController extends databaseSQL {
 
-    /**
-     * Creates new form MessageController
-     */
     UserInfo userinfo = UserInfo.getInstance();
-    
+
     public MessageController() {
         initComponents();
         updateTable();
         // 여기서 생성자로 gui가 생성될때 메세지함 jtable에 데이터가 표시되야함
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +83,7 @@ public class MessageController extends databaseSQL {
             new Object [][] {
             },
             new String [] {
-                "보낸사람", "받는사람", "날짜", "내용"
+                "보낸사람",  "날짜", "내용"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -167,7 +164,7 @@ public class MessageController extends databaseSQL {
         int row = MsgTable.getSelectedRow();
         
         String userNum= (String)MsgTable.getValueAt(row, 0);
-        String content = (String)MsgTable.getValueAt(row, 3);
+        String content = (String)MsgTable.getValueAt(row, 2);
         
         dispose();
         new MessageReceiveController(userNum,content).setVisible(true);
@@ -188,7 +185,7 @@ public class MessageController extends databaseSQL {
         dbLoad();
         try {
             int row = MsgTable.getSelectedRow();
-            deleteData("message", "receiverNum", "messageContent", userinfo.UserNum, (String)MsgTable.getValueAt(row, 3));
+            deleteData("message", "receiverNum", "messageContent", userinfo.UserNum, (String)MsgTable.getValueAt(row, 2));
              JOptionPane.showMessageDialog(this, "선택된 쪽지 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -196,41 +193,18 @@ public class MessageController extends databaseSQL {
         updateTable();
         dbClose();
     }//GEN-LAST:event_deleteContentActionPerformed
-
-
-
-             
+ 
     private void updateTable() {
-        dbLoad();
-        DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
-        model.setNumRows(0);
         // 현재 사용자가 받은 쪽지들을 보여줌
-        try {
-            String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+userinfo.UserNum+ "'";
-            PreparedStatement st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
-            while(rs.next()) {
-                String senderNum = rs.getString("senderNum");
-                String receiverNum = rs.getString("receiverNum");
-                String messageDate = rs.getString("messageDate");
-                String messageContent = rs.getString("messageContent");
-                
-                Object data[] = {senderNum, receiverNum, messageDate, messageContent};
-                model.addRow(data);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        DefaultTableModel model = (DefaultTableModel) MsgTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get
+        model.setNumRows(0);
+        updateTable tb = new changeNickName();
+        tb.upTable("message", "receiverNum", "senderNum", "messageDate", "messageContent");
+        
+       for(int i=0; i < tb.columndata1.size() ; i++) {
+           Object data[] = {tb.columndata1.get(i),tb.columndata2.get(i), tb.columndata3.get(i)};
+           model.addRow(data);
         }
-        // userId 형태를 userNickname으로 찾아서 변경
-        for(int i=0; i < MsgTable.getRowCount(); i++) {
-            try {
-                MsgTable.setValueAt(returnData("user", "userNickname", "userNum", (String) MsgTable.getValueAt(i, 0)), i, 0);
-                MsgTable.setValueAt(returnData("user", "userNickname", "userNum", (String) MsgTable.getValueAt(i, 1)), i, 1);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        dbClose();
         
         MsgTable.getTableHeader().setReorderingAllowed(false);
     }

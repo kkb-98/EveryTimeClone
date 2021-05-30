@@ -5,13 +5,13 @@
  */
 package UserController;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import main.EveryTime_Main;
 import main.databaseSQL;
 import javax.swing.table.DefaultTableModel;
 import SingletonPattern.UserInfo;
+import TemplateMethodPattern.normal;
+import TemplateMethodPattern.updateTable;
 /**
  *
  * @author USER
@@ -154,29 +154,18 @@ public class NoticeController extends databaseSQL {
     }//GEN-LAST:event_deleteContentActionPerformed
 
     private void updateTable() {
-        DefaultTableModel model = (DefaultTableModel) NoticeTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
+        // 현재 사용자가 받은 알림들을 보여줌
+        DefaultTableModel model = (DefaultTableModel) NoticeTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get
         model.setNumRows(0);
-        dbLoad();
-        // 현재 사용자의 알림을 테이블에 보여줌
-        try {
-            String sql="select noticeType ,noticeContent, noticeDate from notice where receiverNum = '"+userinfo.UserNum+ "'";
-            PreparedStatement st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
-            while(rs.next()) {
-                String noticeType = rs.getString("noticeType");
-                String noticeContent = rs.getString("noticeContent");
-                String noticeDate = rs.getString("noticeDate");
-                
-                Object data[] = {noticeType,noticeContent, noticeDate}; 
-                model.addRow(data);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        updateTable tb = new normal();
+        tb.upTable("notice" , "receiverNum" , "noticeType" ,"noticeContent", "noticeDate");
+       
+       for(int i=0; i < tb.columndata1.size() ; i++) {
+           Object data[] = {tb.columndata1.get(i),tb.columndata2.get(i), tb.columndata3.get(i)};
+           model.addRow(data);
         }
-        dbClose();
         
         NoticeTable.getTableHeader().setReorderingAllowed(false);
-        NoticeTable.getTableHeader().setResizingAllowed(false);
     }
     
     /**

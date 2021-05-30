@@ -5,12 +5,6 @@
  */
 package UserController;
 
-import javax.swing.JOptionPane;
-
-/**
- *
- * @author USER
- */
 public class MessageReceiveController extends javax.swing.JFrame {
     String senderNickname;
     /**

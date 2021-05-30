@@ -5,13 +5,13 @@
  */
 package UserController;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import main.EveryTime_Main;
 import main.databaseSQL;
 import SingletonPattern.UserInfo;
+import TemplateMethodPattern.normal;
+import TemplateMethodPattern.updateTable;
 
 /**
  *
@@ -181,29 +181,16 @@ public class UserPostController extends databaseSQL {
     }//GEN-LAST:event_PostModifyActionPerformed
 
     private void updateTable() {
-        DefaultTableModel model = (DefaultTableModel) boardTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get하고
+        // 본인 게시글 데이터를 가져옴
+        DefaultTableModel model = (DefaultTableModel) boardTable.getModel(); // DefaultTableModel클래스로 테이블의 모델을 get
         model.setNumRows(0);
-        dbLoad();
-        // 현재 사용자의 알림을 테이블에 보여줌
-        try {
-            String sql="select boardTitle, postTitle, postContent from post where userNum = '"+userinfo.UserNum+ "'";
-            PreparedStatement st = conn.prepareStatement(sql);
-            rs = st.executeQuery();
-            while(rs.next()) {
-                String boardTitle = rs.getString("boardTitle");
-                String postTitle = rs.getString("postTitle");
-                String postContent = rs.getString("postContent");
-                
-                Object data[] = {boardTitle,postTitle, postContent}; 
-                model.addRow(data);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        updateTable tb = new normal();
+        tb.upTable("post" , "userNum","boardTitle" ,"postTitle", "postContent");
+       
+       for(int i=0; i < tb.columndata1.size() ; i++) {
+           Object data[] = {tb.columndata1.get(i),tb.columndata2.get(i), tb.columndata3.get(i)};
+           model.addRow(data);
         }
-        dbClose();
-        
-        boardTable.getTableHeader().setReorderingAllowed(false);
-        boardTable.getTableHeader().setResizingAllowed(false);
     }
     
     public static void main(String args[]) {

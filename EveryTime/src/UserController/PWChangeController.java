@@ -8,7 +8,6 @@ package UserController;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
-import main.EveryTime_Main;
 import SingletonPattern.UserInfo;
 /**
  *
