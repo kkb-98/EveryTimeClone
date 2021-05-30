@@ -181,10 +181,10 @@ public class databaseSQL extends javax.swing.JFrame {
         String sql = "insert into post( "
                 + " boardTitle, "
                 + " postNum, "
-                + " postTitle"
-                + " postContent"
-                + " userNum"
-                + " postDate"
+                + " postTitle,"
+                + " postContent,"
+                + " userNum,"
+                + " postDate,"
                 + " recommend"
                 + ") values (?,?,?,?,?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
@@ -272,7 +272,7 @@ public class databaseSQL extends javax.swing.JFrame {
         //순서 : 게시판번호, 작성자 번호, 댓글 내용
         String sql = "INSERT INTO comment( "
                 + " postNum, "
-                + " userNum"
+                + " userNum,"
                 + " comContent"
                 + ") VALUES (?,?,?)";
         PreparedStatement st = conn.prepareStatement(sql);
