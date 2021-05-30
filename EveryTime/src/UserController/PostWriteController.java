@@ -167,11 +167,11 @@ public class PostWriteController extends databaseSQL  {
                 JOptionPane.showMessageDialog(this, "[ 게시물이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();  // 현재 gui 종료
                
-                new PostListController().setVisible(true);  // 등록 후 postlist로 이동
+               // new PostListController().setVisible(true);  // 등록 후 postlist로 이동
         }
         
 
-
+        dbClose();
     }//GEN-LAST:event_PostEnrollActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
