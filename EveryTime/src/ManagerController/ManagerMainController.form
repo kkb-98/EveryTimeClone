@@ -39,7 +39,7 @@
                           <Group type="102" attributes="0">
                               <Component id="Board" min="-2" pref="98" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="UserInfo" min="-2" max="-2" attributes="0"/>
+                              <Component id="UserInfor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Logout" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -73,7 +73,7 @@
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Board" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="UserInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="UserInfor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Logout" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="46" max="32767" attributes="0"/>
@@ -109,7 +109,7 @@
         <Property name="text" type="java.lang.String" value="&#xad00;&#xb9ac;&#xc790;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="UserInfo">
+    <Component class="javax.swing.JButton" name="UserInfor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="15" style="0"/>
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="&#xc0ac;&#xc6a9;&#xc790; &#xc815;&#xbcf4;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserInfoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserInforActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Board">

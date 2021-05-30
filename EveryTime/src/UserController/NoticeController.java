@@ -11,15 +11,17 @@ import javax.swing.JOptionPane;
 import main.EveryTime_Main;
 import main.databaseSQL;
 import javax.swing.table.DefaultTableModel;
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
  */
 public class NoticeController extends databaseSQL {
-
     /**
      * Creates new form NoticeController
      */
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public NoticeController() {
         initComponents();
         updateTable();
@@ -139,7 +141,7 @@ public class NoticeController extends databaseSQL {
         dbLoad();
         try {
             int row = NoticeTable.getSelectedRow();
-            deleteData("notice", "receiverNum", "noticeContent", EveryTime_Main.UserNum, (String)NoticeTable.getValueAt(row, 1));
+            deleteData("notice", "receiverNum", "noticeContent", userinfo.UserNum, (String)NoticeTable.getValueAt(row, 1));
              JOptionPane.showMessageDialog(this, "선택된 알림 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -157,7 +159,7 @@ public class NoticeController extends databaseSQL {
         dbLoad();
         // 현재 사용자의 알림을 테이블에 보여줌
         try {
-            String sql="select noticeType ,noticeContent, noticeDate from notice where receiverNum = '"+EveryTime_Main.UserNum+ "'";
+            String sql="select noticeType ,noticeContent, noticeDate from notice where receiverNum = '"+userinfo.UserNum+ "'";
             PreparedStatement st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {

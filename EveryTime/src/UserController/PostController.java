@@ -16,10 +16,14 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import SingletonPattern.UserInfo;
+
 public class PostController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     String bt3;
     static String AA;
     DefaultListModel model3 = new DefaultListModel();
+    UserInfo userinfo = UserInfo.getInstance();
+    
    public PostController() {
         initComponents();
         dbLoad();
@@ -373,8 +377,8 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         */
 
         dbLoad();
-        String userNum = EveryTime_Main.UserNum; //사용자 번호
-        String postNum = EveryTime_Main.PostNum;   // 게시글 번호
+        String userNum = userinfo.UserNum; //사용자 번호
+        String postNum = userinfo.PostNum;   // 게시글 번호
 
         /*try{
             
@@ -440,8 +444,8 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void AlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlarmActionPerformed
           // 알람 버튼
         dbLoad();
-        String userNum = EveryTime_Main.UserNum; //사용자 번호
-        String postNum = EveryTime_Main.PostNum;   // 게시글 번호      
+        String userNum = userinfo.UserNum; //사용자 번호
+        String postNum = userinfo.PostNum;   // 게시글 번호      
 
         ItemListener itemListener = new ItemListener() {
         public void itemStateChanged(ItemEvent itemEvent) {

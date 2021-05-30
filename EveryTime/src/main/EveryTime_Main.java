@@ -5,8 +5,6 @@ import UserController.LoginController;
 
 public class EveryTime_Main extends databaseSQL {
     
-    public static String UserNum;
-    
     //프로그램 실행 시 main 함수로 쓰여질 클래스
     public static void main(String[] args) {
         try {

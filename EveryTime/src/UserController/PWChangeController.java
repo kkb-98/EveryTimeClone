@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
 import main.EveryTime_Main;
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
@@ -18,6 +19,8 @@ public class PWChangeController extends databaseSQL {
     /**
      * Creates new form PWChangeController
      */
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public PWChangeController() {
         initComponents();
     }
@@ -142,12 +145,12 @@ public class PWChangeController extends databaseSQL {
         // 비밀번호 변경 버튼
         dbLoad();
         try {
-            if (nowPW.getText().equals(returnData("user", "userPW", "userNum", EveryTime_Main.UserNum))) {
+            if (nowPW.getText().equals(returnData("user", "userPW", "userNum", userinfo.UserNum))) {
                 if(newPW.getText().equals("") || newPWConf.getText().equals("")) {
                     JOptionPane.showMessageDialog(this, "변경할 비밀번호를 입력해주세요", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     if(newPW.getText().equals(newPWConf.getText())) {
-                            updateData("user", "userPW", "userNum", EveryTime_Main.UserNum, newPW.getText());
+                            updateData("user", "userPW", "userNum", userinfo.UserNum, newPW.getText());
                             JOptionPane.showMessageDialog(this, "비밀번호가 변경되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                     } else {

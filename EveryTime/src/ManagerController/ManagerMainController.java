@@ -7,21 +7,21 @@ package ManagerController;
 
 import UserController.LoginController;
 import UserController.SearchController;
-import main.EveryTime_Main;
-
+import SingletonPattern.UserInfo;
+ 
 /**
  *
  * @author USER
  */
 public class ManagerMainController extends javax.swing.JFrame {
-
+    UserInfo userinfo = UserInfo.getInstance();
     /**
      * Creates new form ManagerMainController
-     */
+     */    
     public ManagerMainController() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +34,7 @@ public class ManagerMainController extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        UserInfo = new javax.swing.JButton();
+        UserInfor = new javax.swing.JButton();
         Board = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
         SearchController = new javax.swing.JTextField();
@@ -52,11 +52,11 @@ public class ManagerMainController extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 14)); // NOI18N
         jLabel3.setText("관리자");
 
-        UserInfo.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        UserInfo.setText("사용자 정보");
-        UserInfo.addActionListener(new java.awt.event.ActionListener() {
+        UserInfor.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        UserInfor.setText("사용자 정보");
+        UserInfor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserInfoActionPerformed(evt);
+                UserInforActionPerformed(evt);
             }
         });
 
@@ -107,7 +107,7 @@ public class ManagerMainController extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Board, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(UserInfo)
+                                .addComponent(UserInfor)
                                 .addGap(18, 18, 18)
                                 .addComponent(Logout))
                             .addGroup(layout.createSequentialGroup()
@@ -132,7 +132,7 @@ public class ManagerMainController extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Board)
-                    .addComponent(UserInfo)
+                    .addComponent(UserInfor)
                     .addComponent(Logout))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -142,7 +142,7 @@ public class ManagerMainController extends javax.swing.JFrame {
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // 관리자 - 로그아웃
-        EveryTime_Main.UserNum = "00000";
+        userinfo.UserNum = "00000";
         dispose();
         new LoginController().setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
@@ -155,11 +155,11 @@ public class ManagerMainController extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BoardActionPerformed
 
-    private void UserInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserInfoActionPerformed
+    private void UserInforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserInforActionPerformed
         ManagerUserInfoController MI = new ManagerUserInfoController();
         MI.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_UserInfoActionPerformed
+    }//GEN-LAST:event_UserInforActionPerformed
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         SearchController SC = new SearchController();
@@ -208,7 +208,7 @@ public class ManagerMainController extends javax.swing.JFrame {
     private javax.swing.JButton Logout;
     private javax.swing.JButton Search;
     private javax.swing.JTextField SearchController;
-    private javax.swing.JButton UserInfo;
+    private javax.swing.JButton UserInfor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

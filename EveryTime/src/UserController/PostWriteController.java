@@ -7,10 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import main.EveryTime_Main;
+import SingletonPattern.UserInfo;
         
 public class PostWriteController extends databaseSQL  {
     String bt4;
-
+    UserInfo userinfo = UserInfo.getInstance(); 
+    
     public PostWriteController() { 
      
         initComponents();
@@ -148,12 +150,12 @@ public class PostWriteController extends databaseSQL  {
                     do{
                         random =(int)((Math.random()*100000)-1);
                         postNum = String.format("%05d", random);
-                        EveryTime_Main.PostNum = postNum;
+                        userinfo.PostNum = postNum;
 
-                    }while(check = searchData("post","postNum", EveryTime_Main.PostNum));
+                    }while(check = searchData("post","postNum", userinfo.PostNum));
                     
                     if(check == false){
-                        postBoard( boardtitle, EveryTime_Main.PostNum, postTitle, postContent, userNum, recommend);
+                        postBoard( boardtitle, userinfo.PostNum, postTitle, postContent, userNum, recommend);
                         // 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수
                         dbClose();
                         System.out.println("DB 등록 완료");

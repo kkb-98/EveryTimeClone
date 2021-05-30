@@ -9,15 +9,17 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.EveryTime_Main;
 import main.databaseSQL;
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
  */
 public class MessageSendController extends databaseSQL {
-
     /**
      * Creates new form SendMessageController
      */
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public MessageSendController(String receiver) {
         initComponents();
         receiverBox.setText(receiver);
@@ -132,8 +134,8 @@ public class MessageSendController extends databaseSQL {
         try {
             if(searchData("user", "userNickname", rcvName)) {
                 String rcvNum = returnData("user", "userNum", "userNickname", rcvName);
-                sendMsg(EveryTime_Main.UserNum, rcvNum, MessageContent.getText());
-                sendNotice(EveryTime_Main.UserNum, rcvNum,"쪽지", MessageContent.getText());
+                sendMsg(userinfo.UserNum, rcvNum, MessageContent.getText());
+                sendNotice(userinfo.UserNum, rcvNum,"쪽지", MessageContent.getText());
                 JOptionPane.showMessageDialog(this, "쪽지 전송완료!", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 new MessageController().setVisible(true);

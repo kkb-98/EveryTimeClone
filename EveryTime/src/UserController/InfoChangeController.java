@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
 import main.EveryTime_Main;
-
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
@@ -19,13 +19,15 @@ public class InfoChangeController extends databaseSQL {
     /**
      * Creates new form InfoChangeController
      */
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public InfoChangeController() {
         initComponents();
         dbLoad();
         try {
-            UserName.setText(returnData("user", "userName", "userNum", EveryTime_Main.UserNum));
-            UserSchool.setText(returnData("user", "userUniv", "userNum", EveryTime_Main.UserNum));
-            Nickname.setText(returnData("user", "userNickname", "userNum", EveryTime_Main.UserNum));
+            UserName.setText(returnData("user", "userName", "userNum", userinfo.UserNum));
+            UserSchool.setText(returnData("user", "userUniv", "userNum", userinfo.UserNum));
+            Nickname.setText(returnData("user", "userNickname", "userNum", userinfo.UserNum));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -184,7 +186,7 @@ public class InfoChangeController extends databaseSQL {
         } else {
             dbLoad();
             try {
-                updateData("user", "userNickname", "userNum", EveryTime_Main.UserNum, Nickname.getText());
+                updateData("user", "userNickname", "userNum", userinfo.UserNum, Nickname.getText());
                 JOptionPane.showMessageDialog(this, "회원정보가 수정되었습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);

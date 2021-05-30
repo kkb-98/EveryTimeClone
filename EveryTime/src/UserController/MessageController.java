@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import main.EveryTime_Main;
 import main.databaseSQL;
 import javax.swing.table.DefaultTableModel;
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
@@ -20,6 +21,8 @@ public class MessageController extends databaseSQL {
     /**
      * Creates new form MessageController
      */
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public MessageController() {
         initComponents();
         updateTable();
@@ -185,7 +188,7 @@ public class MessageController extends databaseSQL {
         dbLoad();
         try {
             int row = MsgTable.getSelectedRow();
-            deleteData("message", "receiverNum", "messageContent", EveryTime_Main.UserNum, (String)MsgTable.getValueAt(row, 3));
+            deleteData("message", "receiverNum", "messageContent", userinfo.UserNum, (String)MsgTable.getValueAt(row, 3));
              JOptionPane.showMessageDialog(this, "선택된 쪽지 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -203,7 +206,7 @@ public class MessageController extends databaseSQL {
         model.setNumRows(0);
         // 현재 사용자가 받은 쪽지들을 보여줌
         try {
-            String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+EveryTime_Main.UserNum+ "'";
+            String sql="select senderNum, receiverNum, messageDate, messageContent from message where receiverNum = '"+userinfo.UserNum+ "'";
             PreparedStatement st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {

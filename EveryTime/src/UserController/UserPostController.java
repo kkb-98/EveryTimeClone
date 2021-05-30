@@ -11,13 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.EveryTime_Main;
 import main.databaseSQL;
+import SingletonPattern.UserInfo;
 
 /**
  *
  * @author USER
  */
 public class UserPostController extends databaseSQL {
-
+    UserInfo userinfo = UserInfo.getInstance();
     /**
      * Creates new form OwnPostController
      */
@@ -152,7 +153,7 @@ public class UserPostController extends databaseSQL {
         dbLoad();
         try {
             int row = boardTable.getSelectedRow();
-            deleteData("post", "userNum", "postContent", EveryTime_Main.UserNum, (String)boardTable.getValueAt(row, 2));
+            deleteData("post", "userNum", "postContent", userinfo.UserNum, (String)boardTable.getValueAt(row, 2));
              JOptionPane.showMessageDialog(this, "선택된 게시글 삭제완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
@@ -185,7 +186,7 @@ public class UserPostController extends databaseSQL {
         dbLoad();
         // 현재 사용자의 알림을 테이블에 보여줌
         try {
-            String sql="select boardTitle, postTitle, postContent from post where userNum = '"+EveryTime_Main.UserNum+ "'";
+            String sql="select boardTitle, postTitle, postContent from post where userNum = '"+userinfo.UserNum+ "'";
             PreparedStatement st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {

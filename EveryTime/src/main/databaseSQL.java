@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import SingletonPattern.UserInfo;
 
 public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
@@ -24,7 +25,8 @@ public class databaseSQL extends javax.swing.JFrame {
     protected static final String URL = "jdbc:mysql://49.50.175.24:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;
- 
+    UserInfo userinfo = UserInfo.getInstance();
+    
     protected void dbLoad() { //데이터베이스 접속
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -308,7 +310,7 @@ public class databaseSQL extends javax.swing.JFrame {
         // X(읽지않음) 의 갯수를 구함
         Statement stmt2 = null;
         stmt2 = conn.createStatement();
-        rs = stmt2.executeQuery("select COUNT(*) as cnt FROM notice where noticeCheck='X' and receiverNum ='" + EveryTime_Main.UserNum + "'");
+        rs = stmt2.executeQuery("select COUNT(*) as cnt FROM notice where noticeCheck='X' and receiverNum ='" + userinfo.UserNum + "'");
         while(rs.next()){
             if(rs.getInt("cnt") > 0) {
                 return true;

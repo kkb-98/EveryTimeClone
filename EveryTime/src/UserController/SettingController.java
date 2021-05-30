@@ -6,13 +6,14 @@
 package UserController;
 
 import main.EveryTime_Main;
-
+import SingletonPattern.UserInfo;
 /**
  *
  * @author USER
  */
 public class SettingController extends javax.swing.JFrame {
-    
+
+    UserInfo userinfo = UserInfo.getInstance();
     /**
      * Creates new form SettingController
      */
@@ -252,7 +253,7 @@ public class SettingController extends javax.swing.JFrame {
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // 사용자 - 로그아웃
-        EveryTime_Main.UserNum = "00000";
+        userinfo.UserNum = "00000";
         dispose();
         new LoginController().setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
