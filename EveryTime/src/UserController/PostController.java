@@ -469,8 +469,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
      dbLoad();
+     //제목 출력
         PostTitle.setText(bt3);
-        
+     // 내용 출력 실패   
         java.sql.Statement stmt1 = null;
         try {
             stmt1 = conn.createStatement();
@@ -490,7 +491,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
             PostContent.setText(PP);
         }
-     //댓글
+     //댓글 다른게시글에 댓글쓰니 00001게시글 댓글에 작성이 됨
      java.sql.Statement stmt2 = null;
         try {
             stmt2 = conn.createStatement();
