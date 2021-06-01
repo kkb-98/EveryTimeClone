@@ -1,19 +1,24 @@
-
 package UserController;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.JButton;
+import MementoPattern.CareTaker;
+import MementoPattern.Originator;
+import MementoPattern.Memento;
+import java.text.DecimalFormat;
 
-public  class ScoreCalculController extends javax.swing.JFrame {
-    //스코어 1~8까지 성적 1~8까지
-    //String[] score ={"A+","A0","B+","B0","C+","C0","D+","D0","F"};
-    // 4.5 4.0 3.5 3.0 2.5 2.0 1.5 1.0 0
-    double[] sc= new double[8];
+
+public  class ScoreCalculController extends javax.swing.JFrame implements MouseListener, KeyListener,ListSelectionListener {
+   String tmp;
     
     public ScoreCalculController() {
         initComponents();
+        LoadData.addMouseListener(this);
+        Calculation.addMouseListener(this);
+        Save.addMouseListener(this);
     }
     
     @SuppressWarnings("unchecked")
@@ -46,6 +51,10 @@ public  class ScoreCalculController extends javax.swing.JFrame {
         c5 = new javax.swing.JTextField();
         c8 = new javax.swing.JTextField();
         c7 = new javax.swing.JTextField();
+        LoadCredit = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        LoadData = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +101,11 @@ public  class ScoreCalculController extends javax.swing.JFrame {
 
         Back.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 12)); // NOI18N
         Back.setText("뒤로가기");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         TotalCredit.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
 
@@ -102,7 +116,7 @@ public  class ScoreCalculController extends javax.swing.JFrame {
         jLabel6.setText("학점");
 
         jLabel7.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        jLabel7.setText("총학점 :");
+        jLabel7.setText("이전학기 :");
 
         Score2.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         Score2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "선택", "A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0", "F" }));
@@ -110,97 +124,127 @@ public  class ScoreCalculController extends javax.swing.JFrame {
         Score5.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         Score5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "선택", "A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0", "F" }));
 
+        LoadCredit.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        jLabel9.setText("총학점 :");
+
+        LoadData.setBackground(new java.awt.Color(153, 0, 0));
+        LoadData.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
+        LoadData.setForeground(new java.awt.Color(255, 255, 255));
+        LoadData.setText("불러오기");
+        LoadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadDataActionPerformed(evt);
+            }
+        });
+
+        Save.setBackground(new java.awt.Color(153, 0, 0));
+        Save.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
+        Save.setForeground(new java.awt.Color(255, 255, 255));
+        Save.setText("저장");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Back)
+                .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addComponent(jLabel3)
+                            .addGap(59, 59, 59)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(c3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Score1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Score2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(c1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(18, 18, 18)
+                            .addComponent(TotalCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Calculation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Save)
+                        .addGap(13, 13, 13)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel3)
-                                .addGap(59, 59, 59)
-                                .addComponent(jLabel4))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Score6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Score7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Score8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Score5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(11, 11, 11))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                        .addComponent(jLabel5)
+                                        .addGap(20, 20, 20)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TotalCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(c5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(c7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Back, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Calculation, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(53, 53, 53))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Score6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(Score5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(56, 56, 56))))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LoadCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(LoadData)
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Back)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2))
+                    .addComponent(Back, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(c1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,16 +259,20 @@ public  class ScoreCalculController extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31))
+                            .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(c5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,123 +280,172 @@ public  class ScoreCalculController extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)))
+                            .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Calculation)
                     .addComponent(TotalCredit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(LoadCredit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LoadData)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Calculation)
+                        .addComponent(Save)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void multiply(){
-    
-    }
+
     private void CalculationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculationActionPerformed
         //계산 코드
-        //String sc1 = Score1.getSelectedItem().toString(); 
-        
-        //String[] SC = {sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8};
-        //String[] SS = {ss2,ss3,ss4,ss5,ss6,ss7,ss8};
-        //double Result = 4.33;
-        // tmp = Double.toString(Result);
-        //TotalCredit.setText(tmp);
-        
-        //텍스트필드 학점
-        /*
-        Double C1 =Double.parseDouble(c1.getText().toString()); Double C2 =Double.parseDouble(c2.getText().toString());
-        Double C3 =Double.parseDouble(c3.getText().toString()); Double C4 =Double.parseDouble(c4.getText().toString()); 
-        Double C5 =Double.parseDouble(c5.getText().toString()); Double C6 =Double.parseDouble(c6.getText().toString());
-        Double C7 =Double.parseDouble(c7.getText().toString()); Double C8 =Double.parseDouble(c8.getText().toString());
-        */
-        String C1 =c1.getText().toString(); String C2 = c2.getText().toString();
-        String C3 =c3.getText().toString(); String C4 = c4.getText().toString(); 
-        String C5 =c5.getText().toString(); String C6 = c6.getText().toString();
-        String C7 =c7.getText().toString(); String C8 = c8.getText().toString();
-        for(int i =1;i<9;i++){
-            String N = "c"+i;
-            //코드 고치는중
-            if(N.isEmpty()==true){
-                N  = "0";
-            }
+        String C1 =c1.getText().toString();
+        if (C1.isEmpty()==true){
+            C1 = "0";
         }
+        String C2 = c2.getText().toString();
+        if (C2.isEmpty()==true){
+            C2 = "0";
+        }
+        String C3 =c3.getText().toString(); 
+        if (C3.isEmpty()==true){
+            C3 = "0";
+        }
+        String C4 = c4.getText().toString(); 
+        if (C4.isEmpty()==true){
+            C4 = "0";
+        }
+        String C5 =c5.getText().toString();
+        if (C5.isEmpty()==true){
+            C5 = "0";
+        }
+        String C6 = c6.getText().toString();
+        if (C6.isEmpty()==true){
+            C6 = "0";
+        }
+        String C7 =c7.getText().toString();
+        if (C7.isEmpty()==true){
+            C7 = "0";
+        }
+        String C8 = c8.getText().toString();
+        if (C8.isEmpty()==true){
+            C8 = "0";
+        }     
+
         String[] carray = {C1,C2,C3,C4,C5,C6,C7,C8};
-        
-        
-        double[] q = new double[10];
+
         double result = 0;
         //콤보박스 점수
-        String s1= Score1.getSelectedItem().toString(); String s2= Score2.getSelectedItem().toString(); 
-        String s3= Score3.getSelectedItem().toString(); String s4= Score4.getSelectedItem().toString();
-        String s5= Score5.getSelectedItem().toString(); String s6= Score6.getSelectedItem().toString(); 
-        String s7= Score7.getSelectedItem().toString(); String s8= Score8.getSelectedItem().toString();
+        String s1= Score1.getSelectedItem().toString();
+        if (s1=="선택"){
+            s1 = "";
+        } 
+        String s2= Score2.getSelectedItem().toString();
+        if (s2=="선택"){
+            s2 = "";
+        }
+        String s3= Score3.getSelectedItem().toString();
+        if (s3=="선택"){
+            s3 = "";
+        }
+        String s4= Score4.getSelectedItem().toString();
+        if (s4=="선택"){
+            s4 = "";
+        }
+        String s5= Score5.getSelectedItem().toString();
+        if (s5=="선택"){
+            s5 = "";
+        }
+        String s6= Score6.getSelectedItem().toString();
+        if (s6=="선택"){
+            s6 = "";
+        }
+        String s7= Score7.getSelectedItem().toString();
+        if (s7=="선택"){
+            s7 = "";
+        }
+        String s8= Score8.getSelectedItem().toString();
+        if (s8=="선택"){
+            s8 = "";
+        }
+        String[] ss = {s1,s2,s3,s4,s5,s6,s7,s8};
         
-        double[] CC = new double[8];
-        for (int i=1;i<9;i++){
+//        for (int i = 0;i<8;i++){
+//            if(ss[i]==""){
+//                continue;
+//            }
+//            else{
+//                
+//            }
+//        }
+        
+        double[] CC = new double[carray.length];
+        for (int i=1;i<=carray.length;i++){
             CC[i-1] = Double.parseDouble(carray[i-1]);
         }
-       
-        double[] SG = new double[8];
-        double re=0;
-        for(int i = 1;i<9;i++){
-             String sg = Double.toString(CC[i-1]);
-             SG[i-1]= Double.parseDouble(sg);
-             re += SG[i-1];
-        }
-        String tmp = Double.toString(re);
+        double[] q = new double[carray.length];
         
-        //double w =CC1 * 4.5;
-        //String tmp = Double.toString(w);
-        TotalCredit.setText(C1);
-        /*
-        for (int i=1;i<9;i++){
-            String score = "s"+i;
-            String CC = "C"+i;
-            String c = "c"+i;
-            Double Credit = Double.parseDouble(CC);
-         q[i-1]=Credit + 4.5;
-         result += q[i-1];
-        
-         System.out.println(score + CC + c);
-        }
-       
-        if (score.equals("A+")){
-            q[i-1] = 4.5 * Credit;
-        }else if(s1.equals("A0")){
-            q[i-1] = 4.0 * Credit;
-        }else if(s1.equals("B+")){
-            q[i-1] = 3.5 * Credit;
-        }else if(s1.equals("B0")){
-            q[i-1] = 3.0 * Credit;
-        }else if(s1.equals("C+")){
-            q[i-1] = 2.5 * Credit;
-        }else if(s1.equals("C0")){
-            q[i-1] = 2.0 * Credit;
-        }else if(s1.equals("D+")){
-            q[i-1] = 1.5 * Credit;
-        }else if(s1.equals("D0")){
-            q[i-1] = 1.0 * Credit;
-        }else if(s1.equals("F")){
+
+       for (int i=1;i<=carray.length;i++){
+        if (ss[i-1].equals("A+")){
+            q[i-1] = 4.5 * CC[i-1];
+        }else if(ss[i-1].equals("A0")){
+            q[i-1] = 4* CC[i-1];
+        }else if(ss[i-1].equals("B+")){
+            q[i-1] = 3.5 * CC[i-1];
+        }else if(ss[i-1].equals("B0")){
+            q[i-1] = 3 * CC[i-1];
+        }else if(ss[i-1].equals("C+")){
+            q[i-1] = 2.5 * CC[i-1];
+        }else if(ss[i-1].equals("C0")){
+            q[i-1] = 2 * CC[i-1];
+        }else if(ss[i-1].equals("D+")){
+            q[i-1] = 1.5 * CC[i-1];
+        }else if(ss[i-1].equals("D0")){
+            q[i-1] = 1 * CC[i-1];
+        }else if(ss[i-1].equals("F")){
             q[i-1] = 0;
-        }else{continue;}
+        }else{
+            continue;
+        }
         result += q[i-1];
+
+        }
+       
+       double sum = 0;
+       int sum2 = 0;
+        for (int i=0;i<CC.length;i++){
+            sum2 += CC[i];
+        }
         
+        DecimalFormat form = new DecimalFormat("#.##");
+        double re= result/sum2;
+        String re3 = form.format(re);
+        TotalCredit.setText(re3);
         
-        }*/
-        //System.out.println(result);
-        //String tmp = Double.toString(3.33);
-        
-        //TotalCredit.setText(tmp);
     //계산 끝*/
     }//GEN-LAST:event_CalculationActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        dispose();
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void LoadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoadDataActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+
+    }//GEN-LAST:event_SaveActionPerformed
 
     public static void main(String args[]) {
    
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ScoreCalculController().setVisible(true);
+                
             }
         });
     }
@@ -356,6 +453,9 @@ public  class ScoreCalculController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Calculation;
+    private javax.swing.JTextField LoadCredit;
+    private javax.swing.JButton LoadData;
+    private javax.swing.JButton Save;
     private javax.swing.JComboBox<String> Score1;
     private javax.swing.JComboBox<String> Score2;
     private javax.swing.JComboBox<String> Score3;
@@ -380,5 +480,62 @@ public  class ScoreCalculController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+         
+        if(e.getSource()==Save){   //메멘토 패턴 적용
+         Originator org = new Originator(); 
+         CareTaker ct = new CareTaker();
+         org.SetState(TotalCredit.getText());
+         ct.add(org.saveStateToMemento()); //저장
+         tmp = org.GetState();
+        }
+        if(e.getSource()==LoadData){
+           LoadCredit.setText(tmp);
+        }
+            }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
