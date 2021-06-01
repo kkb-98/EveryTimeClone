@@ -502,6 +502,7 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
         }
         if(e.getSource()==LoadData){
            LoadCredit.setText(tmp);
+           showMessageDialog(null,"저장된 학점을 불러왔습니다!");
         }
             }
 
