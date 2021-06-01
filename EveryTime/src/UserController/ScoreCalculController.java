@@ -409,7 +409,7 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
         }else if(ss[i-1].equals("F")){
             q[i-1] = 0;
         }else{
-            continue;
+            q[i-1] = 0;
         }
         result += q[i-1];
 
@@ -501,8 +501,12 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
             }
         }
         if(e.getSource()==LoadData){
+            if (tmp==null){
+             showMessageDialog(null,"저장된 학점이 없습니다!");
+            }else{
            LoadCredit.setText(tmp);
            showMessageDialog(null,"저장된 학점을 불러왔습니다!");
+            }
         }
             }
 
