@@ -1,17 +1,33 @@
-
 package ManagerController;
-
+import IteratorPattern.BT;
 import UserController.LoginController;
 import UserController.SearchController;
 import SingletonPattern.UserInfo;
+import IteratorPattern.BTG;
+import IteratorPattern.BTGIterator;
+import UserController.BoardController;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import main.databaseSQL;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class ManagerMainController extends javax.swing.JFrame {
+public class ManagerMainController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     UserInfo userinfo = UserInfo.getInstance();
-
+    List<Object> btarray = new ArrayList<Object>();
+    String okbt;
     public ManagerMainController() {
         initComponents();
+        Search.addMouseListener(this);
     }
-    
+ 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -148,9 +164,48 @@ public class ManagerMainController extends javax.swing.JFrame {
     }//GEN-LAST:event_UserInforActionPerformed
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-        SearchController SC = new SearchController();
-        SC.setVisible(true);
-
+//        dbLoad();
+//        String bT;
+//        java.sql.Statement stmt2 = null;
+//        try {
+//            stmt2 = conn.createStatement();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//            rs = stmt2.executeQuery("select * from board");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        try {
+//                while(rs.next()){
+//                    btarray.add(rs.getString("boardTitle"));
+//                }
+//             }catch (SQLException ex) {
+//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        BTG btg = new BTG(btarray.size());  //이터레이터 패턴 적용
+//        for (int i=0;i<btarray.size();i++){
+//            btg.AddBT(new BT((String) btarray.get(i)));
+//        }
+//        BTGIterator iterator = btg.iterator();
+//        while(iterator.hasNext()){
+//            BT bt = (BT)iterator.next();
+//            if (bt.equals(SearchController.getText())){
+//                //bt가 검색한 게시판제목임.
+//                bT=SearchController.getText();
+//                ManagerPostController MPC = new ManagerPostController();
+//                MPC.BT2 =bT;
+//                MPC.setVisible(true);
+//            }else{
+//                continue;
+//            }
+//        }
+//        dbClose();
+//        SearchController SC = new SearchController();
+//        SC.setVisible(true);
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchActionPerformed
 
@@ -199,4 +254,93 @@ public class ManagerMainController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        dbLoad();
+        String bT;
+        java.sql.Statement stmt2 = null;
+        try {
+            stmt2 = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = stmt2.executeQuery("select * from board");
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+                while(rs.next()){
+                    btarray.add(rs.getString("boardTitle"));
+                }
+             }catch (SQLException ex) {
+            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        BTG btg = new BTG(btarray.size());  //이터레이터 패턴 적용
+        for (int i=0;i<btarray.size();i++){
+            btg.AddBT(new BT((String) btarray.get(i)));
+        }
+        BTGIterator iterator = btg.iterator();
+        String title = SearchController.getText();
+        while(iterator.hasNext()){
+            BT bt = (BT)iterator.next();
+            if (bt.getTitle().equals(SearchController.getText())){
+                //bt가 검색한 게시판제목임.
+                okbt=bt.getTitle();
+            }else{
+                continue;
+            }
+        }
+        dbClose();
+        
+        if(e.getSource()==Search){
+            ManagerPostController MPC = new ManagerPostController();
+                MPC.BT2 =okbt;
+                MPC.setVisible(true);
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
