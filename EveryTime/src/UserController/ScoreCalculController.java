@@ -9,6 +9,7 @@ import MementoPattern.CareTaker;
 import MementoPattern.Originator;
 import MementoPattern.Memento;
 import java.text.DecimalFormat;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public  class ScoreCalculController extends javax.swing.JFrame implements MouseListener, KeyListener,ListSelectionListener {
@@ -487,11 +488,17 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
     public void mouseClicked(MouseEvent e) {
          
         if(e.getSource()==Save){   //메멘토 패턴 적용
+            int result = JOptionPane.showConfirmDialog(null, "학점을 저장 하시겠습니까?.","Save",JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.CLOSED_OPTION || result ==JOptionPane.NO_OPTION){
+            }
+            else if(result==JOptionPane.YES_OPTION){
          Originator org = new Originator(); 
          CareTaker ct = new CareTaker();
          org.SetState(TotalCredit.getText());
          ct.add(org.saveStateToMemento()); //저장
          tmp = org.GetState();
+         showMessageDialog(null,"저장성공!");
+            }
         }
         if(e.getSource()==LoadData){
            LoadCredit.setText(tmp);
