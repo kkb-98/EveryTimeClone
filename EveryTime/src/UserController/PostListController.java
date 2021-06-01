@@ -156,9 +156,6 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
     }                                    
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {                                   
-            PostController PC = new PostController();
-            //PC.bt3=bt2;
-            PC.setVisible(true);
     }                                  
 
     private void PostWriteActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -187,6 +184,7 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
         try {
             while(rs.next()){
                 model2.addElement(rs.getString("postTitle"));
+                bt2=rs.getString("postNum");
                 i++;
             }
         } catch (SQLException ex) {
@@ -222,57 +220,57 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
 
     @Override
     public void mouseClicked(MouseEvent e) {
-//        String bt2 =PostList.getSelectedValue();
-//        if(e.getSource()==PostWrite){
-//            PostWriteController PW = new PostWriteController();
-//            PW.bt4=bt2;
-//            PW.setVisible(true);
-//        }
-//        if(e.getSource()== OK){
-//            PostController PC = new PostController();
-//            //PC.bt3=bt2;
-//            PC.setVisible(true);
-//        }
+        String bt2 =PostList.getSelectedValue();
+        if(e.getSource()==PostWrite){
+            PostWriteController PW = new PostWriteController();
+            PW.bt4=bt2;
+            PW.setVisible(true);
+        }
+        if(e.getSource()== OK){
+            PostController PC = new PostController();
+            PC.bt3=bt2;
+            PC.setVisible(true);
+        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

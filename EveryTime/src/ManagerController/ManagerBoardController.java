@@ -194,7 +194,6 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     }
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                       
         //게시판 삭제-관리자 모드일때
-        
     }                                      
 
     public static void main(String args[]) {
