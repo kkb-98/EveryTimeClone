@@ -29,19 +29,19 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Everytime Clone Coding Project</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    EveryTime의 기능을 자바언어로 직접 작성해본 프로젝트입니다.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/othneildrew/EveryTimeClone"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/othneildrew/EveryTimeClone">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/othneildrew/EveryTimeClone/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/othneildrew/EveryTimeClone/issues">Request Feature</a>
   </p>
 </p>
 
@@ -49,16 +49,16 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">프로젝트에 대해서</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">작성 코드</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">실행 방법</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -197,16 +197,16 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/EveryTimeClone.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/EveryTimeClone/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/EveryTimeClone.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/EveryTimeClone/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/EveryTimeClone.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/EveryTimeClone/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/EveryTimeClone.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/EveryTimeClone/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/EveryTimeClone.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/EveryTimeClone/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
