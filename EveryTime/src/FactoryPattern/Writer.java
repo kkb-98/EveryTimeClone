@@ -9,7 +9,6 @@ package FactoryPattern;
 public class Writer extends Comment{
     public Writer (String userNum, String comment){
         this.userNum = userNum;
-        //this.comment = "글쓴이 : " + comment;   // 독자 userNum : comment
         this.comment = "글쓴이 : "+ comment;
     }
     public void prepare() {

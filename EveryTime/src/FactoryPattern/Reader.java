@@ -6,10 +6,9 @@
 package FactoryPattern;
 // 댓글 작성자가 독자일때
 
-public class Reader extends Comment{
+public class Reader extends Comment {
     public Reader (String userNum, String comment){
         this.userNum = userNum;
-        //this.comment = "독자(" + userNum + ") : " + comment; // 독자 userNum : comment
         this.comment = "독자(" + userNum + ") : " + comment;
     }
     public void prepare() {

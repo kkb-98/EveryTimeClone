@@ -69,6 +69,7 @@ public class databaseSQL extends javax.swing.JFrame {
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1, e);
         st.setString(2, d);
+        
         st.executeUpdate();
     }
     
@@ -198,30 +199,9 @@ public class databaseSQL extends javax.swing.JFrame {
         st.executeUpdate();
     }
     
-    protected int returnPost(String recommend, String postnum) throws SQLException{
-        Statement stmt2 = null;
-        stmt2 = conn.createStatement();
-        rs = stmt2.executeQuery("select " + recommend + " from post" + " where postNum ='" + postnum+ "'");
-        while (rs.next()) {
-            int a = rs.getInt(recommend);
-            return a;
-        }
-        return 0;
-    }
     
-    protected void updatePost(String postnum, int recommend) throws SQLException{
-        // a: 테이블, b: 컬럼명, c: 바꿀 데이터의 키값, d: 바꿀 데이터의 데이터값, e: 바꿀 데이터 값
-        // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
-
-        String sql = "UPDATE post "
-                + "SET"
-                + " " + recommend + " =?"
-                + "WHERE postNum" + " =?";
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setInt(1, recommend+1);
-        st.setString(2, postnum);
-        st.executeUpdate();
-    }
+    
+    
     protected int returnRecommend(String recommend, String postnum) throws SQLException{
         // 추천수 얻어오기
         Statement stmt2 = null;
@@ -234,6 +214,7 @@ public class databaseSQL extends javax.swing.JFrame {
         return 0;
     }
     
+    
     protected void updateRecommend(String postnum, int recommend) throws SQLException{
         // 추천 누를 시 +1
         // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
@@ -241,6 +222,29 @@ public class databaseSQL extends javax.swing.JFrame {
         PreparedStatement st = conn.prepareStatement(sql);
         st.setInt(1, recommend);
         st.setString(2, postnum);
+        st.executeUpdate();
+    }
+    
+    protected int returnReport(String report, String userNum) throws SQLException{
+        // 신고 수 불러오기
+        Statement stmt2 = null;
+        stmt2 = conn.createStatement();
+        rs = stmt2.executeQuery("select " + report + " from user" + " where userNum ='" + userNum+ "'");
+        
+        while (rs.next()) {
+            int a = rs.getInt(report);
+            return a;
+        }
+        return 0;
+    }
+    
+    protected void updateReport(int report, String userNum) throws SQLException{
+        // 신고 누를 시 +1
+        // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+        String sql = "UPDATE user SET report =? WHERE userNum =?";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setInt(1, report);
+        st.setString(2, userNum);
         st.executeUpdate();
     }
     
