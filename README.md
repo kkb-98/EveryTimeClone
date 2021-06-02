@@ -52,19 +52,19 @@
   <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#about-the-project">프로젝트에 대해서</a>
+      <a href="#프로젝트에 대해서">프로젝트에 대해서</a>
       <ul>
-        <li><a href="#built-with">개발 언어 및 도구</a></li>
+        <li><a href="#개발 언어 및 도구">개발 언어 및 도구</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">실행 방법</a>
+      <a href="#실행 방법">실행 방법</a>
       <ul>
         <!--<li><a href="#installation">Installation</a></li>-->
       </ul>
     </li>
-    <li><a href="#usage">프로젝트 데모</a></li>
-    <li><a href="#roadmap">로드맵</a></li>
+    <li><a href="#프로젝트 데모">프로젝트 데모</a></li>
+    <li><a href="#로드맵">로드맵</a></li>
   </ol>
 </details>
 
