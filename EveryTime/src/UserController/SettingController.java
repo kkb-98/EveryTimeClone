@@ -36,7 +36,6 @@ public class SettingController extends javax.swing.JFrame {
         ChangePW = new javax.swing.JButton();
         ChangeEmail = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        NoticeSet = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
         UserDelete = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -84,14 +83,6 @@ public class SettingController extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         jLabel4.setText("[앱 설정]");
 
-        NoticeSet.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        NoticeSet.setText("알림 설정");
-        NoticeSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoticeSetActionPerformed(evt);
-            }
-        });
-
         Logout.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Logout.setText("로그아웃");
         Logout.addActionListener(new java.awt.event.ActionListener() {
@@ -137,40 +128,39 @@ public class SettingController extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Logout)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(UserDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Back)
-                                .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Logout)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(UserDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(NoticeSet)
-                                        .addComponent(ChangeEmail))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Back)
                                         .addGroup(layout.createSequentialGroup()
+                                            .addComponent(ChangeEmail)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(ChangePW)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(SchoolConfirm))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(PremiumSet)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1)))))))
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
+                                            .addComponent(SchoolConfirm)))))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addGap(31, 31, 31)
+                        .addComponent(PremiumSet)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,7 +182,6 @@ public class SettingController extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NoticeSet)
                     .addComponent(PremiumSet)
                     .addComponent(jButton1))
                 .addGap(27, 27, 27)
@@ -207,12 +196,6 @@ public class SettingController extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void NoticeSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoticeSetActionPerformed
-        NoticeSetController NS = new NoticeSetController();
-        NS.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NoticeSetActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         new MainPageController().setVisible(true);
@@ -297,7 +280,6 @@ public class SettingController extends javax.swing.JFrame {
     private javax.swing.JButton ChangeEmail;
     private javax.swing.JButton ChangePW;
     private javax.swing.JButton Logout;
-    private javax.swing.JButton NoticeSet;
     private javax.swing.JButton PremiumSet;
     private javax.swing.JButton SchoolConfirm;
     private javax.swing.JButton UserDelete;
