@@ -41,7 +41,7 @@ public class MainPageController extends databaseSQL {
         Searchword = new javax.swing.JTextField();
         Search = new javax.swing.JButton();
         Noticebtn = new javax.swing.JButton();
-        Timetable = new javax.swing.JButton();
+        gocalcular = new javax.swing.JButton();
         Premium = new javax.swing.JButton();
         Setting = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -96,11 +96,11 @@ public class MainPageController extends databaseSQL {
             }
         });
 
-        Timetable.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
-        Timetable.setText("시간표");
-        Timetable.addActionListener(new java.awt.event.ActionListener() {
+        gocalcular.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
+        gocalcular.setText("학점 계산기");
+        gocalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimetableActionPerformed(evt);
+                gocalcularActionPerformed(evt);
             }
         });
 
@@ -161,21 +161,18 @@ public class MainPageController extends databaseSQL {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(Board, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(26, 26, 26))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                        .addComponent(Timetable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(25, 25, 25)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Board, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(gocalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(17, 17, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -189,10 +186,10 @@ public class MainPageController extends databaseSQL {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(Setting, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 10, Short.MAX_VALUE)))))))
+                                        .addGap(0, 12, Short.MAX_VALUE)))))))
                 .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
@@ -219,10 +216,11 @@ public class MainPageController extends databaseSQL {
                     .addComponent(Setting)
                     .addComponent(jLabel5)
                     .addComponent(jLabel8)
-                    .addComponent(Timetable)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(gocalcular))
                 .addGap(71, 71, 71)
-                .addComponent(jLabel6))
+                .addComponent(jLabel6)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -257,11 +255,11 @@ public class MainPageController extends databaseSQL {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void TimetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimetableActionPerformed
-        TimetalbeController TT = new TimetalbeController();
-        TT.setVisible(true);
+    private void gocalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gocalcularActionPerformed
+        ScoreCalculController SCC = new ScoreCalculController();
+        SCC.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_TimetableActionPerformed
+    }//GEN-LAST:event_gocalcularActionPerformed
 
     private void PremiumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PremiumActionPerformed
         PremiumController PR = new PremiumController();
@@ -319,7 +317,7 @@ public class MainPageController extends databaseSQL {
     private javax.swing.JButton Search;
     private javax.swing.JTextField Searchword;
     private javax.swing.JButton Setting;
-    private javax.swing.JButton Timetable;
+    private javax.swing.JButton gocalcular;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
