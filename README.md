@@ -60,7 +60,7 @@
     <li>
       <a href="#getting-started">실행 방법</a>
       <ul>
-        <li><a href="#installation">Installation</a></li>
+        <!--<li><a href="#installation">Installation</a></li>-->
       </ul>
     </li>
     <li><a href="#usage">프로젝트 데모</a></li>
@@ -73,18 +73,15 @@
 <!-- ABOUT THE PROJECT -->
 ## 프로젝트에 대해서
 
-[Product Name Screen Shot][product-screenshot]
+[![Product Name Screen Shot][product-screenshot]](https://github.com/WooGeun-Nam/EveryTimeClone)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+대학 팀 프로젝트의 일환으로 디자인패턴의 적용과 Java 학습을 위해 시작한 프로젝트이다.
+대학생이 많이 사용하고 있는 프로그램인 Everytime 어플리케이션을 분석하고 재설계 및 
+직접 작성하여 학습하였다. 
 
 개발 목적:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+* 디자인 패턴 의 적용 및 연습
+* 팀프로젝트의 연습과 github를 통한 형상관리
 
 ### 개발 언어 및 도구
 
@@ -98,10 +95,9 @@ DB서버는 MySQL을 이용하여 구축 하였고, 개발 IDE는 Netbeans로 �
 <!-- GETTING STARTED -->
 ## 실행 방법
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+넷빈즈 빌더를 이용하여 프로젝트를 실행할 수 있다.
 
-### Installation
+<!--### Installation
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -116,13 +112,13 @@ To get a local copy up and running follow these simple example steps.
    ```JS
    const API_KEY = 'ENTER YOUR API';
    ```
-
+-->
 
 
 <!-- USAGE EXAMPLES -->
 ## 프로젝트 데모
 
-실제 작동 사진 추가
+실제 구현 사진 추가
 
 
 <!-- ROADMAP -->
