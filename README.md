@@ -1,5 +1,5 @@
 <!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** Thanks for checking out the EveryTimeClone. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "enhancement".
 *** Thanks again! Now go create something AMAZING! :D
@@ -34,14 +34,14 @@
   <p align="center">
     EveryTime의 기능을 자바언어로 직접 작성해본 프로젝트입니다.
     <br />
-    <a href="https://github.com/othneildrew/EveryTimeClone"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/WooGeun-Nam/EveryTimeClone"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/EveryTimeClone">View Demo</a>
+    <a href="https://github.com/WooGeun-Nam/EveryTimeClone">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/EveryTimeClone/issues">Report Bug</a>
+    <a href="https://github.com/WooGeun-Nam/EveryTimeClone/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/EveryTimeClone/issues">Request Feature</a>
+    <a href="https://github.com/WooGeun-Nam/EveryTimeClone/issues">Request Feature</a>
   </p>
 </p>
 
@@ -54,35 +54,30 @@
     <li>
       <a href="#about-the-project">프로젝트에 대해서</a>
       <ul>
-        <li><a href="#built-with">작성 코드</a></li>
+        <li><a href="#built-with">개발 언어 및 도구</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">실행 방법</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#usage">프로젝트 데모</a></li>
+    <li><a href="#roadmap">로드맵</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## 프로젝트에 대해서
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[Product Name Screen Shot][product-screenshot]
 
 There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
-Here's why:
+개발 목적:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
 * You should element DRY principles to the rest of your life :smile:
@@ -91,28 +86,20 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-### Built With
+### 개발 언어 및 도구
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+DB서버는 MySQL을 이용하여 구축 하였고, 개발 IDE는 Netbeans로 통일 하였으며 전체 개발언어는 100% Java 로 작성되었습니다.
+* [Java](https://www.java.com)
+* [Netbeans](https://netbeans.apache.org)
+* [MySQL](https://www.mysql.com)
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## 실행 방법
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
@@ -133,80 +120,31 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## 프로젝트 데모
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
+실제 작동 사진 추가
 
 
 <!-- ROADMAP -->
-## Roadmap
+## 로드맵
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
-
-
+[open issues](https://github.com/WooGeun-Nam/EveryTimeClone/issues) 
+미해결 문제 및 기능 제안.
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/EveryTimeClone.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/EveryTimeClone/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/EveryTimeClone.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/EveryTimeClone/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/EveryTimeClone.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/EveryTimeClone/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/EveryTimeClone.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/EveryTimeClone/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/EveryTimeClone.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/EveryTimeClone/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/WooGeun-Nam/EveryTimeClone.svg?style=for-the-badge
+[contributors-url]: https://github.com/WooGeun-Nam/EveryTimeClone/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/WooGeun-Nam/EveryTimeClone.svg?style=for-the-badge
+[forks-url]: https://github.com/WooGeun-Nam/EveryTimeClone/network/members
+[stars-shield]: https://img.shields.io/github/stars/WooGeun-Nam/EveryTimeClone.svg?style=for-the-badge
+[stars-url]: https://github.com/WooGeun-Nam/EveryTimeClone/stargazers
+[issues-shield]: https://img.shields.io/github/issues/WooGeun-Nam/EveryTimeClone.svg?style=for-the-badge
+[issues-url]: https://github.com/WooGeun-Nam/EveryTimeClone/issues
+[license-shield]: https://img.shields.io/github/license/WooGeun-Nam/EveryTimeClone.svg?style=for-the-badge
+[license-url]: https://github.com/WooGeun-Nam/EveryTimeClone/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/WooGeun-Nam
 [product-screenshot]: images/screenshot.png
