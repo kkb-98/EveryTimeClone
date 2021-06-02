@@ -361,7 +361,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
                 Comment com = cr.RegeComment(userNum, writer, comment);
                 
                 comment=com.getcomment();
-                
                 System.out.println(comment);
                 
                 postComment(postNum, userNum, comment); // comment에 댓글 추가 
