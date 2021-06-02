@@ -164,49 +164,6 @@ public class ManagerMainController extends databaseSQL implements MouseListener,
     }//GEN-LAST:event_UserInforActionPerformed
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-//        dbLoad();
-//        String bT;
-//        java.sql.Statement stmt2 = null;
-//        try {
-//            stmt2 = conn.createStatement();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            rs = stmt2.executeQuery("select * from board");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        try {
-//                while(rs.next()){
-//                    btarray.add(rs.getString("boardTitle"));
-//                }
-//             }catch (SQLException ex) {
-//            Logger.getLogger(ManagerMainController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        BTG btg = new BTG(btarray.size());  //이터레이터 패턴 적용
-//        for (int i=0;i<btarray.size();i++){
-//            btg.AddBT(new BT((String) btarray.get(i)));
-//        }
-//        BTGIterator iterator = btg.iterator();
-//        while(iterator.hasNext()){
-//            BT bt = (BT)iterator.next();
-//            if (bt.equals(SearchController.getText())){
-//                //bt가 검색한 게시판제목임.
-//                bT=SearchController.getText();
-//                ManagerPostController MPC = new ManagerPostController();
-//                MPC.BT2 =bT;
-//                MPC.setVisible(true);
-//            }else{
-//                continue;
-//            }
-//        }
-//        dbClose();
-//        SearchController SC = new SearchController();
-//        SC.setVisible(true);
-      
-        // TODO add your handling code here:
     }//GEN-LAST:event_SearchActionPerformed
 
     /**

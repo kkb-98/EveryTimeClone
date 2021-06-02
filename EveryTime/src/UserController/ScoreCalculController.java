@@ -93,7 +93,7 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
         Calculation.setBackground(new java.awt.Color(153, 0, 0));
         Calculation.setFont(new java.awt.Font("맑은 고딕 Semilight", 0, 15)); // NOI18N
         Calculation.setForeground(new java.awt.Color(255, 255, 255));
-        Calculation.setText("입력완료");
+        Calculation.setText("계산하기");
         Calculation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalculationActionPerformed(evt);

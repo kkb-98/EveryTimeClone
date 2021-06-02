@@ -403,7 +403,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xc785;&#xb825;&#xc644;&#xb8cc;"/>
+        <Property name="text" type="java.lang.String" value="&#xacc4;&#xc0b0;&#xd558;&#xae30;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CalculationActionPerformed"/>

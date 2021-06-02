@@ -17,6 +17,7 @@ import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
 import java.sql.ResultSet;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
 
@@ -204,6 +205,10 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
         BBT2 = BT2;
         //게시판 삭제 기능
         if(e.getSource()== Delete2){
+            int result = JOptionPane.showConfirmDialog(null, "해당 게시글을 삭제 하시겠습니까?.","Save",JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.CLOSED_OPTION || result ==JOptionPane.NO_OPTION){
+            }
+            else if(result==JOptionPane.YES_OPTION){
             int selected2=PostList.getSelectedIndex();
              dbLoad();
              java.sql.Statement stmt2 = null;
@@ -220,12 +225,12 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
                 PreparedStatement st = conn.prepareStatement(sql);
                 su2 = st.executeUpdate();
                 removeItem2(selected2);
-    
+                showMessageDialog(null,"해당 게시글이 삭제되었습니다!");
             } catch (SQLException ex) {
                 Logger.getLogger(ManagerBoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
+            }
              dbClose();
  
          }

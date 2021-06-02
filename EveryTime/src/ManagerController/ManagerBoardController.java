@@ -20,7 +20,7 @@ import main.databaseSQL;
 import java.sql.ResultSet;
 import javax.swing.event.ListSelectionEvent;
 import main.EveryTime_Main;
-
+import static javax.swing.JOptionPane.showMessageDialog;
 public class ManagerBoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     //String BBT;
     DefaultListModel model = new DefaultListModel();
@@ -227,6 +227,10 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
             MPC.setVisible(true);
         }
         if(e.getSource()== Delete){
+            int result = JOptionPane.showConfirmDialog(null, "해당 게시판을 삭제 하시겠습니까?.","Save",JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.CLOSED_OPTION || result ==JOptionPane.NO_OPTION){
+            }
+            else if(result==JOptionPane.YES_OPTION){
             int selected=BoardList.getSelectedIndex();
              
              java.sql.Statement stmt2 = null;
@@ -244,12 +248,12 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
                 PreparedStatement st = conn.prepareStatement(sql);
                 su = st.executeUpdate();
                 removeItem(selected);
-                
+                showMessageDialog(null,"해당 게시판이 삭제되었습니다!");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(ManagerBoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            }
 
              dbClose();
              
