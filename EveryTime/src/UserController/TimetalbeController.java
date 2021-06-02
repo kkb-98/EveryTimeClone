@@ -39,7 +39,7 @@ public class TimetalbeController extends javax.swing.JFrame {
         FriendAdd = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        gocalcular = new javax.swing.JButton();
         TimetableAdd = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -148,10 +148,15 @@ public class TimetalbeController extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("학점 계산기");
+        gocalcular.setBackground(new java.awt.Color(153, 0, 0));
+        gocalcular.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
+        gocalcular.setForeground(new java.awt.Color(255, 255, 255));
+        gocalcular.setText("학점 계산기");
+        gocalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gocalcularActionPerformed(evt);
+            }
+        });
 
         TimetableAdd.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         TimetableAdd.setText("+");
@@ -183,7 +188,7 @@ public class TimetalbeController extends javax.swing.JFrame {
                                     .addComponent(FriendAdd))
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addGap(190, 190, 190)
-                            .addComponent(jButton1)
+                            .addComponent(gocalcular)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(Back))
                         .addGroup(layout.createSequentialGroup()
@@ -214,7 +219,7 @@ public class TimetalbeController extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Back)
-                            .addComponent(jButton1))
+                            .addComponent(gocalcular))
                         .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -249,6 +254,11 @@ public class TimetalbeController extends javax.swing.JFrame {
         FA.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_FriendAddActionPerformed
+
+    private void gocalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gocalcularActionPerformed
+        ScoreCalculController SCC = new ScoreCalculController();
+        SCC.setVisible(true);
+    }//GEN-LAST:event_gocalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,7 +301,7 @@ public class TimetalbeController extends javax.swing.JFrame {
     private javax.swing.JTable Timetable;
     private javax.swing.JButton TimetableAdd;
     private javax.swing.JComboBox<String> TimetableList;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton gocalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -219,6 +219,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dbLoad();
         String BT =BoardList.getSelectedValue();
         if(e.getSource()==PostIn){
            ManagerPostController MPC = new ManagerPostController();
@@ -227,7 +228,7 @@ public class ManagerBoardController extends databaseSQL implements MouseListener
         }
         if(e.getSource()== Delete){
             int selected=BoardList.getSelectedIndex();
-             dbLoad();
+             
              java.sql.Statement stmt2 = null;
             try {
                 stmt2 = conn.createStatement();

@@ -168,7 +168,6 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
         BoardName.setText(bt2);
         dbLoad();
             java.sql.Statement stmt2 = null;
-        
         try {          
             stmt2 = conn.createStatement();
         } catch (SQLException ex) {
