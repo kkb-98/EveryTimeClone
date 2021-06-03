@@ -16,9 +16,8 @@ public class Report extends Sorting{ //신고
     
     public Report (){
         dbLoad();
-        //String postNum = userinfo.PostNum;   // 게시글 번호
+        String postNum = userinfo.PostNum;   // 게시글 번호
         
-        String postNum = "78363"; // 게시글 테스트번호
         
         try{
             String writerNum = returnData("post","userNum","postNum", postNum);   // 게시글 작성자 아이디 불러오기
