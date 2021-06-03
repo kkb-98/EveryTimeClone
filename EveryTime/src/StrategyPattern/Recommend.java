@@ -18,10 +18,8 @@ import java.util.logging.Logger;
 public class Recommend extends Sorting {
     UserInfo userinfo = UserInfo.getInstance();
     
-    public Recommend (){
+    public Recommend (String postNum){
         dbLoad();
-        String postNum = userinfo.PostNum;   // 게시글 번호
-        
         
         try{
             int recommend = returnRecommend("recommend", postNum);   // 추천수 얻어오기
