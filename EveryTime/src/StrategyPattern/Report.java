@@ -14,10 +14,8 @@ import java.util.logging.Logger;
 public class Report extends Sorting{ //신고
     UserInfo userinfo = UserInfo.getInstance();
     
-    public Report (){
+    public Report (String postNum){
         dbLoad();
-        String postNum = userinfo.PostNum;   // 게시글 번호
-        
         
         try{
             String writerNum = returnData("post","userNum","postNum", postNum);   // 게시글 작성자 아이디 불러오기
@@ -34,5 +32,6 @@ public class Report extends Sorting{ //신고
         }
         dbClose();
     }
+    
     
 }
