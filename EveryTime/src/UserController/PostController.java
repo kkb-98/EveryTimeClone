@@ -288,16 +288,14 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_backActionPerformed
 
     private void RecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecommendActionPerformed
-       // TODO add your handling code here: 추천버튼
+        // TODO add your handling code here: 추천버튼
         dbLoad();
-        String userNum = userinfo.UserNum;    // 사용자
-        String postNum = userinfo.PostNum;   // 게시글 번호
         
         String writer;   // 게시글 작성자
         
-        Sorting recommend = new Recommend();
+        Sorting recommend = new Recommend(postNum);
         
-        try{
+         try{
             writer = returnData("post", "userNum", "postNum", postNum);    // writer가 자신의 글인지 확인
             System.out.println("이 게시글의 작성자 : " + writer);
             if(writer.equals(userNum)){
@@ -322,14 +320,11 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_RecommendActionPerformed
 
     private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
-         // TODO add your handling code here: 신고
+          // TODO add your handling code here: 신고
         
-
         dbLoad();
-        String userNum = userinfo.UserNum; //사용자 번호
-        String postNum = userinfo.PostNum;   // 게시글 번호
-        
-        Sorting report = new Report();
+      
+        Sorting report = new Report(postNum);
         
         try{
             String writer = returnData("post", "userNum", "postNum", postNum);    // writer가 자신의 글인지 확인
@@ -357,12 +352,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_ReportActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-         // TODO add your handling code here: 댓글 등록 _ factory
+          // TODO add your handling code here: 댓글 등록 _ factory
         dbLoad();
-        String comment = InputComment.getText(); // 댓글 내용
-        String userNum = userinfo.UserNum; //사용자 번호 
-        String postNum = userinfo.PostNum;   // 게시글 번호
-        
+        String comment = InputComment.getText(); // 댓글 내용        
         String writer;  // 댓글 작성자
            
         if(comment.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
@@ -383,19 +375,15 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
                 Comment com = cr.RegeComment(userNum, writer, comment);
                 
                 comment=com.getcomment();
-                System.out.println(comment);
+                System.out.println(userNum + postNum + comment);
                 
                 postComment(postNum, userNum, comment); // comment에 댓글 추가 
                 // 게시글 번호, 사용자 번호, 댓글 번호  
-                
-                // 댓글 작성시 알림 전송
-                sendNotice(userinfo.UserNum, posterNum, "댓글", comment);
             }catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         } 
             JOptionPane.showMessageDialog(this, "[ 댓글이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            initComponents();
-        }
+            
         dbClose();
     }//GEN-LAST:event_RegisterActionPerformed
 
@@ -408,7 +396,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }//GEN-LAST:event_PostContentInputMethodTextChanged
 
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
-        // TODO add your handling code here: 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
+         // TODO add your handling code here: 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
         dbLoad();
         try {
             String rcvNickname = returnData("user", "userNickName" , "userNum", posterNum);
@@ -416,7 +404,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
-        dbClose();    
+        dbClose();      
     }//GEN-LAST:event_SendMessageActionPerformed
 
     private void AlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlarmActionPerformed
