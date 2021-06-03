@@ -20,8 +20,8 @@ public class Recommend extends Sorting {
     
     public Recommend (){
         dbLoad();
-        //String postNum = userinfo.PostNum;   // 게시글 번호
-        String postNum = "78363"; // 게시글 테스트번호
+        String postNum = userinfo.PostNum;   // 게시글 번호
+        
         
         try{
             int recommend = returnRecommend("recommend", postNum);   // 추천수 얻어오기
