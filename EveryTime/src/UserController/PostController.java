@@ -137,13 +137,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         PostContent.setEditable(false);
         PostContent.setColumns(20);
         PostContent.setRows(5);
-        PostContent.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                PostContentInputMethodTextChanged(evt);
-            }
-        });
         jScrollPane2.setViewportView(PostContent);
 
         Register.setBackground(new java.awt.Color(153, 0, 0));
@@ -157,11 +150,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         });
 
         InputComment.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
-        InputComment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputCommentActionPerformed(evt);
-            }
-        });
 
         back.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         back.setText("뒤로가기");
@@ -383,17 +371,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         } 
             JOptionPane.showMessageDialog(this, "[ 댓글이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            
+        } 
         dbClose();
     }//GEN-LAST:event_RegisterActionPerformed
-
-    private void InputCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCommentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputCommentActionPerformed
-
-    private void PostContentInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_PostContentInputMethodTextChanged
-      
-    }//GEN-LAST:event_PostContentInputMethodTextChanged
 
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
          // TODO add your handling code here: 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
