@@ -36,8 +36,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
         dbLoad();     
         String userNum = userinfo.UserNum;
         String postNum =userinfo.PostNum;
-        //String userNum = "00001"; // 사용자 테스트번호 
-        //String postNum = "78363"; // 게시글 테스트번호
+        
         CommentList.setModel(new DefaultListModel());
         DefaultListModel model = (DefaultListModel)CommentList.getModel();
         
@@ -280,10 +279,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void RecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecommendActionPerformed
        // TODO add your handling code here: 추천버튼
         dbLoad();
-        //String userNum = userinfo.UserNum;    // 사용자
-        //String postNum = userinfo.PostNum;   // 게시글 번호
-        String userNum = "00001"; // 사용자 테스트번호 
-        String postNum = "78363"; // 게시글 테스트번호
+        String userNum = userinfo.UserNum;    // 사용자
+        String postNum = userinfo.PostNum;   // 게시글 번호
+        
         String writer;   // 게시글 작성자
         
         Sorting recommend = new Recommend();
@@ -307,51 +305,19 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        /*
-        원래 코드( 패턴 미적용 )
-        try{
-            writer = returnData("post", "userNum", "postNum", postNum);    // writer가 자신의 글인지 확인
-            System.out.println(writer);
-            if(writer.equals(userNum)){     // 자신의 게시글일때
-                JOptionPane.showMessageDialog(this, "[ 본인 글이므로 추천할 수 없습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-                Recommend.setEnabled(false);    // 버튼 비활성화
-            }else{  // 아니라면 
-                int recommend = returnRecommend("recommend", postNum);   // 추천수 얻어오기
-                System.out.println(recommend);
-                recommend = recommend + 1;  // recommend +1 
-                updateRecommend(postNum, recommend);    // 추천눌렀을때 원래 값에서 +1되도록
-                
-                JOptionPane.showMessageDialog(this, "[ 이 글을 추천하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-                Recommend.setEnabled(false);    // 버튼 비활성화
-            }
-        }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
+        
         dbClose();
 
     }//GEN-LAST:event_RecommendActionPerformed
 
     private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
          // TODO add your handling code here: 신고
-        /*
-        user Table
-        userID : 사용자 아이디 (VARCHAR)
-        userPW : 사용자 비밀번호 (VARCHAR)
-        userName : 사용자 닉네임 (VARCHAR)
-        userUniv : 소속 대학교 (VARCHAR)
-        userDept : 소속 학과 (VARCHAR)
-        userNum : 고유 번호 (CHAR)
-        isConfirm : 학교 인증 여부 (TINYINT)
-        report : 신고수 (INT) == 받은수
-        isSponser : 월정액 서비스 이용 여부 (TINYINT)
-        */
+        
 
         dbLoad();
-        //String userNum = userinfo.UserNum; //사용자 번호
-        //String postNum = userinfo.PostNum;   // 게시글 번호
-        String userNum = "00001"; // 사용자 테스트번호 
-        String postNum = "78363"; // 게시글 테스트번호
+        String userNum = userinfo.UserNum; //사용자 번호
+        String postNum = userinfo.PostNum;   // 게시글 번호
+        
         Sorting report = new Report();
         
         try{
@@ -374,25 +340,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-        /*
-         try{
-            String writer = returnData("post", "userNum", "postNum", postNum);    // writer가 자신의 글인지 확인
-            System.out.println(writer);
-            
-            if(writer.equals(userNum)){ // 자신의 게시글일때
-                JOptionPane.showMessageDialog(this, "[ 본인 글이므로 신고할 수 없습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-                Report.setEnabled(false);    // 버튼 비활성화
-                //Report.setVisible(false); // 버튼 가리기
-            }else{  // 아니라면 
-                JOptionPane.showMessageDialog(this, "[ 이 글을 신고하였습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-                
-                Recommend.setEnabled(false);    // 버튼 비활성화
-            }
-        }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
        
         dbClose();
                                
@@ -402,10 +349,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
          // TODO add your handling code here: 댓글 등록 _ factory
         dbLoad();
         String comment = InputComment.getText(); // 댓글 내용
-        //String userNum = userinfo.UserNum; //사용자 번호 
-        //String postNum = userinfo.PostNum;   // 게시글 번호
-        String userNum = "00001"; // 사용자 테스트번호 
-        String postNum = "78363"; // 게시글 테스트번호
+        String userNum = userinfo.UserNum; //사용자 번호 
+        String postNum = userinfo.PostNum;   // 게시글 번호
+        
         String writer;  // 댓글 작성자
            
         if(comment.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
@@ -450,17 +396,15 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
         // TODO add your handling code here: 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
         dbLoad();
-        //String userNum = userinfo.UserNum; //사용자 번호 
-        //String postNum = userinfo.PostNum;   // 게시글 번호
-        String userNum = "00001"; // 사용자 테스트번호 
-        String postNum = "78363"; // 게시글 테스트번호
+        String userNum = userinfo.UserNum; //사용자 번호 
+        String postNum = userinfo.PostNum;   // 게시글 번호
+       
         
         try{
             String writer = returnData("post", "userNum", "postNum", postNum);    // writer가 게시글 작성자 인지 확인
             if(writer.equals(userNum)){  // 작성자라면
                 JOptionPane.showMessageDialog(this, "[ 본인 글이므로 메세지를 보낼수 없습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 SendMessage.setEnabled(false);    // 버튼 비활성화
-                //SendMessage.setVisible(false);  // 버튼 숨기기 안되는데,,
             }else{  // 독자라면
                 // 메세지 전송화면으로 이동 + userNum과 writerNum 정보도 이동 
                 
