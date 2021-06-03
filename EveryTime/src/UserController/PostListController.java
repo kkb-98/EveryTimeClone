@@ -19,13 +19,15 @@ import java.sql.ResultSet;
 import main.EveryTime_Main;
 import UserController.BoardController;
 import ManagerController.ManagerBoardController;
+import SingletonPattern.UserInfo;
 import javax.swing.event.ListSelectionEvent;
 
 public class PostListController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     String bt2;
     String bbt2;
     DefaultListModel model2 = new DefaultListModel();
- 
+    UserInfo userinfo = UserInfo.getInstance();
+    
     public PostListController() {
         initComponents();
         PostList.addListSelectionListener(this);
@@ -220,6 +222,13 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
     @Override
     public void mouseClicked(MouseEvent e) {
         String bt2 =PostList.getSelectedValue();
+        dbLoad();
+        try {
+            userinfo.PostNum = returnData("post", "postNum", "postTitle", bt2);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        dbClose();
         if(e.getSource()==PostWrite){
             PostWriteController PW = new PostWriteController();
             PW.bt4=bt2;

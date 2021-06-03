@@ -34,10 +34,10 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     public PostController() {
         initComponents();
         dbLoad();     
-        //String userNum = userinfo.UserNum ;
-        //String postNum =userinfo.PostNum;
-        String userNum = "00001"; // 사용자 테스트번호 
-        String postNum = "78363"; // 게시글 테스트번호
+        String userNum = userinfo.UserNum;
+        String postNum =userinfo.PostNum;
+        //String userNum = "00001"; // 사용자 테스트번호 
+        //String postNum = "78363"; // 게시글 테스트번호
         CommentList.setModel(new DefaultListModel());
         DefaultListModel model = (DefaultListModel)CommentList.getModel();
         
