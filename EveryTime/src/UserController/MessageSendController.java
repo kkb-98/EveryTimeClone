@@ -121,7 +121,6 @@ public class MessageSendController extends databaseSQL {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
-        new MessageController().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
 
@@ -137,7 +136,6 @@ public class MessageSendController extends databaseSQL {
                 sendNotice(userinfo.UserNum, rcvNum,"쪽지", MessageContent.getText());
                 JOptionPane.showMessageDialog(this, "쪽지 전송완료!", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                new MessageController().setVisible(true);
                 dbClose();
             } else {
                 JOptionPane.showMessageDialog(this, "대상이 존재하지 않습니다.", "메세지", JOptionPane.INFORMATION_MESSAGE);

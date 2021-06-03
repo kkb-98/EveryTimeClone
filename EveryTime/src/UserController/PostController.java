@@ -30,18 +30,22 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     String bt3;
     String PP;
     UserInfo userinfo = UserInfo.getInstance();
+    String postNum =userinfo.PostNum;
+    String userNum =userinfo.UserNum;
+    String posterNum;
+    
     
     public PostController() {
         initComponents();
         dbLoad();     
-        String userNum = userinfo.UserNum;
-        String postNum =userinfo.PostNum;
+
         
         CommentList.setModel(new DefaultListModel());
         DefaultListModel model = (DefaultListModel)CommentList.getModel();
         
         try{
             // 제목 출력
+            posterNum = returnData("post", "userNum" , "postNum", postNum);
             String postTitle = returnData("post", "postTitle" , "postNum", postNum);
             PostTitle.setText(postTitle);
             //  내용 출력
@@ -50,6 +54,13 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
              // 추천수 출력
              int count = returnRecommend("recommend", postNum);
              CountReco.setText(Integer.toString(count));
+             
+             String writer = returnData("post", "userNum", "postNum", postNum);
+            // 작성자일때 신고, 쪽지 안보이게함
+             if(writer.equals(userNum)){
+                SendMessage.setVisible(false);
+                Report.setVisible(false);
+             }
              
             String sql= "select comContent from comment where postNum = '" + postNum + "'";
             PreparedStatement st = conn.prepareStatement(sql);
@@ -376,6 +387,9 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
                 
                 postComment(postNum, userNum, comment); // comment에 댓글 추가 
                 // 게시글 번호, 사용자 번호, 댓글 번호  
+                
+                // 댓글 작성시 알림 전송
+                sendNotice(userinfo.UserNum, posterNum, "댓글", comment);
             }catch(SQLException ex){
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -396,26 +410,13 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void SendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMessageActionPerformed
         // TODO add your handling code here: 쪽지 보내기 _ 자신의 글일때 버튼 안보이도록 
         dbLoad();
-        String userNum = userinfo.UserNum; //사용자 번호 
-        String postNum = userinfo.PostNum;   // 게시글 번호
-       
-        
-        try{
-            String writer = returnData("post", "userNum", "postNum", postNum);    // writer가 게시글 작성자 인지 확인
-            if(writer.equals(userNum)){  // 작성자라면
-                JOptionPane.showMessageDialog(this, "[ 본인 글이므로 메세지를 보낼수 없습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-                SendMessage.setEnabled(false);    // 버튼 비활성화
-            }else{  // 독자라면
-                // 메세지 전송화면으로 이동 + userNum과 writerNum 정보도 이동 
-                
-                
-                
-            }
-        }catch(SQLException ex){
-            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        dbClose();
-        
+        try {
+            String rcvNickname = returnData("user", "userNickName" , "userNum", posterNum);
+            new MessageSendController(rcvNickname).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
+        }
+        dbClose();    
     }//GEN-LAST:event_SendMessageActionPerformed
 
     private void AlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlarmActionPerformed
@@ -429,7 +430,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             int state = itemEvent.getStateChange();
             // 왜 처음값 무시?????????
             // state > ON : 2 , OFF : 1
-            initComponents();   // add 초기화
+            // initComponents();   // add 초기화
             
             if (state == ItemEvent.SELECTED) {  // 1
                System.out.println("OFF state : "+state);

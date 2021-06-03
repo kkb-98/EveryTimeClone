@@ -50,7 +50,7 @@ public class MyPostModify extends databaseSQL {
         jLabel1.setText("Everytime");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
-        jLabel2.setText("본인 게시글");
+        jLabel2.setText("게시글 수정");
 
         Back.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         Back.setText("뒤로가기");

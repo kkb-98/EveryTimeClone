@@ -112,7 +112,6 @@ public class MessageReceiveController extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 
     private void AnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerActionPerformed
-        dispose();
         new MessageSendController(senderNickname).setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_AnswerActionPerformed

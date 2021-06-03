@@ -176,7 +176,6 @@ public class MessageController extends databaseSQL {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 보내기 버튼
-        dispose();
         new MessageSendController("받는사람").setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
