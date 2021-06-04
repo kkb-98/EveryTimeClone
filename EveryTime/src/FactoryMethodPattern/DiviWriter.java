@@ -8,7 +8,6 @@ package FactoryMethodPattern;
 
 public class DiviWriter extends CommentRegist{
 
-    @Override
     protected Comment registercom(String userNum, String type, String comment) {
         switch(type){
             case "Writer":

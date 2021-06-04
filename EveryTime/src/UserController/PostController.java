@@ -52,7 +52,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
              CountReco.setText(Integer.toString(count));
              
              String writer = returnData("post", "userNum", "postNum", postNum);
-            // 작성자일때 신고, 쪽지 안보이게함
+            // 작성자일때 신고, 쪽지버튼 안보이게함
              if(writer.equals(userNum)){
                 SendMessage.setVisible(false);
                 Report.setVisible(false);
@@ -256,7 +256,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // 뒤로가기
+        // TODO add your handling code here: 뒤로가기
         dispose();
     }//GEN-LAST:event_backActionPerformed
 
@@ -324,28 +324,22 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
           // TODO add your handling code here: 댓글 등록 기능
         dbLoad();
-        String comment = InputComment.getText(); // 댓글 내용        
+        String comment = InputComment.getText(); // 댓글 내용  
+        CommentRegist cr = new DiviWriter();    // 팩토리
+
            
         if(comment.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
              JOptionPane.showMessageDialog(this, "[ 내용을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
         }else{ // 댓글 등록 되도록
             try{
                 String writer = returnData("post", "userNum", "postNum", postNum);    // writer가 자신의 글인지 확인
-                
                 if(writer.equals(userNum)){  // 글쓴이의 댓글이라면
                     writer = "Writer";  
                 }else{                  // 독자 댓글이라면
                     writer = "Reader"; 
                 }
-                System.out.println("2차 확인 : " + writer + " / 이후는 팩토리 출력내용"); // 누군지 확인차 출력
-                                
-                CommentRegist cr = new DiviWriter();    // 팩토리 함수 불러옴
-                
                 Comment com = cr.RegeComment(userNum, writer, comment);
-                
                 comment=com.getComment();
-                System.out.println(userNum + postNum + comment);
-                
                 postComment(postNum, userNum, comment); // comment에 댓글 추가
                   
             }catch(SQLException ex){
