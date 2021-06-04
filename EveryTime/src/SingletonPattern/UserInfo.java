@@ -9,13 +9,11 @@ public class UserInfo {
     public String UserNum;
     public String addBoard;
     public String PostNum;
-    public int Recommand;
     
     private UserInfo(){
         UserNum = "00000";
         addBoard = "초기게시판추가";
         PostNum = "00000";
-        Recommand = 0;
     }
     
     private static class InnerUserInfo {

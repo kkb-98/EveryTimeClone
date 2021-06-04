@@ -5,8 +5,6 @@
  */
 package StrategyPattern;
 
-
-
 public interface Function {
     public void sort();
 }

@@ -1,9 +1,9 @@
 
 package UserController;
 
-import FactoryPattern.Comment;
-import FactoryPattern.CommentRegist;
-import FactoryPattern.DiviWriter;
+import FactoryMethodPattern.Comment;
+import FactoryMethodPattern.CommentRegist;
+import FactoryMethodPattern.DiviWriter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -343,7 +343,7 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
                 
                 Comment com = cr.RegeComment(userNum, writer, comment);
                 
-                comment=com.getcomment();
+                comment=com.getComment();
                 System.out.println(userNum + postNum + comment);
                 
                 postComment(postNum, userNum, comment); // comment에 댓글 추가

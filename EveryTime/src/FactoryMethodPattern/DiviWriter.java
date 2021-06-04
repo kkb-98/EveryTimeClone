@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FactoryPattern;
+package FactoryMethodPattern;
 // 댓글 작성자 분류
 
 public class DiviWriter extends CommentRegist{

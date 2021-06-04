@@ -13,7 +13,6 @@ import main.databaseSQL;
  * @author USER
  */
 public abstract class Sorting extends databaseSQL  {
-    UserInfo userinfo = UserInfo.getInstance();
     private Function function;
     
     public void sort(){

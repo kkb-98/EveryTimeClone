@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FactoryPattern;
+package FactoryMethodPattern;
 // 댓글 등록
 
 public abstract class CommentRegist {
