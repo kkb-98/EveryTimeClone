@@ -5,10 +5,8 @@
  */
 package FactoryPattern;
 
-import main.databaseSQL;
 
-
-public abstract class Comment extends databaseSQL{
+public abstract class Comment{
     
     protected String userNum;
     protected String comment;
