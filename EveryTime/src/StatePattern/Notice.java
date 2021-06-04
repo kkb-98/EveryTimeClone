@@ -8,7 +8,6 @@ package StatePattern;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import main.databaseSQL;
-import main.EveryTime_Main;
 import SingletonPattern.UserInfo;
 
 // 알림 클래스
@@ -55,7 +54,7 @@ public class Notice extends databaseSQL {
     }
 
     // 작업 위임
-    public void normal_alarm() {
+    public void normal_alarm(Notice notice) {
         state.normal_alarm(this);
     }
 }

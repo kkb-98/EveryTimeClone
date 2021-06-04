@@ -8,9 +8,7 @@ package StatePattern;
 // 알림이 1이상인 상태
 
 import UserController.NoticeController;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import main.databaseSQL;
 
 public class Receive implements State {
 

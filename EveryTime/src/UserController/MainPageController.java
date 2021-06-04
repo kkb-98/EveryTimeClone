@@ -244,7 +244,7 @@ public class MainPageController extends databaseSQL {
 
     private void NoticebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoticebtnActionPerformed
         dispose();
-        nt.normal_alarm();
+        nt.normal_alarm(nt);
         // TODO add your handling code here:
     }//GEN-LAST:event_NoticebtnActionPerformed
 

@@ -19,7 +19,6 @@ public class databaseSQL extends javax.swing.JFrame {
     protected Connection conn;
     protected static final String USERNAME = "everytime";
     protected static final String PASSWORD = "everytime";
-    //protected static final String URL = "jdbc:mysql://221.162.246.224:3306/teamproject?serverTimezone=UTC";
     protected static final String URL = "jdbc:mysql://49.50.175.24:3306/teamproject";
     protected Statement stmt = null;
     protected ResultSet rs = null;

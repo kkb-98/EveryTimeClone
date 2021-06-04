@@ -13,7 +13,6 @@ import SingletonPattern.UserInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class updateTable extends databaseSQL {
     
     UserInfo userinfo = UserInfo.getInstance();
@@ -29,27 +28,19 @@ public abstract class updateTable extends databaseSQL {
     public List<Object> columndata3 = new ArrayList<Object>();
     
     public void upTable(String Table,String check, String col1, String col2, String col3) {
-        inputdata(Table, check, col1, col2, col3);
-        finddata();
-        addFunction();
-    }
-    
-    protected abstract void addFunction();
-    
-    public void inputdata(String Table, String check,String col1, String col2, String col3) {
         this.Table = Table;
         this.col1 = col1;
         this.col2 = col2;
         this.col3 = col3;
         this.check = check;
+        finddata();
+        addFunction();
     }
     
     private void finddata() {
         dbLoad();
-        // 현재 사용자의 알림을 테이블에 보여줌
         try {
             String sql="select " + col1 + " ," + col2 + ", " + col3 + " from " + Table + " where " + check + " = '"+ userinfo.UserNum + "' ";
-                    //sql="select senderNum, messageDate, messageContent from message where receiverNum = '"+userinfo.UserNum+ "'";
             PreparedStatement st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {
@@ -60,11 +51,12 @@ public abstract class updateTable extends databaseSQL {
                 columndata1.add(column1);
                 columndata2.add(column2);
                 columndata3.add(column3);
-                Object data[] = {column1,column2, column3};
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "sql오류 : ."+ex, "메세지", JOptionPane.INFORMATION_MESSAGE);
         }
         dbClose();
     }
+    
+    protected abstract void addFunction();
 }
