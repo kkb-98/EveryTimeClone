@@ -12,7 +12,6 @@ import java.util.logging.Logger;
  * @author USER
  */
 public class Report extends Sorting{ //신고
-    UserInfo userinfo = UserInfo.getInstance();
     
     public Report (String postNum){
         dbLoad();

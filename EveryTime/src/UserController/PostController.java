@@ -285,7 +285,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
         dbClose();
 
     }//GEN-LAST:event_RecommendActionPerformed

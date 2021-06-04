@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  * @author USER
  */
 public class Recommend extends Sorting {
-    UserInfo userinfo = UserInfo.getInstance();
     
     public Recommend (String postNum){
         dbLoad();
