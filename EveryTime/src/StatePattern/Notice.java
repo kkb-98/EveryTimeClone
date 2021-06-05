@@ -54,7 +54,7 @@ public class Notice extends databaseSQL {
     }
 
     // 작업 위임
-    public void normal_alarm(Notice notice) {
+    public void normal_alarm() {
         state.normal_alarm(this);
     }
 }

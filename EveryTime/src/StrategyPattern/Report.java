@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author USER
- */
 public class Report extends Sorting{ //신고
     
     public Report (String postNum){
@@ -30,7 +26,5 @@ public class Report extends Sorting{ //신고
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         dbClose();
-    }
-    
-    
+    }   
 }

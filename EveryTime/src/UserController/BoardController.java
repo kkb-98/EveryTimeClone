@@ -1,22 +1,13 @@
 package UserController;
-import com.mysql.cj.xdevapi.Statement;
-import com.sun.jdi.connect.spi.Connection;
-import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import javax.swing.DefaultListModel;
-import javax.swing.*;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
-import java.sql.ResultSet;
 import javax.swing.event.ListSelectionEvent;
-import main.EveryTime_Main;
 import SingletonPattern.UserInfo;
 
 public class BoardController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
@@ -149,7 +140,6 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
         } catch (SQLException ex) {
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //DefaultListModel  model = new DefaultListModel();
         int i=1 ;
         String title = NewBoard.getText(); //게시판 추가할때
             String about = " "; //게시판 설명은 일단 공백으로 통일
@@ -220,38 +210,6 @@ public class BoardController extends databaseSQL implements MouseListener, KeyLi
      private void BoardInActionPerformed(java.awt.event.ActionEvent evt) {                                        
         dispose();
     }   
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BoardController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BoardController().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton Back;

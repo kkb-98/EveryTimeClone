@@ -1,24 +1,14 @@
 
 package UserController;
-import com.mysql.cj.xdevapi.Statement;
-import com.sun.jdi.connect.spi.Connection;
-import java.awt.*;
+
 import java.awt.event.*;
 import java.sql.SQLException;
 import javax.swing.DefaultListModel;
-import javax.swing.*;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
-import java.sql.ResultSet;
-import main.EveryTime_Main;
-import UserController.BoardController;
-import ManagerController.ManagerBoardController;
 import SingletonPattern.UserInfo;
 import javax.swing.event.ListSelectionEvent;
 
@@ -196,16 +186,7 @@ public class PostListController extends databaseSQL implements MouseListener, Ke
             dbClose();
         
     }                                 
-
-    public static void main(String args[]) {
-  
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PostListController().setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton Back;
     private javax.swing.JTextField BoardName;

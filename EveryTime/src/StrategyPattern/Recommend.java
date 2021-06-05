@@ -5,16 +5,11 @@
  */
 package StrategyPattern;
 
-import SingletonPattern.UserInfo;
 import UserController.BoardController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author USER
- */
 public class Recommend extends Sorting {
     
     public Recommend (String postNum){

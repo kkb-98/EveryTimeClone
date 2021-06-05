@@ -13,9 +13,7 @@ public class PostWriteController extends databaseSQL  {
     UserInfo userinfo = UserInfo.getInstance(); 
     
     public PostWriteController() { 
-     
         initComponents();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -127,13 +125,10 @@ public class PostWriteController extends databaseSQL  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PostEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostEnrollActionPerformed
- // 게시글 등록      EveryTime_Main.PostNum
         dbLoad();   // db연결
-        //String boardtitle = EveryTime_Main.addBoard; // 게시판 이름
         String boardtitle = "자유게시판";     // 게시판 이름
         String postNum;              // 게시글 번호
         String postContent = Content.getText();    // 게시글 내용
-        //String userNum = EveryTime_Main.UserNum;    // usernum 불러오기
         String userNum = "00001";
         String postTitle = PostTitle.getText();    // 게시글 제목
         boolean check;
@@ -141,36 +136,28 @@ public class PostWriteController extends databaseSQL  {
         
             if(postTitle.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
                 JOptionPane.showMessageDialog(this, "[ 제목을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            }else if(postContent.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
+            } else if(postContent.replaceAll("[^a-zA-Zㄱ-힣]", "").length() == 0){
                 JOptionPane.showMessageDialog(this, "[ 내용을 입력하세요 ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 try{
                     int random; 
-                    do{
+                    do {
                         random =(int)((Math.random()*100000)-1);
                         postNum = String.format("%05d", random);
                         userinfo.PostNum = postNum;
-
-                    }while(check = searchData("post","postNum", userinfo.PostNum));
-                    
+                    } while (check = searchData("post","postNum", userinfo.PostNum));
                     if(check == false){
                         postBoard( boardtitle, userinfo.PostNum, postTitle, postContent, userNum, recommend);
                         // 게시판명, 게시글 번호, 게시글 제목, 게시 내용, 작성자 번호, 게시일, 추천수
                         dbClose();
                         System.out.println("DB 등록 완료");
                     }
-                    
-
-                }catch (SQLException ex) {
+                } catch (SQLException ex) {
                     Logger.getLogger(PostListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(this, "[ 게시물이 등록되었습니다. ]", "메세지", JOptionPane.INFORMATION_MESSAGE);
                 dispose();  // 현재 gui 종료
-               
-               // new PostListController().setVisible(true);  // 등록 후 postlist로 이동
         }
-        
-
         dbClose();
     }//GEN-LAST:event_PostEnrollActionPerformed
 
@@ -179,14 +166,6 @@ public class PostWriteController extends databaseSQL  {
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
   
-    public static void main (String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PostWriteController().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JTextArea Content;

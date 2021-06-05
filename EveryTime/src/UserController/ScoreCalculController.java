@@ -1,13 +1,9 @@
 package UserController;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.JButton;
 import MementoPattern.CareTaker;
 import MementoPattern.Originator;
-import MementoPattern.Memento;
 import java.text.DecimalFormat;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -372,22 +368,12 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
             s8 = "";
         }
         String[] ss = {s1,s2,s3,s4,s5,s6,s7,s8};
-        
-//        for (int i = 0;i<8;i++){
-//            if(ss[i]==""){
-//                continue;
-//            }
-//            else{
-//                
-//            }
-//        }
-        
+       
         double[] CC = new double[carray.length];
         for (int i=1;i<=carray.length;i++){
             CC[i-1] = Double.parseDouble(carray[i-1]);
         }
         double[] q = new double[carray.length];
-        
 
        for (int i=1;i<=carray.length;i++){
         if (ss[i-1].equals("A+")){
@@ -440,16 +426,6 @@ public  class ScoreCalculController extends javax.swing.JFrame implements MouseL
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
 
     }//GEN-LAST:event_SaveActionPerformed
-
-    public static void main(String args[]) {
-   
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ScoreCalculController().setVisible(true);
-                
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

@@ -365,18 +365,6 @@ public class PostController extends databaseSQL implements MouseListener, KeyLis
     
     }//GEN-LAST:event_formWindowOpened
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PostController().setVisible(true);
-            }
-        });
-        
-        //CommentList
-        
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> CommentList;
     private javax.swing.JTextField CountReco;

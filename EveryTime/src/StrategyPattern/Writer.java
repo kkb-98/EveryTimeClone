@@ -5,10 +5,6 @@
  */
 package StrategyPattern;
 
-/**
- *
- * @author USER
- */
 public class Writer implements Function{
     public void sort(){
         System.out.println("글쓴이");

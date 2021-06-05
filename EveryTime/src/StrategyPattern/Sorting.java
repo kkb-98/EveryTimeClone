@@ -6,10 +6,6 @@
 package StrategyPattern;
 import main.databaseSQL;
 
-/**
- *
- * @author USER
- */
 public abstract class Sorting extends databaseSQL  {
     private Function function;
     

@@ -5,10 +5,6 @@
  */
 package UserController;
 
-/**
- *
- * @author USER
- */
 public class PremiumController extends javax.swing.JFrame {
 
     /**
@@ -81,6 +77,11 @@ public class PremiumController extends javax.swing.JFrame {
 
         Back.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
         Back.setText("뒤로가기");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(153, 0, 0));
         jButton2.setFont(new java.awt.Font("맑은 고딕", 0, 15)); // NOI18N
@@ -112,7 +113,6 @@ public class PremiumController extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(102, 0, 0));
         jLabel13.setText("- 중간에 해당 상품 자동 갱신을 취소하더라도 유효기간내에는 프리미엄 혜택이 유지됩니다.");
 
-        jLabel14.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 153, 153));
         jLabel14.setText("(혜택 정해서 작성하기)");
 
@@ -201,40 +201,14 @@ public class PremiumController extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CardPWActionPerformed
 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_BackActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PremiumController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PremiumController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PremiumController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PremiumController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PremiumController().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

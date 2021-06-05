@@ -1,25 +1,15 @@
 package ManagerController;
-import UserController.BoardController;
-import com.mysql.cj.xdevapi.Statement;
-import com.sun.jdi.connect.spi.Connection;
-import java.awt.*;
 import java.awt.event.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.DefaultListModel;
-import javax.swing.*;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.event.ListSelectionListener;
 import main.databaseSQL;
-import java.sql.ResultSet;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.event.ListSelectionEvent;
-import main.EveryTime_Main;
 
 public class ManagerPostController extends databaseSQL implements MouseListener, KeyListener,ListSelectionListener {
     String BT2; //게시판이름을 받아올 변수
@@ -177,15 +167,6 @@ public class ManagerPostController extends databaseSQL implements MouseListener,
        int PostIndex = index;
         model2.remove(index);
         //연결되는 코드는 마우스 클릭 이벤트로 넘어갑시다.
-    }
-    
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManagerPostController().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify                     
